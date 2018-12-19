@@ -1,0 +1,29 @@
+{
+  "name": "bookingWidgetAndUnitInfo",
+  "version": "1.0.0",
+  "description": "cloning AirBnB booking widget and unit description",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon ./server/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HouseTargaryan/bookingWidgetAndUnitInfo.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HouseTargaryan/bookingWidgetAndUnitInfo/issues"
+  },
+  "homepage": "https://github.com/HouseTargaryan/bookingWidgetAndUnitInfo#readme",
+  "devDependencies": {
+    "jest": "^23.6.0"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "nodemon": "^1.18.9"
+  }
+}
