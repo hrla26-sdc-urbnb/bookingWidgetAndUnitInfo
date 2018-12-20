@@ -1,56 +1,213 @@
-// function1 that returns an array of 1000 objects matching the Owners table properties
-const femaleNames = ['Hannah', 'Madison', 'Ashley', 'Sarah', 'Alexis', 'Samantha', 'Jessica', 'Elizabeth', 'Taylor', 'Lauren', 'Alyssa', 'Kayla', 'Abigail', 'Brianna', 'Olivia', 'Emma', 'Megan', 'Grace', 'Victoria', 'Rachel', 'Anna', 'Sydney', 'Destiny', 'Morgan', 'Jennifer', 'Jasmine', 'Haley', 'Julia', 'Kaitlyn', 'Nicole', 'Amanda', 'Katherine', 'Natalie', 'Hailey', 'Alexandra', 'Savannah', 'Chloe', 'Rebecca', 'Stephanie', 'Maria', 'Sophia', 'Mackenzie', 'Allison', 'Isabella', 'Amber', 'Mary', 'Danielle', 'Gabrielle', 'Jordan', 'Brooke', 'Michelle', 'Sierra', 'Katelyn', 'Andrea', 'Madeline', 'Sara', 'Kimberly', 'Courtney', 'Erin', 'Brittany', 'Vanessa', 'Jenna', 'Jacqueline', 'Caroline', 'Faith', 'Makayla', 'Bailey', 'Paige', 'Shelby', 'Melissa', 'Kaylee', 'Christina', 'Trinity', 'Mariah', 'Caitlin', 'Autumn', 'Marissa', 'Breanna', 'Angela', 'Catherine', 'Zoe', 'Briana', 'Jada', 'Laura', 'Claire', 'Alexa', 'Kelsey', 'Kathryn', 'Leslie', 'Alexandria', 'Sabrina', 'Mia', 'Isabel', 'Molly', 'Leah', 'Katie', 'Gabriella', 'Cheyenne', 'Cassandra', 'Tiffany'];
-const maleNames = ['Michael', 'Matthew', 'Joshua', 'Christopher', 'Nicholas', 'Andrew', 'Joseph', 'Daniel', 'Tyler', 'William', 'Brandon', 'Ryan', 'John', 'Zachary', 'David', 'Anthony', 'James', 'Justin', 'Alexander', 'Jonathan', 'Christian', 'Austin', 'Dylan', 'Ethan', 'Benjamin', 'Noah', 'Samuel', 'Robert', 'Nathan', 'Cameron', 'Kevin', 'Thomas', 'Jose', 'Hunter', 'Jordan', 'Kyle', 'Caleb', 'Jason', 'Logan', 'Aaron', 'Eric', 'Brian', 'Gabriel', 'Adam', 'Jack', 'Isaiah', 'Juan', 'Luis', 'Connor', 'Charles', 'Elijah', 'Isaac', 'Steven', 'Evan', 'Jared', 'Sean', 'Timothy', 'Luke', 'Cody', 'Nathaniel', 'Alex', 'Seth', 'Mason', 'Richard', 'Carlos', 'Angel', 'Patrick', 'Devin', 'Bryan', 'Cole', 'Jackson', 'Ian', 'Garrett', 'Trevor', 'Jesus', 'Chase', 'Adrian', 'Mark', 'Blake', 'Sebastian', 'Antonio', 'Lucas', 'Jeremy', 'Gavin', 'Miguel', 'Julian', 'Dakota', 'Alejandro', 'Jesse', 'Dalton', 'Bryce', 'Tanner', 'Kenneth', 'Stephen', 'Jake', 'Victor', 'Spencer', 'Marcus', 'Paul', 'Brendan'];
-const imageUrl = 'https://fakeimg.pl/250x100/';
+const faker = require('faker');
 
-function getRandomNumberBetween(beg, end) {
-  return (Math.floor(Math.random() * (end - beg + 1)) + beg);
-}
+// helpers for specific fake data generation
 
 function randomBooleanValue(num) {
   return num % 2 === 0;
 }
 
-function generateOwners() {
-  const sampleOwners = [];
-  // we want 100 unique owners..
+function generateRandomNumberBetween(beg, end) {
+  return Math.floor((Math.random() * (end - beg + 1)) + beg);
+}
 
+function partForRent() {
+  const index = generateRandomNumberBetween(0, 2);
+  const parts = ['Entire Place', 'Private Room', 'Shared Room'];
+  return parts[index];
+}
+
+// creates sample owners data...
+
+function generateOwnersData() {
+  const sampleOwners = [];
+
+  // we want 100 unique owners..
   for (let i = 0; i < 100; i += 1) {
     const owner = {};
-
-    // lets get some funky name combos!
-    const index1 = getRandomNumberBetween(i, 99);
-    const index2 = getRandomNumberBetween(i, 99);
-
-    // init rand bool for superhost
     const randomBool = randomBooleanValue(i);
 
     //  give our owners the appropriate properties...
-
-    owner.name = femaleNames[index1] + ' ' + maleNames[index2];
+    owner.name = faker.name.findName();
     owner.id = i;
-    owner.photo = imageUrl;
+    owner.photo = faker.image.imageUrl();
     owner.isSuperHost = randomBool;
-
-
     sampleOwners.push(owner);
   }
   return sampleOwners;
 }
 
-// function3 that returns an array of 1000 objects matching the Units table properties
-// init a new array
-// run a loop of 100
-// init a new object
-// if the
+// creates sample units data...
 
-// function2 that returns an array of 1000 objects matching the Amenities table properties
+function generateUnitsData() { 
+  const sampleUnits = [];
 
+  // we need 100 units...
 
-// function4 that iterates over the 1000 unitIds and assigns each unit a random number of
-// amenities. Return an array of objects that contain a unitId prop whos value is a unitId, 
-// and an ameities prop with an array containing a random number of amenityIds that will be
-// associated with each unit...
+  for (let i = 11111; i < 11211; i += 1) {
+    const unit = {
+      id: i,
+      ownerId: generateRandomNumberBetween(0, 99),
+      title: faker.company.catchPhraseDescriptor(),
+      streetAddress: faker.address.streetAddress(),
+      aptOrSuite: faker.address.secondaryAddress(),
+      country: faker.address.country(),
+      state: faker.address.state(),
+      zipCode: faker.address.zipCode(),
+      partOfUnitFromRent: partForRent(),
+      guestsAllowed: generateRandomNumberBetween(1, 16),
+      numberOfRoomsGuestsMayUse: generateRandomNumberBetween(0, 50),
+      numberOfBedsGuestsMayUse: generateRandomNumberBetween(0, 50),
+      numberOfBathroomsGuestsMayUse: generateRandomNumberBetween(0, 50),
+      numberOfReviews: generateRandomNumberBetween(0, 500),
+      averageStarRating: generateRandomNumberBetween(0, 5),
+      summaryDescription: faker.lorem.paragraph(),
+      aboutYourUnit: faker.lorem.paragraph(),
+      whatGuestsCanAccess: faker.lorem.sentences(),
+      yourInteractionWithGuests: faker.lorem.sentences(),
+      otherThingsToNote: faker.lorem.sentences(),
+      dateAvailableFrom: faker.date.future(),
+      dateAvailableTo: faker.date.future(),
+      pricePerNight: '$' + generateRandomNumberBetween(1, 1000),
+      cleaningFee: '$' + generateRandomNumberBetween(1, 200),
+      serviceFee: '$' + generateRandomNumberBetween(1, 200),
+      isBooked: randomBooleanValue(i),
+    };
+    sampleUnits.push(unit);
+  }
+  return sampleUnits;
+}
 
+// will populate the Amenities mapping table...
 
-console.log(generateOwners());
+const amenities = [
+  {
+    id: 1,
+    name: 'hasEssentials',
+  },
+  {
+    id: 2,
+    name: 'hasWifi',
+  },
+  {
+    id: 3,
+    name: 'hasShampoo',
+  },
+  {
+    id: 4,
+    name: 'hasClosetDrawers',
+  },
+  {
+    id: 5,
+    name: 'hasTv',
+  },
+  {
+    id: 6,
+    name: 'hasHeat',
+  },
+  {
+    id: 7,
+    name: 'hasAirConditioning',
+  },
+  {
+    id: 8,
+    name: 'hasBreakfastCoffeeTea',
+  },
+  {
+    id: 9,
+    name: 'hasDeskWorkSpace',
+  },
+  {
+    id: 10,
+    name: 'hasFirePlace',
+  },
+  {
+    id: 11,
+    name: 'hasIron',
+  },
+  {
+    id: 12,
+    name: 'hasHairDryer',
+  },
+  {
+    id: 13,
+    name: 'hasPrivateEntrance',
+  },
+  {
+    id: 14,
+    name: 'hasSmokeDetector',
+  },
+  {
+    id: 15,
+    name: 'hasCarbonMonoxideDetector',
+  },
+  {
+    id: 16,
+    name: 'hasFirstAidKit',
+  },
+  {
+    id: 17,
+    name: 'hasFireExtinguisher',
+  },
+  {
+    id: 18,
+    name: 'hasLockOnBedroomDoor',
+  },
+  {
+    id: 19,
+    name: 'hasPool',
+  },
+  {
+    id: 20,
+    name: 'hasKitchen',
+  },
+  {
+    id: 21,
+    name: 'hasLaundryWasher',
+  },
+  {
+    id: 22,
+    name: 'hasLaundryDryer',
+  },
+  {
+    id: 23,
+    name: 'hasParking',
+  },
+  {
+    id: 24,
+    name: 'hasElevator',
+  },
+  {
+    id: 25,
+    name: 'hasHotTub',
+  },
+];
+
+// this will populate our join table...
+
+function generateUnitsAmenitiesJoinData() {
+  const sampleJoinData = [];
+
+  // 1 loop for each unit, thats 100...
+
+  for (let i = 0; i < 100; i += 1) {
+    const numberOfAmenities = generateRandomNumberBetween(0, 24);
+    const unitId = generateRandomNumberBetween(11111, 11211);
+
+    // each unit needs a random number of amenities
+
+    for (let j = 0; j < numberOfAmenities; j += 1) {
+      const join = {};
+      join.unitId = unitId;
+      join.amenityId = amenities[generateRandomNumberBetween(0, 24)].id;
+      sampleJoinData.push(join);
+    }
+  }
+  return sampleJoinData;
+}
+
+module.exports = {
+  generateOwnersData,
+  generateUnitsData,
+  amenities,
+  generateUnitsAmenitiesJoinData,
+};

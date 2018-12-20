@@ -1,19 +1,18 @@
+const { 
+  generateOwnersData,
+  generateUnitsData,
+  generateUnitsAmenitiesJoinData,
+} = require('./generateData');
 
-//function1
+test('creates an array of owners', () => {
+  expect(generateOwnersData().length).toBe(100);
+});
 
-//expect return value to be an array
-//expect length of array to be 1000
+test('creates an array of units', () => {
+  expect(generateUnitsData().length).toBe(100);
+});
 
-//function2
-
-//expect return value to be an array
-//expect length of array to be 1000
-
-//function3
-
-//expect return value to be an array
-//expect length of array to be 1000
-
-//function4 
-
-//need to design useful test for this one...
+test('should have objects with properties unitId and amenityId', () => {
+  expect(generateUnitsAmenitiesJoinData()[0].unitId).toBeDefined();
+  expect(generateUnitsAmenitiesJoinData()[0].amenityId).toBeDefined();
+});
