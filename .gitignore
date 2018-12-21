@@ -4,3 +4,4 @@ node_modules
 /coverage
 ./server/routes.test.js
 ./db/seed/generateData.test.js
+./webpack.config.js
