@@ -27,6 +27,7 @@ const unitSchema = new mongoose.Schema({
   streetAddress: String,
   aptOrSuite: String,
   country: String,
+  city: String,
   state: String,
   zipCode: String,
   partOfUnitFromRent: String,

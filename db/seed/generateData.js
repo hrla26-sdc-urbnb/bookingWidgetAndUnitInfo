@@ -52,6 +52,7 @@ function generateUnitsData() {
       streetAddress: faker.address.streetAddress(),
       aptOrSuite: faker.address.secondaryAddress(),
       country: faker.address.country(),
+      city: faker.address.city(),
       state: faker.address.state(),
       zipCode: faker.address.zipCode(),
       partOfUnitFromRent: partForRent(),

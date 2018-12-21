@@ -1,12 +1,55 @@
 import React from 'react';
+import axios from 'axios';
+
+import OwnerUnit from './OwnerUnit';
 
 class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      unit: {},
+      unitData: [],
+      ownerData: [],
       amenities: [],
+      amenitiesList: [],
     };
+    this.fetchUnit = this.fetchUnit.bind(this);
+    this.fetchAmenities = this.fetchAmenities.bind(this);
+  }
+
+
+  componentDidMount() {
+    this.fetchUnit();
+    this.fetchAmenities();
+  }
+
+  fetchUnit() {
+    axios.get(`/api/units/${generateRandomNumberBetween(11111, 11211)}`)
+    .then(({ data }) => {
+      console.log('axios -->', data);
+      const { unitData, ownerData, amenities } = data;
+      this.setState({
+        unitData: unitData[0],
+        ownerData: ownerData[0],
+        amenities: amenities[0],
+      });
+    })
+    .catch((err) => {
+      console.log('error fetching unit -->', err);
+    });
+  }
+
+  fetchAmenities() {
+    axios.get(`/api/units/${generateRandomNumberBetween(11111, 11211)}/amenities`)
+    .then(({ data }) => {
+      console.log('axios -->', data);
+      let amenitiesList = [...data];
+      this.setState({
+        amenitiesList,
+      });
+    })
+    .catch((err) => {
+      console.log('error fetching unit -->', err);
+    });
   }
 
   render() {
@@ -18,21 +61,8 @@ class App extends React.Component {
             this is for unit info
 
             <div className="ownerUnit container">
-
               this is where the owner and unit title go
-
-              <div className="unitTitle container">
-                <div>part available</div>
-                <div>unit title</div>
-                <div>city name</div>
-              </div>
-
-              <div className="owner container">
-                <div>owner img</div>
-                <div>owner badge</div>
-                <div>owner name</div>
-              </div>
-
+              <OwnerUnit unitData={this.state.unitData} ownerData={this.state.ownerData}/>
             </div>
 
             <div className="specs container">
@@ -129,3 +159,7 @@ class App extends React.Component {
 }
 
 export default App;
+
+function generateRandomNumberBetween(beg, end) {
+  return Math.floor((Math.random() * (end - beg + 1)) + beg);
+}
