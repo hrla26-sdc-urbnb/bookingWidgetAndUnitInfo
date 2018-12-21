@@ -1,5 +1,6 @@
 const faker = require('faker');
 
+
 // helpers for specific fake data generation
 
 function randomBooleanValue(num) {
@@ -46,7 +47,7 @@ function generateUnitsData() {
   for (let i = 11111; i < 11211; i += 1) {
     const unit = {
       id: i,
-      ownerId: generateRandomNumberBetween(0, 99),
+      owner_id: generateRandomNumberBetween(0, 99),
       title: faker.company.catchPhraseDescriptor(),
       streetAddress: faker.address.streetAddress(),
       aptOrSuite: faker.address.secondaryAddress(),
@@ -67,9 +68,9 @@ function generateUnitsData() {
       otherThingsToNote: faker.lorem.sentences(),
       dateAvailableFrom: faker.date.future(),
       dateAvailableTo: faker.date.future(),
-      pricePerNight: '$' + generateRandomNumberBetween(1, 1000),
-      cleaningFee: '$' + generateRandomNumberBetween(1, 200),
-      serviceFee: '$' + generateRandomNumberBetween(1, 200),
+      pricePerNight: generateRandomNumberBetween(1, 1000),
+      cleaningFee: generateRandomNumberBetween(1, 200),
+      serviceFee: generateRandomNumberBetween(1, 200),
       isBooked: randomBooleanValue(i),
     };
     sampleUnits.push(unit);

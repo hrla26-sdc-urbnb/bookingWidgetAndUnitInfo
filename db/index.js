@@ -1,133 +1,73 @@
-const Sequelize = require('sequelize');
+const mongoose = require('mongoose');
 
-const sequelize = new Sequelize('airBnb', 'root', 'password', {
-  host: 'localhost',
-  dialect: 'mysql',
-  pool: {
-    max: 5,
-    min: 0,
-    acquire: 30000,
-    idle: 10000,
-  },
-  operatorsAliases: false,
+mongoose.connect('mongodb://localhost/airBnb', {
+  useNewUrlParser: true,
 });
 
-// lets define the models...
+const db = mongoose.connection;
 
-const Owners = sequelize.define('owners', {
-  id: {
-    type: Sequelize.INTEGER,
-    primaryKey: true,
-    autoIncrement: true,
-  },
-  name: Sequelize.STRING,
-  photo: Sequelize.TEXT,
-  isSuperHost: Sequelize.INTEGER,
+db.on('error', (err) => {
+  console.log('error connecting to db -->', err);
+});
+db.once('open', () => {
+  console.log('successfully connected to db!');
 });
 
-const Units = sequelize.define('units', {
-  id: {
-    type: Sequelize.INTEGER,
-    primaryKey: true,
-    autoIncrement: true,
-  },
-  title: Sequelize.STRING,
-  streetAddress: Sequelize.STRING,
-  aptOrSuite: Sequelize.STRING,
-  country: Sequelize.STRING,
-  state: Sequelize.STRING,
-  zipCode: Sequelize.STRING,
-  partOfUnitFromRent: Sequelize.STRING,
-  guestsAllowed: Sequelize.INTEGER,
-  numberOfRoomsGuestsMayUse: Sequelize.INTEGER,
-  numberOfBedsGuestsMayUse: Sequelize.INTEGER,
-  numberOfBathroomsGuestsMayUse: Sequelize.FLOAT,
-  numberOfReviews: Sequelize.INTEGER,
-  averageStarRating: Sequelize.INTEGER,
-  summaryDescription: Sequelize.TEXT,
-  aboutYourUnit: Sequelize.TEXT,
-  whatGuestsCanAccess: Sequelize.TEXT,
-  yourInteractionWithGuests: Sequelize.TEXT,
-  otherThingsToNote: Sequelize.TEXT,
-  dateAvailableFrom: Sequelize.DATEONLY,
-  dateAvailableTo: Sequelize.DATEONLY,
-  pricePerNight: Sequelize.FLOAT,
-  cleaningFee: Sequelize.FLOAT,
-  serviceFee: Sequelize.FLOAT,
-  isBooked: Sequelize.INTEGER,
+const ownerSchema = new mongoose.Schema({
+  id: Number,
+  name: String,
+  photo: String,
+  isSuperHost: Boolean,
 });
 
-const Amenities = sequelize.define('amenities', {
-  id: {
-    type: Sequelize.INTEGER,
-    primaryKey: true,
-    autoIncrement: true,
-  },
-  name: Sequelize.STRING,
+const unitSchema = new mongoose.Schema({
+  id: Number,
+  owner_id: Number,
+  title: String,
+  streetAddress: String,
+  aptOrSuite: String,
+  country: String,
+  state: String,
+  zipCode: String,
+  partOfUnitFromRent: String,
+  guestsAllowed: Number,
+  numberOfRoomsGuestsMayUse: Number,
+  numberOfBedsGuestsMayUse: Number,
+  numberOfBathroomsGuestsMayUse: Number,
+  numberOfReviews: Number,
+  averageStarRating: Number,
+  summaryDescription: String,
+  aboutYourUnit: String,
+  whatGuestsCanAccess: String,
+  yourInteractionWithGuests: String,
+  otherThingsToNote: String,
+  dateAvailableFrom: Date,
+  dateAvailableTo: Date,
+  pricePerNight: Number,
+  cleaningFee: Number,
+  serviceFee: Number,
+  isBooked: Boolean,
 });
 
-const UnitsAmenities = sequelize.define('units_amenities', {
-  id: {
-    type: Sequelize.INTEGER,
-    primaryKey: true,
-    autoIncrement: true,
-  },
+const amenitySchema = new mongoose.Schema({
+  id: Number,
+  name: String,
 });
 
+const unitsAmenitiesSchema = new mongoose.Schema({
+  unitId: Number,
+  amenityId: Number,
+});
 
-// define foreign keys...
-
-Units.belongsTo(Owners, { foreignKey: 'owner_id' });
-Units.belongsToMany(Amenities, { through: UnitsAmenities, as: 'amenity_id', foreignKey: 'amenities_id' });
-Amenities.belongsToMany(Units, { through: UnitsAmenities, as: 'unit_id', foreignKey: 'units_id' });
-
-
-// lets sync it all...
-
-Owners.sync({ force: false })
-  .then(() => {
-    console.log('owners table synced!');
-  })
-  .catch((err) => {
-    console.log('error syncing owners table ', err);
-  });
-
-Units.sync({ force: false })
-  .then(() => {
-    console.log('units table synced!');
-  })
-  .catch((err) => {
-    console.log('error syncing units table ', err);
-  });
-
-Amenities.sync({ force: false })
-  .then(() => {
-    console.log('amenities table synced!');
-  })
-  .catch((err) => {
-    console.log('error syncing amenities table ', err);
-  });
-
-UnitsAmenities.sync({ force: false })
-  .then(() => {
-    console.log('units_amenities table synced!');
-  })
-  .catch((err) => {
-    console.log('error syncing units_amenities table ', err);
-  });
-
-sequelize.authenticate()
-  .then(() => {
-    console.log('successfully connected to db!');
-  })
-  .catch((err) => {
-    console.log('error connecting to db db/index ', err);
-  });
-
+const Owner = mongoose.model('Owner', ownerSchema);
+const Unit = mongoose.model('Unit', unitSchema);
+const Amenity = mongoose.model('Amenity', amenitySchema);
+const UnitsAmenities = mongoose.model('UnitsAmenities', unitsAmenitiesSchema);
 
 module.exports = {
-  Owners,
-  Units,
-  Amenities,
+  db,
+  Owner,
+  Unit,
+  Amenity,
   UnitsAmenities,
 };
