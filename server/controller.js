@@ -6,8 +6,8 @@ module.exports = {
     const { unitId } = req.params;
     db.readUnit(unitId, (unitData) => {
       db.readOwner(unitData[0].owner_id, (ownerData) => {
-        db.readUnitsAmenities(unitId, (ammenities) => {
-          res.status(200).send({ ownerData, unitData, ammenities });
+        db.readUnitsAmenities(unitId, (amenities) => {
+          res.status(200).send({ ownerData, unitData, amenities });
         });
       });
     });

@@ -1,5 +1,9 @@
 {
   "name": "bookingWidgetAndUnitInfo",
+  "jest": {
+    "testEnvironment": "node",
+    "collectCoverage": true
+  },
   "version": "1.0.0",
   "description": "cloning AirBnB booking widget and unit description",
   "main": "index.js",
@@ -25,7 +29,8 @@
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsx-a11y": "^6.1.2",
     "eslint-plugin-react": "^7.11.1",
-    "jest": "^23.6.0"
+    "jest": "^23.6.0",
+    "supertest": "^3.3.0"
   },
   "dependencies": {
     "body-parser": "^1.18.3",
