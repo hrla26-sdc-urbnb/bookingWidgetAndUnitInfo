@@ -7,7 +7,7 @@ import Descriptions from './unitInfo/Descriptions';
 import AmenitiesList from './unitInfo/AmenitiesList';
 import PriceReviews from './bookingWidget/PriceReviews';
 import Dates from './bookingWidget/Dates';
-import Guests from './bookingWidget/Guests';
+import Guests from './bookingWidget/guestSelect/Guests';
 import BookingButton from './bookingWidget/BookingButton';
 
 
@@ -17,9 +17,14 @@ class App extends React.Component {
     this.state = {
       unitData: [],
       ownerData: [],
+      price: 0,
+      original: 0,
+      guestSelectOpen: false,
     };
     this.fetchUnit = this.fetchUnit.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.addToPrice = this.addToPrice.bind(this);
+    this.removeFromPrice = this.removeFromPrice.bind(this);
   }
 
 
@@ -40,11 +45,36 @@ class App extends React.Component {
       this.setState({
         unitData: unitData[0],
         ownerData: ownerData[0],
+        price: unitData[0].pricePerNight,
+        original: unitData[0].pricePerNight,
       });
     })
     .catch((err) => {
       console.log('error fetching unit -->', err);
     });
+  }
+
+  addToPrice(going) {
+    if (going <= 2) {
+      return;
+    }
+    this.setState((state) => {
+      const price = Math.floor((( 0.20 * state.original) + state.price));
+      return { price };
+    });
+  }
+
+  removeFromPrice(going) {
+    if (going <= 2) {
+      this.setState((state) => {
+        return { price: state.original };
+      });
+    } else {
+      this.setState((state) => {
+        const price = Math.floor(state.price - (state.original * 0.20));
+        return { price };
+      });
+    }
   }
 
   render() {
@@ -86,7 +116,7 @@ class App extends React.Component {
             <div>bookingWidget</div>
 
             <div>
-              <PriceReviews unitData={this.state.unitData}/>
+              <PriceReviews unitData={this.state.unitData} price={this.state.price}/>
             </div>
 
             <div className="dates container">
@@ -95,7 +125,7 @@ class App extends React.Component {
 
             <div className="guests container">
               <div>Guests</div>
-              <Guests unitData={this.state.unitData}/>
+              <Guests unitData={this.state.unitData} addToPrice={this.addToPrice} removeFromPrice={this.removeFromPrice}/>
             </div>
 
             <div className="bookingButton container">

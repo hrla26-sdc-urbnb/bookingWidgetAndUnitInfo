@@ -14,7 +14,7 @@ const BookingButton = ({ unitData }) => {
   return(
     <div>
       <div>{button}</div>
-      <div>youWont text</div>
+      <div>You won’t be charged yet</div>
     </div>
   );
 };

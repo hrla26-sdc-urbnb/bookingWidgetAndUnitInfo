@@ -1,6 +1,6 @@
 import React from 'react';
 
-const PriceReviews = ({ unitData }) => {
+const PriceReviews = ({ unitData, price }) => {
   let { averageStarRating } = unitData;
   let stars = '';
   for (let i = 0; i < averageStarRating; i += 1) {
@@ -9,7 +9,7 @@ const PriceReviews = ({ unitData }) => {
   return(
       <div>
         <div>
-          <span className="price">{`$${unitData.pricePerNight} `}</span>
+          <span className="price">{`$${price} `}</span>
           <span>per night</span>
         </div>
         <div>{stars}</div>

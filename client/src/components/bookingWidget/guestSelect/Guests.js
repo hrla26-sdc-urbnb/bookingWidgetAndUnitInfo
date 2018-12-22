@@ -1,10 +1,5 @@
 import React from 'react';
-import AdultPlus from './AdultPlus';
-import AdultMinus from './AdultMinus';
-import ChildrenPlus from './ChildrenPlus';
-import ChildrenMinus from './ChildrenMinus';
-import InfantPlus from './InfantPlus';
-import InfantMinus from './InfantMinus';
+import GuestMenu from './GuestMenu';
 
 class Guests extends React.Component {
   constructor(props) {
@@ -16,6 +11,7 @@ class Guests extends React.Component {
       guests: 1,
       infantMax: 5,
       word: 'guest',
+      isOpen: false,
     };
     this.updateWord = this.updateWord.bind(this);
     this.handleClickPlusAdults = this.handleClickPlusAdults.bind(this);
@@ -24,6 +20,9 @@ class Guests extends React.Component {
     this.handleClickMinusChildren = this.handleClickMinusChildren.bind(this);
     this.handleClickPlusInfants = this.handleClickPlusInfants.bind(this);
     this.handleClickMinusInfants = this.handleClickMinusInfants.bind(this);
+    // this.addGuestsIncreasePrice = this.addGuestsIncreasePrice.bind(this);
+    // this.removeGuestsDecreasePrice = this.removeGuestsDecreasePrice(this);
+    this.toggleGuestMenu = this.toggleGuestMenu.bind(this);
   }
 
   handleClickPlusAdults() {
@@ -34,6 +33,7 @@ class Guests extends React.Component {
       };
     });
     this.updateWord();
+    this.addGuestsIncreasePrice();
   }
 
   handleClickMinusAdults() {
@@ -44,6 +44,7 @@ class Guests extends React.Component {
       };
     });
     this.updateWord();
+    this.removeGuestsDecreasePrice();
   }
 
   handleClickPlusChildren() {
@@ -54,6 +55,7 @@ class Guests extends React.Component {
       };
     });
     this.updateWord();
+    this.addGuestsIncreasePrice();
   }
 
   handleClickMinusChildren() {
@@ -64,6 +66,7 @@ class Guests extends React.Component {
       };
     });
     this.updateWord();
+    this.removeGuestsDecreasePrice();
   }
 
   handleClickPlusInfants() {
@@ -94,37 +97,49 @@ class Guests extends React.Component {
     });
   }
 
+  addGuestsIncreasePrice() {
+    this.setState((state) => {
+      this.props.addToPrice(state.guests);
+    });
+  }
+
+  removeGuestsDecreasePrice() {
+    this.setState((state) => {
+      this.props.removeFromPrice(state.guests);
+    });
+  }
+
+  toggleGuestMenu() {
+    this.setState((state) => {
+      return { isOpen: !state.isOpen };
+    });
+  }
+
   render() {
-    let select = <button>{`${this.state.guests} ${this.state.word}`}</button>
+    let select = <button onClick={this.toggleGuestMenu}>{`${this.state.guests} ${this.state.word}  ^`}</button>
+    let menu = <GuestMenu 
+    handleClickPlusAdults={this.handleClickPlusAdults}
+    handleClickMinusAdults={this.handleClickMinusAdults}
+    handleClickPlusChildren={this.handleClickPlusChildren}
+    handleClickMinusChildren={this.handleClickMinusChildren}
+    handleClickPlusInfants={this.handleClickPlusInfants}
+    handleClickMinusInfants={this.handleClickMinusInfants}
+    adults={this.state.adults}
+    children={this.state.children}
+    guests={this.state.guests}
+    infants={this.state.infants}
+    unitData={this.props.unitData}
+    infantMax={this.state.infantMax}
+    toggle={this.toggleGuestMenu}
+    />
+    if (!this.state.isOpen) {
+      menu = null;
+      select = <button onClick={this.toggleGuestMenu}>{`${this.state.guests} ${this.state.word}  V`}</button>
+    }
     return(
       <div>
         {select}
-        <div className="guests menu">
-
-          <div className="adults guests">
-            <div>Adults</div>
-            <AdultPlus plus={this.handleClickPlusAdults} going={this.state.adults} guests={this.state.guests} allowed={this.props.unitData.guestsAllowed}/>
-            <div>{this.state.adults}</div>
-            <AdultMinus minus={this.handleClickMinusAdults} going={this.state.adults}/>
-          </div>
-
-          <div className="children guests">
-            <div>Children</div>
-            <div>Ages 2-12</div>
-            <ChildrenPlus plus={this.handleClickPlusChildren} going={this.state.children} guests={this.state.guests} allowed={this.props.unitData.guestsAllowed}/>
-            <div>{this.state.children}</div>
-            <ChildrenMinus minus={this.handleClickMinusChildren} going={this.state.children}/>
-          </div>
-
-        <div className="infants guests">
-            <div>Infants</div>
-            <div>Under 2</div>
-            <InfantPlus plus={this.handleClickPlusInfants} going={this.state.infants} allowed={this.state.infantMax}/>
-            <div>{this.state.infants}</div>
-            <InfantMinus minus={this.handleClickMinusInfants} going={this.state.infants}/>
-          </div>
-        </div>
-
+        {menu}
         <div>{`${this.props.unitData.guestsAllowed} maximum. Infants don't count toward the number of guests`}</div>
       </div>
     );
