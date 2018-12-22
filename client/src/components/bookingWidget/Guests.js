@@ -1,6 +1,10 @@
 import React from 'react';
-import GuestPlus from './GuestPlus';
-import GuestMinus from './GuestMinus';
+import AdultPlus from './AdultPlus';
+import AdultMinus from './AdultMinus';
+import ChildrenPlus from './ChildrenPlus';
+import ChildrenMinus from './ChildrenMinus';
+import InfantPlus from './InfantPlus';
+import InfantMinus from './InfantMinus';
 
 class Guests extends React.Component {
   constructor(props) {
@@ -11,20 +15,83 @@ class Guests extends React.Component {
       infants: 0,
       guests: 1,
       infantMax: 5,
+      word: 'guest',
     };
-    this.guest = this.guest.bind(this);
+    this.updateWord = this.updateWord.bind(this);
+    this.handleClickPlusAdults = this.handleClickPlusAdults.bind(this);
+    this.handleClickMinusAdults = this.handleClickMinusAdults.bind(this);
+    this.handleClickPlusChildren = this.handleClickPlusChildren.bind(this);
+    this.handleClickMinusChildren = this.handleClickMinusChildren.bind(this);
+    this.handleClickPlusInfants = this.handleClickPlusInfants.bind(this);
+    this.handleClickMinusInfants = this.handleClickMinusInfants.bind(this);
   }
 
-  guest() {
-    if (this.state.guests === 1) {
-      return 'guest';
-    } else {
-      return 'guests';
-    }
+  handleClickPlusAdults() {
+    this.setState((state) => {
+      return { 
+        adults: state.adults += 1,
+        guest: state.guests += 1,
+      };
+    });
+    this.updateWord();
+  }
+
+  handleClickMinusAdults() {
+    this.setState((state) => {
+      return { 
+        adults: state.adults -= 1, 
+        guests: state.guests -= 1,
+      };
+    });
+    this.updateWord();
+  }
+
+  handleClickPlusChildren() {
+    this.setState((state) => {
+      return { 
+        children: state.children += 1,
+        guest: state.guests += 1,
+      };
+    });
+  }
+
+  handleClickMinusChildren() {
+    this.setState((state) => {
+      return { 
+        children: state.children -= 1, 
+        guests: state.guests -= 1,
+      };
+    });
+  }
+
+  handleClickPlusInfants() {
+    this.setState((state) => {
+      return { infants: state.infants += 1 };
+    });
+    this.updateWord();
+  }
+
+  handleClickMinusInfants() {
+    this.setState((state) => {
+      return { infants: state.infants -= 1 };
+    });
+    this.updateWord();
+  }
+
+  updateWord() {
+    this.setState((state) => {
+      if (state.infants >= 1 && state.guests > 1) {
+        return { word: 'guests,' };
+      } else if (state.infants === 0 && state.guest > 1) {
+        return { word: 'guests' };
+      } else {
+        return { word: 'guest' };
+      }
+    });
   }
 
   render() {
-    let select = <button>{`${this.state.guests} ${this.guest()}`}</button>
+    let select = <button>{`${this.state.guests} ${this.state.word}`}</button>
     return(
       <div>
         {select}
@@ -32,25 +99,25 @@ class Guests extends React.Component {
 
           <div className="adults guests">
             <div>Adults</div>
-            <GuestPlus going={this.state.adults} allowed={this.props.unitData.guestsAllowed}/>
+            <AdultPlus plus={this.handleClickPlusAdults} going={this.state.adults} guests={this.state.children} allowed={this.props.unitData.guestsAllowed}/>
             <div>{this.state.adults}</div>
-            <GuestMinus going={this.state.adults}/>
+            <AdultMinus minus={this.handleClickMinusAdults} going={this.state.adults}/>
           </div>
 
           <div className="children guests">
             <div>Children</div>
             <div>Ages 2-12</div>
-            <GuestPlus going={this.state.children} allowed={this.props.unitData.guestsAllowed}/>
+            <ChildrenPlus plus={this.handleClickPlusChildren} going={this.state.children} guests={this.state.adults} allowed={this.props.unitData.guestsAllowed}/>
             <div>{this.state.children}</div>
-            <GuestMinus going={this.state.children}/>
+            <ChildrenMinus minus={this.handleClickMinusChildren} going={this.state.guests}/>
           </div>
 
         <div className="infants guests">
             <div>Infants</div>
             <div>Under 2</div>
-            <GuestPlus going={this.state.infants} allowed={this.props.unitData.infantMax}/>
+            <InfantPlus plus={this.handleClickPlusInfants} going={this.state.infants} allowed={this.state.infantMax}/>
             <div>{this.state.infants}</div>
-            <GuestMinus going={this.state.infants}/>
+            <InfantMinus minus={this.handleClickMinusInfants} going={this.state.infants}/>
           </div>
         </div>
 

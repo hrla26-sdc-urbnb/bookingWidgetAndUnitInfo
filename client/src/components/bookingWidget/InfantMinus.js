@@ -1,10 +1,10 @@
 import React from 'react';
 
-const GuestMinus = ({ going }) => {
+const InfantMinus = ({ going, minus }) => {
   let works;
-  let press = <button>-</button>
+  let press = <button onClick={() => { minus() }}>-</button>
   let noPress = <div>-</div>
-  if (going > 1) {
+  if (going >= 1) {
     works = press;
   } else {
     works = noPress;
@@ -16,4 +16,4 @@ const GuestMinus = ({ going }) => {
   );
 };
 
-export default GuestMinus;
+export default InfantMinus;

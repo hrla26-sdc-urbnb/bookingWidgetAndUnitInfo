@@ -1,8 +1,8 @@
 import React from 'react';
 
-const GuestPlus = ({ going, allowed }) => {
+const InfantPlus = ({ going, allowed, plus }) => {
   let works;
-  let press = <button>+</button>
+  let press = <button onClick={() => { plus() }}>+</button>
   let noPress = <div>+</div>
   if (going < allowed) {
     works = press;
@@ -16,4 +16,4 @@ const GuestPlus = ({ going, allowed }) => {
   );
 };
 
-export default GuestPlus;
+export default InfantPlus;
