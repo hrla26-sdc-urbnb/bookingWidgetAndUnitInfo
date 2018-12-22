@@ -4,10 +4,10 @@ const ChildrenMinus = ({ going, minus }) => {
   let works;
   let press = <button onClick={() => { minus() }}>-</button>
   let noPress = <div>-</div>
-  if (going > 1 && going !== 0) {
-    works = press;
-  } else {
+  if (going === 0) {
     works = noPress;
+  } else {
+    works = press;
   }
   return(
     <div>

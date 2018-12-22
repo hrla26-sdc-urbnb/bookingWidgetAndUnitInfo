@@ -53,6 +53,7 @@ class Guests extends React.Component {
         guest: state.guests += 1,
       };
     });
+    this.updateWord();
   }
 
   handleClickMinusChildren() {
@@ -62,6 +63,7 @@ class Guests extends React.Component {
         guests: state.guests -= 1,
       };
     });
+    this.updateWord();
   }
 
   handleClickPlusInfants() {
@@ -80,13 +82,15 @@ class Guests extends React.Component {
 
   updateWord() {
     this.setState((state) => {
-      if (state.infants >= 1 && state.guests > 1) {
-        return { word: 'guests,' };
-      } else if (state.infants === 0 && state.guest > 1) {
-        return { word: 'guests' };
-      } else {
-        return { word: 'guest' };
-      }
+      if (state.guests > 1 && state.infants === 0) {
+        return { word: 'guests'};
+      } else if (state.guests > 1 && state.infants > 0) {
+        return { word: `guests, ${state.infants} infants` };
+      } else if (state.guests === 1 && state.infants > 0) {
+        return { word: `guest, ${state.infants} infants` };
+      } else if (state.guests === 1 && state.infants === 0) {
+        return { word: 'guest'};
+      } 
     });
   }
 
@@ -99,7 +103,7 @@ class Guests extends React.Component {
 
           <div className="adults guests">
             <div>Adults</div>
-            <AdultPlus plus={this.handleClickPlusAdults} going={this.state.adults} guests={this.state.children} allowed={this.props.unitData.guestsAllowed}/>
+            <AdultPlus plus={this.handleClickPlusAdults} going={this.state.adults} guests={this.state.guests} allowed={this.props.unitData.guestsAllowed}/>
             <div>{this.state.adults}</div>
             <AdultMinus minus={this.handleClickMinusAdults} going={this.state.adults}/>
           </div>
@@ -107,9 +111,9 @@ class Guests extends React.Component {
           <div className="children guests">
             <div>Children</div>
             <div>Ages 2-12</div>
-            <ChildrenPlus plus={this.handleClickPlusChildren} going={this.state.children} guests={this.state.adults} allowed={this.props.unitData.guestsAllowed}/>
+            <ChildrenPlus plus={this.handleClickPlusChildren} going={this.state.children} guests={this.state.guests} allowed={this.props.unitData.guestsAllowed}/>
             <div>{this.state.children}</div>
-            <ChildrenMinus minus={this.handleClickMinusChildren} going={this.state.guests}/>
+            <ChildrenMinus minus={this.handleClickMinusChildren} going={this.state.children}/>
           </div>
 
         <div className="infants guests">
