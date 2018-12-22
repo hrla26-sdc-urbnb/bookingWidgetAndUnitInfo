@@ -48,27 +48,39 @@ const unitSchema = new mongoose.Schema({
   cleaningFee: Number,
   serviceFee: Number,
   isBooked: Boolean,
-});
-
-const amenitySchema = new mongoose.Schema({
-  id: Number,
-  name: String,
-});
-
-const unitsAmenitiesSchema = new mongoose.Schema({
-  unitId: Number,
-  amenityId: Number,
+  hasEssentials: Boolean,
+  hasWifi: Boolean,
+  hasShampoo: Boolean,
+  hasClosetDrawers: Boolean,
+  hasTv: Boolean,
+  hasHeat: Boolean,
+  hasAirConditioning: Boolean,
+  hasBreakfastCoffeeTea: Boolean,
+  hasDeskWorkSpace: Boolean,
+  hasFirePlace: Boolean,
+  hasIron: Boolean,
+  hasHairDryer: Boolean,
+  hasPrivateEntrance: Boolean,
+  hasSmokeDetector: Boolean,
+  hasCarbonMonoxideDetector: Boolean,
+  hasFirstAidKit: Boolean,
+  hasFireExtinguisher: Boolean,
+  hasLockOnBedroomDoor: Boolean,
+  hasPool: Boolean,
+  hasKitchen: Boolean,
+  hasLaundryWasher: Boolean,
+  hasLaundryDryer: Boolean,
+  hasParking: Boolean,
+  hasElevator: Boolean,
+  hasHotTub: Boolean,
 });
 
 const Owner = mongoose.model('Owner', ownerSchema);
 const Unit = mongoose.model('Unit', unitSchema);
-const Amenity = mongoose.model('Amenity', amenitySchema);
-const UnitsAmenities = mongoose.model('UnitsAmenities', unitsAmenitiesSchema);
+
 
 module.exports = {
   db,
   Owner,
   Unit,
-  Amenity,
-  UnitsAmenities,
 };

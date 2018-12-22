@@ -1,8 +1,6 @@
 const {
   Owner,
   Unit,
-  Amenity,
-  UnitsAmenities,
 } = require('../db/index');
 
 module.exports = {
@@ -24,30 +22,6 @@ module.exports = {
     Unit.find({ id }, (err, results) => {
       if (err) {
         console.log('error reading unit from db -->', err);
-      } else {
-        callback(results);
-      }
-    });
-  },
-
-  // this supplies the list of possible amenities
-
-  readAmenities: (callback) => {
-    Amenity.find({}, (err, results) => {
-      if (err) {
-        console.log('error reading amenities from db -->', err);
-      } else {
-        callback(results);
-      }
-    });
-  },
-
-  // this supplies the list of amenities the unit has
-
-  readUnitsAmenities: (unitId, callback) => {
-    UnitsAmenities.find({ unitId }, (err, results) => {
-      if (err) {
-        console.log('error reading unitsAmenities from db -->', err);
       } else {
         callback(results);
       }

@@ -4,6 +4,8 @@ import axios from 'axios';
 import OwnerUnit from './OwnerUnit';
 import SpecList from './SpecList';
 import Descriptions from './Descriptions';
+import Amenities4 from './AmenitiesList';
+import AmenitiesList from './AmenitiesList';
 
 
 class App extends React.Component {
@@ -12,42 +14,23 @@ class App extends React.Component {
     this.state = {
       unitData: [],
       ownerData: [],
-      amenities: [],
-      amenitiesList: [],
     };
     this.fetchUnit = this.fetchUnit.bind(this);
-    this.fetchAmenities = this.fetchAmenities.bind(this);
   }
 
 
   componentDidMount() {
     this.fetchUnit();
-    this.fetchAmenities();
   }
 
   fetchUnit() {
     axios.get(`/api/units/${generateRandomNumberBetween(11111, 11211)}`)
     .then(({ data }) => {
       console.log('axios -->', data);
-      const { unitData, ownerData, amenities } = data;
+      const { unitData, ownerData } = data;
       this.setState({
         unitData: unitData[0],
         ownerData: ownerData[0],
-        amenities: amenities[0],
-      });
-    })
-    .catch((err) => {
-      console.log('error fetching unit -->', err);
-    });
-  }
-
-  fetchAmenities() {
-    axios.get(`/api/units/${generateRandomNumberBetween(11111, 11211)}/amenities`)
-    .then(({ data }) => {
-      console.log('axios -->', data);
-      let amenitiesList = [...data];
-      this.setState({
-        amenitiesList,
       });
     })
     .catch((err) => {
@@ -58,8 +41,6 @@ class App extends React.Component {
   render() {
     return (
       <div className="modules">
-          This is still react...
-
           <div className="unitInfo container">
 
             <div className="ownerUnit container">
@@ -71,31 +52,22 @@ class App extends React.Component {
             </div>
 
             <div className="descript container">
-            
               <div className="summary">
                 <div>{this.state.unitData.summaryDescription}</div>
               </div>
-
               <Descriptions unitData={this.state.unitData}/>
 
-              <div className="readmore container">
-                <div>readmore/hide anchor</div>
-              </div>
-
               <div className="contact container">
-                <div>contact host anchor</div>
+                <a href="">Contact Host</a>
               </div>
 
             </div>
 
             <div className="amen container">
 
-              this is where the amenities will go
-
-              <div>amenities title</div>
+              <div>Amenities</div>
               <div className="amenItems container">
-                <div>amenity title</div>
-                <div>amenity text</div>
+                <AmenitiesList unitData={this.state.unitData}/>
               </div>
 
               <div className="showAll container">

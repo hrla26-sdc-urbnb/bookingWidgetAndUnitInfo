@@ -27,19 +27,3 @@ test('GET to api/units/unitId repsonse should have 3 properties', (done) => {
   });
 });
 
-
-// lets test our amenities route...
-
-test('GET to api/units/unitId/amenities repsonse should be an array', (done) => {
-  request(app).get('/api/units/11111/amenities').then((response) => {
-    expect(JSON.parse(response.text).length > 0).toBe(true);
-    done();
-  });
-});
-
-test('GET to api/units/unitId/amenities repsonse should have a name property', (done) => {
-  request(app).get('/api/units/11111/amenities').then((response) => {
-    expect(JSON.parse(response.text)[0].name).toBeDefined();
-    done();
-  });
-});

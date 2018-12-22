@@ -72,144 +72,39 @@ function generateUnitsData() {
       pricePerNight: generateRandomNumberBetween(1, 1000),
       cleaningFee: generateRandomNumberBetween(1, 200),
       serviceFee: generateRandomNumberBetween(1, 200),
-      isBooked: randomBooleanValue(i),
+      isBooked: randomBooleanValue(generateRandomNumberBetween(0, 25)),
+      hasEssentials: randomBooleanValue(generateRandomNumberBetween(0, 25)),
+      hasWifi: randomBooleanValue(generateRandomNumberBetween(0, 25)),
+      hasShampoo: randomBooleanValue(generateRandomNumberBetween(0, 25)),
+      hasClosetDrawers: randomBooleanValue(generateRandomNumberBetween(0, 25)),
+      hasTv: randomBooleanValue(generateRandomNumberBetween(0, 25)),
+      hasHeat: randomBooleanValue(generateRandomNumberBetween(0, 25)),
+      hasAirConditioning: randomBooleanValue(generateRandomNumberBetween(0, 25)),
+      hasBreakfastCoffeeTea: randomBooleanValue(generateRandomNumberBetween(0, 25)),
+      hasDeskWorkSpace: randomBooleanValue(generateRandomNumberBetween(0, 25)),
+      hasFirePlace: randomBooleanValue(generateRandomNumberBetween(0, 25)),
+      hasIron: randomBooleanValue(generateRandomNumberBetween(0, 25)),
+      hasHairDryer: randomBooleanValue(generateRandomNumberBetween(0, 25)),
+      hasPrivateEntrance: randomBooleanValue(generateRandomNumberBetween(0, 25)),
+      hasSmokeDetector: randomBooleanValue(generateRandomNumberBetween(0, 25)),
+      hasCarbonMonoxideDetector: randomBooleanValue(generateRandomNumberBetween(0, 25)),
+      hasFirstAidKit: randomBooleanValue(generateRandomNumberBetween(0, 25)),
+      hasFireExtinguisher: randomBooleanValue(generateRandomNumberBetween(0, 25)),
+      hasLockOnBedroomDoor: randomBooleanValue(generateRandomNumberBetween(0, 25)),
+      hasPool: randomBooleanValue(generateRandomNumberBetween(0, 25)),
+      hasKitchen: randomBooleanValue(generateRandomNumberBetween(0, 25)),
+      hasLaundryWasher: randomBooleanValue(generateRandomNumberBetween(0, 25)),
+      hasLaundryDryer: randomBooleanValue(generateRandomNumberBetween(0, 25)),
+      hasParking: randomBooleanValue(generateRandomNumberBetween(0, 25)),
+      hasElevator: randomBooleanValue(generateRandomNumberBetween(0, 25)),
+      hasHotTub: randomBooleanValue(generateRandomNumberBetween(0, 25)),
     };
     sampleUnits.push(unit);
   }
   return sampleUnits;
 }
 
-// will populate the Amenities mapping table...
-
-const amenities = [
-  {
-    id: 1,
-    name: 'hasEssentials',
-  },
-  {
-    id: 2,
-    name: 'hasWifi',
-  },
-  {
-    id: 3,
-    name: 'hasShampoo',
-  },
-  {
-    id: 4,
-    name: 'hasClosetDrawers',
-  },
-  {
-    id: 5,
-    name: 'hasTv',
-  },
-  {
-    id: 6,
-    name: 'hasHeat',
-  },
-  {
-    id: 7,
-    name: 'hasAirConditioning',
-  },
-  {
-    id: 8,
-    name: 'hasBreakfastCoffeeTea',
-  },
-  {
-    id: 9,
-    name: 'hasDeskWorkSpace',
-  },
-  {
-    id: 10,
-    name: 'hasFirePlace',
-  },
-  {
-    id: 11,
-    name: 'hasIron',
-  },
-  {
-    id: 12,
-    name: 'hasHairDryer',
-  },
-  {
-    id: 13,
-    name: 'hasPrivateEntrance',
-  },
-  {
-    id: 14,
-    name: 'hasSmokeDetector',
-  },
-  {
-    id: 15,
-    name: 'hasCarbonMonoxideDetector',
-  },
-  {
-    id: 16,
-    name: 'hasFirstAidKit',
-  },
-  {
-    id: 17,
-    name: 'hasFireExtinguisher',
-  },
-  {
-    id: 18,
-    name: 'hasLockOnBedroomDoor',
-  },
-  {
-    id: 19,
-    name: 'hasPool',
-  },
-  {
-    id: 20,
-    name: 'hasKitchen',
-  },
-  {
-    id: 21,
-    name: 'hasLaundryWasher',
-  },
-  {
-    id: 22,
-    name: 'hasLaundryDryer',
-  },
-  {
-    id: 23,
-    name: 'hasParking',
-  },
-  {
-    id: 24,
-    name: 'hasElevator',
-  },
-  {
-    id: 25,
-    name: 'hasHotTub',
-  },
-];
-
-// this will populate our join table...
-
-function generateUnitsAmenitiesJoinData() {
-  const sampleJoinData = [];
-
-  // 1 loop for each unit, thats 100...
-
-  for (let i = 0; i < 100; i += 1) {
-    const numberOfAmenities = generateRandomNumberBetween(0, 24);
-    const unitId = generateRandomNumberBetween(11111, 11211);
-
-    // each unit needs a random number of amenities
-
-    for (let j = 0; j < numberOfAmenities; j += 1) {
-      const join = {};
-      join.unitId = unitId;
-      join.amenityId = amenities[generateRandomNumberBetween(0, 24)].id;
-      sampleJoinData.push(join);
-    }
-  }
-  return sampleJoinData;
-}
-
 module.exports = {
   generateOwnersData,
   generateUnitsData,
-  amenities,
-  generateUnitsAmenitiesJoinData,
 };
