@@ -69,11 +69,6 @@ class App extends React.Component {
               <div className="amenItems container">
                 <AmenitiesList unitData={this.state.unitData}/>
               </div>
-
-              <div className="showAll container">
-                <div>show all anchor</div>
-              </div>
-
             </div>
 
           </div>
