@@ -2,6 +2,9 @@ import React from 'react';
 import axios from 'axios';
 
 import OwnerUnit from './OwnerUnit';
+import SpecList from './SpecList';
+import Descriptions from './Descriptions';
+
 
 class App extends React.Component {
   constructor() {
@@ -58,34 +61,22 @@ class App extends React.Component {
           This is still react...
 
           <div className="unitInfo container">
-            this is for unit info
 
             <div className="ownerUnit container">
-              this is where the owner and unit title go
               <OwnerUnit unitData={this.state.unitData} ownerData={this.state.ownerData}/>
             </div>
 
             <div className="specs container">
-
-              this is where the unit specs go
-
-              <div className="item container">
-                <div>emoji img</div>
-                <div>item title</div>
-                <div>item text</div>
-              </div>
-
+              <SpecList unitData={this.state.unitData} ownerData={this.state.ownerData}/>
             </div>
 
             <div className="descript container">
-
-              this is where the description will go
-
-              <div>
-                description div id
-                <div>descript title</div>
-                <div>descript text</div>
+            
+              <div className="summary">
+                <div>{this.state.unitData.summaryDescription}</div>
               </div>
+
+              <Descriptions unitData={this.state.unitData}/>
 
               <div className="readmore container">
                 <div>readmore/hide anchor</div>

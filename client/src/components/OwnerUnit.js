@@ -15,7 +15,7 @@ const OwnerUnit = ({ unitData, ownerData }) => {
         <div>
           {/* <img src={photo} /> */}
         </div>
-        <div>{'SuperHost: ' + isSuperHost}</div>
+        <div>superhost badge</div>
         <div>{name}</div>
       </div>
     </div>
