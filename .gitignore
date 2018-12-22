@@ -5,3 +5,4 @@ node_modules
 ./server/routes.test.js
 ./db/seed/generateData.test.js
 ./webpack.config.js
+npm-debug.log

@@ -1,11 +1,14 @@
 import React from 'react';
 import axios from 'axios';
 
-import OwnerUnit from './OwnerUnit';
-import SpecList from './SpecList';
-import Descriptions from './Descriptions';
-import Amenities4 from './AmenitiesList';
-import AmenitiesList from './AmenitiesList';
+import OwnerUnit from './unitInfo/OwnerUnit';
+import SpecList from './unitInfo/SpecList';
+import Descriptions from './unitInfo/Descriptions';
+import AmenitiesList from './unitInfo/AmenitiesList';
+import PriceReviews from './bookingWidget/PriceReviews';
+import Dates from './bookingWidget/Dates';
+import Guests from './bookingWidget/Guests';
+import BookingButton from './bookingWidget/BookingButton';
 
 
 class App extends React.Component {
@@ -16,6 +19,7 @@ class App extends React.Component {
       ownerData: [],
     };
     this.fetchUnit = this.fetchUnit.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
 
@@ -23,8 +27,13 @@ class App extends React.Component {
     this.fetchUnit();
   }
 
+  handleClick(e) {
+    e.preventDefault();
+    console.log('click!');
+  }
+
   fetchUnit() {
-    axios.get(`/api/units/${generateRandomNumberBetween(11111, 11211)}`)
+    axios.get(`/api/units/${generateRandomNumberBetween(11111, 11210)}`)
     .then(({ data }) => {
       console.log('axios -->', data);
       const { unitData, ownerData } = data;
@@ -64,7 +73,6 @@ class App extends React.Component {
             </div>
 
             <div className="amen container">
-
               <div>Amenities</div>
               <div className="amenItems container">
                 <AmenitiesList unitData={this.state.unitData}/>
@@ -74,38 +82,29 @@ class App extends React.Component {
           </div>
 
           <div className="bookingWidget container">
-            this is for booking widget
 
-            <div>booking</div>
+            <div>bookingWidget</div>
 
             <div>
-              snapshot
-              <div>price</div>
-              <div>reviews</div>
+              <PriceReviews unitData={this.state.unitData}/>
             </div>
 
-            <div>
-              dates container
-              <div>checkin</div>
-              <div>arrow</div>
-              <div>checkout</div>
+            <div className="dates container">
+              <Dates />
             </div>
 
-            <div>
-              guests container
-              <div>guest text</div>
-              <div>guests button</div>
+            <div className="guests container">
+              <div>Guests</div>
+              <Guests unitData={this.state.unitData}/>
             </div>
 
-            <div>
-              bookButton container
-              <div>bookRequest button</div>
-              <div>youWont text</div>
-              </div>
+            <div className="bookingButton container">
+              <BookingButton unitData={this.state.unitData}/>
+            </div>
 
-            <div>
-              report container
-              <div>report anchor</div>
+            <div className="report container">
+              <div>report emoji</div>
+              <a href="" onClick={this.handleClick}>Report this listing</a>
             </div>
 
             <div>calendar container</div>
