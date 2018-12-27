@@ -1,3 +1,4 @@
+const dateFn = require('date-fns');
 import React from 'react';
 
 const CalendarData = ({ 
@@ -9,16 +10,24 @@ const CalendarData = ({
   displayYear,
   availableFrom,
   availableTo,
+  monthMap,
 }) => {
-  let today = null;
+  const month = monthMap[displayMonth];
+  const inRange = dateFn.isWithinRange(new Date(`${month} ${date} ${displayYear}`), new Date(availableFrom), new Date(availableTo));
+  let crossed = '';
+  let today = '';
   if (date === thisDate && thisMonth === displayMonth && thisYear === displayYear) {
     today = 'today';
   }
+  if (!inRange) {
+    crossed = 'crossed';
+  }
   if (!date) {
     date = '';
+    crossed = '';
   }
   return(
-    <td className={today}>
+    <td className={`${today} ${crossed}`}>
       {date}
     </td>
   );

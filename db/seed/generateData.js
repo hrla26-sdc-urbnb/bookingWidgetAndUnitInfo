@@ -67,7 +67,7 @@ function generateUnitsData() {
       whatGuestsCanAccess: faker.lorem.sentences(),
       yourInteractionWithGuests: faker.lorem.sentences(),
       otherThingsToNote: faker.lorem.sentences(),
-      dateAvailableFrom: faker.date.future(),
+      dateAvailableFrom: new Date(),
       dateAvailableTo: faker.date.future(),
       pricePerNight: generateRandomNumberBetween(1, 1000),
       cleaningFee: generateRandomNumberBetween(1, 200),

@@ -145,6 +145,7 @@ class Calendar extends React.Component {
                   displayYear={this.state.displayYear}
                   availableFrom={this.props.unitData.dateAvailableFrom}
                   availableTo={this.props.unitData.dateAvailableTo}
+                  monthMap={this.monthMap}
                 />);
             })}
           </tr>
@@ -162,6 +163,7 @@ class Calendar extends React.Component {
                   displayYear={this.state.displayYear}
                   availableFrom={this.props.unitData.dateAvailableFrom}
                   availableTo={this.props.unitData.dateAvailableTo}
+                  monthMap={this.monthMap}
                 />);
             })}
           </tr>
@@ -179,6 +181,7 @@ class Calendar extends React.Component {
                   displayYear={this.state.displayYear}
                   availableFrom={this.props.unitData.dateAvailableFrom}
                   availableTo={this.props.unitData.dateAvailableTo}
+                  monthMap={this.monthMap}
                 />);
             })}
           </tr>
@@ -196,6 +199,7 @@ class Calendar extends React.Component {
                   displayYear={this.state.displayYear}
                   availableFrom={this.props.unitData.dateAvailableFrom}
                   availableTo={this.props.unitData.dateAvailableTo}
+                  monthMap={this.monthMap}
                 />);
             })}
           </tr>
@@ -213,6 +217,7 @@ class Calendar extends React.Component {
                   displayYear={this.state.displayYear}
                   availableFrom={this.props.unitData.dateAvailableFrom}
                   availableTo={this.props.unitData.dateAvailableTo}
+                  monthMap={this.monthMap}
                 />);
             })}
           </tr>
@@ -230,6 +235,7 @@ class Calendar extends React.Component {
                   displayYear={this.state.displayYear}
                   availableFrom={this.props.unitData.dateAvailableFrom}
                   availableTo={this.props.unitData.dateAvailableTo}
+                  monthMap={this.monthMap}
                 />);
             })}
           </tr>
