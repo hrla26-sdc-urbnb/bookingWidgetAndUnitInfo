@@ -9,6 +9,7 @@ import PriceReviews from './bookingWidget/PriceReviews';
 import Dates from './bookingWidget/Dates';
 import Guests from './bookingWidget/guestSelect/Guests';
 import BookingButton from './bookingWidget/BookingButton';
+import DisplayCalendar from './bookingWidget/calendar/DisplayCalendar';
 
 
 class App extends React.Component {
@@ -19,12 +20,21 @@ class App extends React.Component {
       ownerData: [],
       price: 0,
       original: 0,
-      guestSelectOpen: false,
+      checkInDay: '',
+      checkInDate: '',
+      checkInMonth: '',
+      checkInYear: '',
+      checkOutDay: '',
+      checkOutDate: '',
+      checkOutMonth: '',
+      checkOutYear: '',
+      calSelectOpen: false,
     };
     this.fetchUnit = this.fetchUnit.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.addToPrice = this.addToPrice.bind(this);
     this.removeFromPrice = this.removeFromPrice.bind(this);
+    this.toggleCalSelectOpen = this.toggleCalSelectOpen.bind(this);
   }
 
 
@@ -77,6 +87,14 @@ class App extends React.Component {
     }
   }
 
+  toggleCalSelectOpen() {
+    this.setState((state) => {
+      return {
+        calSelectOpen: !state.calSelectOpen,
+      };
+    });
+  }
+
   render() {
     return (
       <div className="modules">
@@ -120,7 +138,7 @@ class App extends React.Component {
             </div>
 
             <div className="dates container">
-              <Dates />
+              <Dates toggleCalendar={this.toggleCalSelectOpen}/>
             </div>
 
             <div className="guests container">
@@ -129,7 +147,7 @@ class App extends React.Component {
             </div>
 
             <div className="bookingButton container">
-              <BookingButton unitData={this.state.unitData}/>
+              <BookingButton unitData={this.state.unitData} toggleCalendar={this.toggleCalSelectOpen}/>
             </div>
 
             <div className="report container">
@@ -137,7 +155,9 @@ class App extends React.Component {
               <a href="" onClick={this.handleClick}>Report this listing</a>
             </div>
 
-            <div>calendar container</div>
+            <div className="calendar container">
+              <DisplayCalendar isOpen={this.state.calSelectOpen}/>
+            </div>
 
           </div>
       </div>

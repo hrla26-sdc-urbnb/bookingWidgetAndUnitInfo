@@ -1,9 +1,10 @@
 import React from 'react';
 
-const BookingButton = ({ unitData }) => {
+const BookingButton = ({ unitData, toggleCalendar }) => {
   const handleClick = (e) => {
     e.preventDefault();
     console.log('click!');
+    toggleCalendar();
   }
 
   let { isBooked } = unitData;

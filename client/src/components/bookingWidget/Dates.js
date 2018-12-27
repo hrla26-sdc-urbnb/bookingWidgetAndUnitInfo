@@ -1,9 +1,10 @@
 import React from 'react';
 
-const Dates = (props) => {
+const Dates = ({ toggleCalendar }) => {
   const handleClick = (e) => {
     e.preventDefault();
     console.log('click!');
+    toggleCalendar();
   }
 
   return(
