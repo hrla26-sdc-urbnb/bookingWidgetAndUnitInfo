@@ -156,7 +156,7 @@ class App extends React.Component {
             </div>
 
             <div className="calendar container">
-              <DisplayCalendar isOpen={this.state.calSelectOpen}/>
+              <DisplayCalendar isOpen={this.state.calSelectOpen} unitData={this.state.unitData}/>
             </div>
 
           </div>

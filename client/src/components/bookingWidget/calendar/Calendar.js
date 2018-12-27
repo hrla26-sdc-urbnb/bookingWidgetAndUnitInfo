@@ -90,13 +90,13 @@ class Calendar extends React.Component {
   viewPreviousMonthsDates(e) {
     e.preventDefault();
     this.setState((state) => {
-      const previousMonth = this.monthMap[((state.displayMonth - 1) % 12)];
-      let year = state.displayYear;
       let refresh = null;
+      let year = state.displayYear;
       if (state.displayMonth === 0) {
         year -= 1;
         refresh = 11;
       }
+      const previousMonth = this.monthMap[refresh || ((state.displayMonth - 1) % 12)];
       const daysInMonth = date.getDaysInMonth(`${previousMonth} ${year}`);
       const firstDay = this.dayMap[date.startOfMonth(`${previousMonth} ${year}`).getDay()];
       return {
@@ -143,6 +143,8 @@ class Calendar extends React.Component {
                   thisYear={this.state.thisYear}
                   displayMonth={this.state.displayMonth}
                   displayYear={this.state.displayYear}
+                  availableFrom={this.props.unitData.dateAvailableFrom}
+                  availableTo={this.props.unitData.dateAvailableTo}
                 />);
             })}
           </tr>
@@ -158,6 +160,8 @@ class Calendar extends React.Component {
                   thisYear={this.state.thisYear}
                   displayMonth={this.state.displayMonth}
                   displayYear={this.state.displayYear}
+                  availableFrom={this.props.unitData.dateAvailableFrom}
+                  availableTo={this.props.unitData.dateAvailableTo}
                 />);
             })}
           </tr>
@@ -173,6 +177,8 @@ class Calendar extends React.Component {
                   thisYear={this.state.thisYear}
                   displayMonth={this.state.displayMonth}
                   displayYear={this.state.displayYear}
+                  availableFrom={this.props.unitData.dateAvailableFrom}
+                  availableTo={this.props.unitData.dateAvailableTo}
                 />);
             })}
           </tr>
@@ -188,6 +194,8 @@ class Calendar extends React.Component {
                   thisYear={this.state.thisYear}
                   displayMonth={this.state.displayMonth}
                   displayYear={this.state.displayYear}
+                  availableFrom={this.props.unitData.dateAvailableFrom}
+                  availableTo={this.props.unitData.dateAvailableTo}
                 />);
             })}
           </tr>
@@ -203,6 +211,8 @@ class Calendar extends React.Component {
                   thisYear={this.state.thisYear}
                   displayMonth={this.state.displayMonth}
                   displayYear={this.state.displayYear}
+                  availableFrom={this.props.unitData.dateAvailableFrom}
+                  availableTo={this.props.unitData.dateAvailableTo}
                 />);
             })}
           </tr>
@@ -218,6 +228,8 @@ class Calendar extends React.Component {
                   thisYear={this.state.thisYear}
                   displayMonth={this.state.displayMonth}
                   displayYear={this.state.displayYear}
+                  availableFrom={this.props.unitData.dateAvailableFrom}
+                  availableTo={this.props.unitData.dateAvailableTo}
                 />);
             })}
           </tr>
