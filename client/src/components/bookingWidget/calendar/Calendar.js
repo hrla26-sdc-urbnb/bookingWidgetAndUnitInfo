@@ -113,7 +113,11 @@ class Calendar extends React.Component {
     const year = this.state.displayYear;
     let clear;
     if (checkInDate !== '' || checkOutDate !== '') {
-      clear = <ClearDates updateCheckIn={this.props.updateCheckIn} updateCheckOut={this.props.updateCheckOut}/>;
+      clear = <ClearDates 
+        updateCheckIn={this.props.updateCheckIn} 
+        updateCheckOut={this.props.updateCheckOut}
+        toggleValidRange={this.props.toggleValidRange}
+      />;
     }
     return(
       <div>
@@ -156,6 +160,8 @@ class Calendar extends React.Component {
                   updateCheckOut={this.props.updateCheckOut}
                   toggleCheckIn={this.props.toggleCheckIn}
                   toggleCheckOut={this.props.toggleCheckOut}
+                  checkInDate={this.props.checkInDate}
+                  checkOutDate={this.props.checkOutDate}
                 />);
             })}
           </tr>
@@ -180,6 +186,8 @@ class Calendar extends React.Component {
                   updateCheckOut={this.props.updateCheckOut}
                   toggleCheckIn={this.props.toggleCheckIn}
                   toggleCheckOut={this.props.toggleCheckOut}
+                  checkInDate={this.props.checkInDate}
+                  checkOutDate={this.props.checkOutDate}
                 />);
             })}
           </tr>
@@ -204,6 +212,8 @@ class Calendar extends React.Component {
                   updateCheckOut={this.props.updateCheckOut}
                   toggleCheckIn={this.props.toggleCheckIn}
                   toggleCheckOut={this.props.toggleCheckOut}
+                  checkInDate={this.props.checkInDate}
+                  checkOutDate={this.props.checkOutDate}
                 />);
             })}
           </tr>
@@ -228,6 +238,8 @@ class Calendar extends React.Component {
                   updateCheckOut={this.props.updateCheckOut}
                   toggleCheckIn={this.props.toggleCheckIn}
                   toggleCheckOut={this.props.toggleCheckOut}
+                  checkInDate={this.props.checkInDate}
+                  checkOutDate={this.props.checkOutDate}
                 />);
             })}
           </tr>
@@ -252,6 +264,8 @@ class Calendar extends React.Component {
                   updateCheckOut={this.props.updateCheckOut}
                   toggleCheckIn={this.props.toggleCheckIn}
                   toggleCheckOut={this.props.toggleCheckOut}
+                  checkInDate={this.props.checkInDate}
+                  checkOutDate={this.props.checkOutDate}
                 />);
             })}
           </tr>
@@ -276,6 +290,8 @@ class Calendar extends React.Component {
                   updateCheckOut={this.props.updateCheckOut}
                   toggleCheckIn={this.props.toggleCheckIn}
                   toggleCheckOut={this.props.toggleCheckOut}
+                  checkInDate={this.props.checkInDate}
+                  checkOutDate={this.props.checkOutDate}
                 />);
             })}
           </tr>

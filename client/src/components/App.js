@@ -41,6 +41,7 @@ class App extends React.Component {
     this.toggleCheckIn = this.toggleCheckIn.bind(this);
     this.toggleCheckOut = this.toggleCheckOut.bind(this);
     this.checkIfWithinRange = this.checkIfWithinRange.bind(this);
+    this.toggleValidRange = this.toggleValidRange.bind(this);
   }
 
 
@@ -161,9 +162,20 @@ class App extends React.Component {
     });
   }
 
+  toggleValidRange() {
+    this.setState({
+      validRange: false,
+    });
+  }
+
 
   render() {
-    let finalPrice = <Total />;
+    let finalPrice = <Total 
+      unitData={this.state.unitData} 
+      numberOfDaysSelected={this.state.numberOfDaysSelected} 
+      price={this.state.price}
+    />;
+
     const { validRange } = this.state;
     if (!validRange) {
       finalPrice = null;
@@ -251,6 +263,7 @@ class App extends React.Component {
                 checkOutSelected={this.state.checkOutSelected}
                 toggleCheckIn={this.toggleCheckIn}
                 toggleCheckOut={this.toggleCheckOut}
+                toggleValidRange={this.toggleValidRange}
               />
             </div>
 

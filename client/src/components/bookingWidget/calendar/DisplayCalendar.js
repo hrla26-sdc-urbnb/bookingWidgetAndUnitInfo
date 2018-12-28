@@ -12,6 +12,7 @@ const DisplayCalendar = ({
   checkOutSelected,
   toggleCheckIn,
   toggleCheckOut,
+  toggleValidRange,
 }) => {
   let display = <Calendar 
     unitData={unitData} 
@@ -23,6 +24,7 @@ const DisplayCalendar = ({
     checkOutSelected={checkOutSelected}
     toggleCheckIn={toggleCheckIn}
     toggleCheckOut={toggleCheckOut}
+    toggleValidRange={toggleValidRange}
   />;
   if (!isOpen) {
     display = null;

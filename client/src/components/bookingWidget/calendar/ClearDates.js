@@ -1,10 +1,11 @@
 import React from 'react';
 
-const ClearDates = ({ updateCheckIn, updateCheckOut }) => {
+const ClearDates = ({ updateCheckIn, updateCheckOut, toggleValidRange }) => {
   const handleClick = (e) => {
     e.preventDefault();
     updateCheckIn('');
     updateCheckOut('');
+    toggleValidRange();
   }
 
   return(
