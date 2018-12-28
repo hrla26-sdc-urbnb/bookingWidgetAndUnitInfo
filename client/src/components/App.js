@@ -168,7 +168,6 @@ class App extends React.Component {
     if (!validRange) {
       finalPrice = null;
     }
-    console.log(this.state.numberOfDaysSelected);
     return (
       <div className="modules">
           <div className="unitInfo container">
