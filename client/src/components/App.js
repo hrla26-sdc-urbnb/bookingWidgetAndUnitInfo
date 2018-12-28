@@ -13,6 +13,8 @@ import BookingButton from './bookingWidget/BookingButton';
 import DisplayCalendar from './bookingWidget/calendar/DisplayCalendar';
 import Total from './bookingWidget/calendar/Total';
 
+import styles from './styles/app.css';
+
 
 class App extends React.Component {
   constructor() {
@@ -181,8 +183,8 @@ class App extends React.Component {
       finalPrice = null;
     }
     return (
-      <div className="modules">
-          <div className="unitInfo container">
+      <div className={styles.modules}>
+          <div className={styles.unitInfo}>
 
             <div className="ownerUnit container">
               <OwnerUnit unitData={this.state.unitData} ownerData={this.state.ownerData}/>
@@ -213,9 +215,7 @@ class App extends React.Component {
 
           </div>
 
-          <div className="bookingWidget container">
-
-            <div>bookingWidget</div>
+          <div className={styles.bookingWidget}>
 
             <div>
               <PriceReviews unitData={this.state.unitData} price={this.state.price}/>
