@@ -8,6 +8,10 @@ const DisplayCalendar = ({
   updateCheckOut,
   checkInDate,
   checkOutDate,
+  checkInSelected,
+  checkOutSelected,
+  toggleCheckIn,
+  toggleCheckOut,
 }) => {
   let display = <Calendar 
     unitData={unitData} 
@@ -15,6 +19,10 @@ const DisplayCalendar = ({
     updateCheckOut={updateCheckOut}
     checkInDate={checkInDate}
     checkOutDate={checkOutDate}
+    checkInSelected={checkInSelected}
+    checkOutSelected={checkOutSelected}
+    toggleCheckIn={toggleCheckIn}
+    toggleCheckOut={toggleCheckOut}
   />;
   if (!isOpen) {
     display = null;

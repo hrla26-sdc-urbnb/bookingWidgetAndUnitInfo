@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import dateFn from 'date-fns';
 
 import OwnerUnit from './unitInfo/OwnerUnit';
 import SpecList from './unitInfo/SpecList';
@@ -10,6 +11,7 @@ import Dates from './bookingWidget/Dates';
 import Guests from './bookingWidget/guestSelect/Guests';
 import BookingButton from './bookingWidget/BookingButton';
 import DisplayCalendar from './bookingWidget/calendar/DisplayCalendar';
+import Total from './bookingWidget/calendar/Total';
 
 
 class App extends React.Component {
@@ -24,14 +26,21 @@ class App extends React.Component {
       checkOutDate: '',
       validRange: false,
       calSelectOpen: false,
+      checkInSelected: false,
+      checkOutSelected: false,
+      numberOfDaysSelected: 0,
     };
     this.fetchUnit = this.fetchUnit.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.addToPrice = this.addToPrice.bind(this);
     this.removeFromPrice = this.removeFromPrice.bind(this);
     this.toggleCalSelectOpen = this.toggleCalSelectOpen.bind(this);
+    this.maybeCloseCalendar = this.maybeCloseCalendar.bind(this);
     this.updateCheckIn = this.updateCheckIn.bind(this);
     this.updateCheckOut = this.updateCheckOut.bind(this);
+    this.toggleCheckIn = this.toggleCheckIn.bind(this);
+    this.toggleCheckOut = this.toggleCheckOut.bind(this);
+    this.checkIfWithinRange = this.checkIfWithinRange.bind(this);
   }
 
 
@@ -96,15 +105,70 @@ class App extends React.Component {
     this.setState({
       checkInDate: dateStr,
     });
+    this.maybeCloseCalendar();
   }
 
   updateCheckOut(dateStr) {
     this.setState({
       checkOutDate: dateStr,
     });
+    this.maybeCloseCalendar();
   }
 
+  maybeCloseCalendar() {
+    this.setState((state) => {
+      if (state.checkInDate !== '' && state.checkOutDate !== '') {
+        const isBefore = dateFn.isBefore(state.checkOutDate, state.checkInDate);
+        if (isBefore) {
+          return {
+            calSelectOpen: false,
+            checkInDate: state.checkOutDate,
+            checkOutDate: state.checkInDate,
+          };
+        }
+        return { calSelectOpen: false };
+      }
+    });
+    this.checkIfWithinRange();
+  }
+
+  toggleCheckIn() {
+    this.setState({
+      checkInSelected: true,
+      checkOutSelected: false,
+    });
+  }
+
+  toggleCheckOut() {
+    this.setState({
+      checkInSelected: false,
+      checkOutSelected: true,
+    });
+  }
+
+  checkIfWithinRange() {
+    this.setState((state) => {
+      const { dateAvailableFrom, dateAvailableTo } = state.unitData;
+      const validStart = dateFn.isWithinRange(new Date(state.checkInDate), new Date(dateAvailableFrom), new Date(dateAvailableTo));
+      const validStop = dateFn.isWithinRange(new Date(state.checkOutDate), new Date(dateAvailableFrom), new Date(dateAvailableTo));
+      if (validStart && validStop) {
+        const numberOfDaysSelected = Math.abs(dateFn.differenceInCalendarDays(new Date(state.checkInDate), new Date(state.checkOutDate)));
+        return {
+          numberOfDaysSelected,
+          validRange: true,
+        };
+      }
+    });
+  }
+
+
   render() {
+    let finalPrice = <Total />;
+    const { validRange } = this.state;
+    if (!validRange) {
+      finalPrice = null;
+    }
+    console.log(this.state.numberOfDaysSelected);
     return (
       <div className="modules">
           <div className="unitInfo container">
@@ -153,12 +217,18 @@ class App extends React.Component {
                 checkOutDate={this.state.checkOutDate}
                 updateCheckIn={this.updateCheckIn}
                 updateCheckOut={this.updateCheckOut}
+                toggleCheckInSelected={this.toggleCheckIn}
+                toggleCheckOutSelected={this.toggleCheckOut}
               />
             </div>
 
             <div className="guests container">
               <div>Guests</div>
               <Guests unitData={this.state.unitData} addToPrice={this.addToPrice} removeFromPrice={this.removeFromPrice}/>
+            </div>
+
+            <div className="total container">
+              {finalPrice}
             </div>
 
             <div className="bookingButton container">
@@ -178,6 +248,10 @@ class App extends React.Component {
                 updateCheckOut={this.updateCheckOut}
                 checkInDate={this.state.checkInDate}
                 checkOutDate={this.state.checkOutDate}
+                checkInSelected={this.state.checkInSelected}
+                checkOutSelected={this.state.checkOutSelected}
+                toggleCheckIn={this.toggleCheckIn}
+                toggleCheckOut={this.toggleCheckOut}
               />
             </div>
 

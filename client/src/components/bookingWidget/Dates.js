@@ -7,15 +7,24 @@ class Dates extends React.Component {
     this.state = {
       text: '',
     };
-    this.handleClick = this.handleClick.bind(this);
+    this.handleClickCheckIn = this.handleClickCheckIn.bind(this);
+    this.handleClickCheckOut = this.handleClickCheckOut.bind(this);
     this.handleCheckInText = this.handleCheckInText.bind(this);
     this.handleCheckOutText = this.handleCheckOutText.bind(this);
   }
 
-  handleClick(e) {
+  handleClickCheckIn(e) {
     const { toggleCalendar } = this.props;
     e.preventDefault();
     toggleCalendar();
+    this.props.toggleCheckInSelected();
+  }
+
+  handleClickCheckOut(e) {
+    const { toggleCalendar } = this.props;
+    e.preventDefault();
+    toggleCalendar();
+    this.props.toggleCheckOutSelected();
   }
 
   handleCheckInText(e) {
@@ -33,7 +42,7 @@ class Dates extends React.Component {
           <form action="">
             <input 
               onChange={this.handleCheckInText} 
-              onClick={this.handleClick} type="text" 
+              onClick={this.handleClickCheckIn} type="text" 
               placeholder="Check in"
               value={this.props.checkInDate}
             />
@@ -46,7 +55,7 @@ class Dates extends React.Component {
           <form action="">
             <input
               onChange={this.handleCheckOutText} 
-              onClick={this.handleClick} 
+              onClick={this.handleClickCheckOut} 
               type="text" 
               placeholder="Check out"
               value={this.props.checkOutDate}
