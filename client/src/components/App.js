@@ -20,14 +20,9 @@ class App extends React.Component {
       ownerData: [],
       price: 0,
       original: 0,
-      checkInDay: '',
       checkInDate: '',
-      checkInMonth: '',
-      checkInYear: '',
-      checkOutDay: '',
       checkOutDate: '',
-      checkOutMonth: '',
-      checkOutYear: '',
+      validRange: false,
       calSelectOpen: false,
     };
     this.fetchUnit = this.fetchUnit.bind(this);
@@ -35,6 +30,8 @@ class App extends React.Component {
     this.addToPrice = this.addToPrice.bind(this);
     this.removeFromPrice = this.removeFromPrice.bind(this);
     this.toggleCalSelectOpen = this.toggleCalSelectOpen.bind(this);
+    this.updateCheckIn = this.updateCheckIn.bind(this);
+    this.updateCheckOut = this.updateCheckOut.bind(this);
   }
 
 
@@ -69,7 +66,7 @@ class App extends React.Component {
       return;
     }
     this.setState((state) => {
-      const price = Math.floor((( 0.20 * state.original) + state.price));
+      const price = Math.floor(((0.20 * state.original) + state.price));
       return { price };
     });
   }
@@ -90,8 +87,20 @@ class App extends React.Component {
   toggleCalSelectOpen() {
     this.setState((state) => {
       return {
-        calSelectOpen: !state.calSelectOpen,
+        calSelectOpen: true,
       };
+    });
+  }
+
+  updateCheckIn(dateStr) {
+    this.setState({
+      checkInDate: dateStr,
+    });
+  }
+
+  updateCheckOut(dateStr) {
+    this.setState({
+      checkOutDate: dateStr,
     });
   }
 
@@ -138,7 +147,13 @@ class App extends React.Component {
             </div>
 
             <div className="dates container">
-              <Dates toggleCalendar={this.toggleCalSelectOpen}/>
+              <Dates 
+                toggleCalendar={this.toggleCalSelectOpen}
+                checkInDate={this.state.checkInDate}
+                checkOutDate={this.state.checkOutDate}
+                updateCheckIn={this.updateCheckIn}
+                updateCheckOut={this.updateCheckOut}
+              />
             </div>
 
             <div className="guests container">
@@ -156,7 +171,14 @@ class App extends React.Component {
             </div>
 
             <div className="calendar container">
-              <DisplayCalendar isOpen={this.state.calSelectOpen} unitData={this.state.unitData}/>
+              <DisplayCalendar
+                isOpen={this.state.calSelectOpen} 
+                unitData={this.state.unitData}
+                updateCheckIn={this.updateCheckIn}
+                updateCheckOut={this.updateCheckOut}
+                checkInDate={this.state.checkInDate}
+                checkOutDate={this.state.checkOutDate}
+              />
             </div>
 
           </div>

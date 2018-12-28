@@ -1,5 +1,6 @@
 import React from 'react';
 import CalendarData from './CalendarData';
+import ClearDates from './ClearDates';
 const date = require('date-fns');
 const calMaker = require('./calendarMaker');
 
@@ -109,8 +110,13 @@ class Calendar extends React.Component {
 
 
   render() {
+    const { checkInDate, checkOutDate } = this.props;
     const month = this.monthMap[this.state.displayMonth];
     const year = this.state.displayYear;
+    let clear;
+    if (checkInDate !== '' || checkOutDate !== '') {
+      clear = <ClearDates updateCheckIn={this.props.updateCheckIn} updateCheckOut={this.props.updateCheckOut}/>;
+    }
     return(
       <div>
         <div className="monthArrows container">
@@ -244,6 +250,7 @@ class Calendar extends React.Component {
         </table>
 
         <div>Updated...</div>
+        {clear}
         <div>Question Mark</div>
       </div>
     );
