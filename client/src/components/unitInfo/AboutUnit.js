@@ -1,10 +1,11 @@
 import React from 'react';
+import styles from '../styles/descriptions.css';
 
 const AboutUnit = ({ about }) => {
   return(
     <div className="aboutUnit">
-      <div>The Space</div>
-      <div>{about}</div>
+      <div className={styles.title}>The Space</div>
+      <div className={styles.text}>{about}</div>
     </div>
   );
 };

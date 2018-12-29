@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from '../styles/spec.css';
 
 const SpectItem = ({ 
   part, 
@@ -11,15 +12,17 @@ const SpectItem = ({
 }) => {
   let icon = <div className="emoji host">superhost emoji img</div>
   let host = <div className="superHost">{`${name} is a SuperHost`}</div>
+  let hostDescription = <div>Superhosts are experienced, highly rated hosts who are committed to providing great stays for guests.</div>
   if (!superH) {
     host = null;
     icon = null;
+    hostDescription = null;
   }
   return (
-    <div className="item container">
-      <div className="emoji part">part emoji img</div>
-      <div className="part title">{part}</div>
-      <div className="part text">
+    <div className={styles.items}>
+      {/* <div className="emoji part">part emoji img</div> */}
+      <div className={styles.title}>{part}</div>
+      <div className={styles.text}>
         <ul>
           <li>{guests + ' guests'}</li>
           <li>{rooms + ' bedrooms'}</li>
@@ -27,8 +30,13 @@ const SpectItem = ({
           <li>{baths + ' baths'}</li>
         </ul>
       </div>
-      {icon}
+      <div className={styles.title}>
+      {/* {icon} */}
       {host}
+      </div>
+      <div className={styles.description}>
+      {hostDescription}
+      </div>
     </div>
   );
 };

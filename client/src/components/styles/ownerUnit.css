@@ -1,0 +1,42 @@
+.unitOwner {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.partAvailable {
+  font-family: 'Raleway', sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #383838;
+}
+
+.title {
+  font-family: 'Raleway', sans-serif;
+  font-size: 50px;
+  font-weight: 900;
+  text-transform: uppercase;
+  color: #383838;
+  max-width: 50px;
+  padding-bottom: 5px;
+}
+
+.city {
+  font-family: 'Raleway', sans-serif;
+  font-size: 20px;
+  color: #383838;
+  padding-bottom: 15px;
+}
+
+.profilePic {
+  height: 65px;
+  width: 65px;
+  border-radius: 50%;
+}
+
+.ownerName {
+  font-family: 'Raleway', sans-serif;
+  font-size: 16px;
+  color: grey;
+}

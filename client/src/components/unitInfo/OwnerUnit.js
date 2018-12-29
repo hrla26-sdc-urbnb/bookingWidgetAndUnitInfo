@@ -1,22 +1,23 @@
 import React from 'react';
+import styles from '../styles/ownerUnit.css';
 
 const OwnerUnit = ({ unitData, ownerData }) => {
   let { partOfUnitFromRent, title, city } = unitData;
   let { name, photo, isSuperHost } = ownerData;
   return (
-    <div>
+    <div className={styles.unitOwner}>
       <div className="unitTitle container">
-        <div className="partAvailable">{partOfUnitFromRent}</div>
-        <div>{title}</div>
-        <div>{city}</div>
+        <div className={styles.partAvailable}>{partOfUnitFromRent}</div>
+        <div className={styles.title}>{title}</div>
+        <div className={styles.city}>{city}</div>
       </div>
 
       <div className="owner container">
         <div>
-          {/* <img src={photo} /> */}
+          <img className={styles.profilePic} src={photo} />
         </div>
-        <div>superhost badge</div>
-        <div>{name}</div>
+          {/* <img src="s3://coffeegodddfec/superHostBadge.png"/> */}
+        <div className={styles.ownerName}>{name}</div>
       </div>
     </div>
 );};
