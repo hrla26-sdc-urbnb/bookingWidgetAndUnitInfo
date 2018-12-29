@@ -1,14 +1,15 @@
 import React from 'react';
+import styles from '../styles/descriptions.css';
 
 const ReadMore = ({ handleClick, wantsMore }) => {
   let direct;
   if (wantsMore) {
-    direct = <a href="" onClick={handleClick}>Hide ^</a>
+    direct = <a href="" onClick={handleClick}>Hide &uarr;</a>
   } else {
-    direct = <a href="" onClick={handleClick}>Read more about the space v</a>
+    direct = <a href="" onClick={handleClick}>Read more about the space &darr;</a>
   }
   return (
-    <div>
+    <div className={styles.readMore}>
       {direct}
     </div>
   );

@@ -1,5 +1,6 @@
 import React from 'react';
 import AmenityItem from './AmenityItem';
+import styles from '../styles/amenities.css';
 
 
 const AmenitiesList = ({ unitData }) => {
@@ -35,12 +36,14 @@ const AmenitiesList = ({ unitData }) => {
     amens.push('Kitchen');
   }
   return (
-    <div>
-      {amens.map((amen, index) => {
-        return <AmenityItem key={index} amen={amen}/>
-      })}
-      <div className="showAll container">
-        {show}
+    <div className={styles.amenContainer}>
+      <div className={styles.itemContainer}>
+        {amens.map((amen, index) => {
+          return <AmenityItem key={index} amen={amen}/>
+        })}
+      </div>
+      <div className={styles.showAll}>
+          {show}
       </div>
     </div>
   );

@@ -4,7 +4,7 @@ import AboutUnit from './AboutUnit';
 import GuestAccess from './GuestAccess';
 import GuestInteraction from './GuestInteraction';
 import OtherNote from './OtherNotes';
-import styles from '../styles/descriptions.css';
+
 
 class Descriptions extends React.Component{
   constructor(props) {

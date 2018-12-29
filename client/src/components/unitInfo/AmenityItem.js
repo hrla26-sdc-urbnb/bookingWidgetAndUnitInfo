@@ -1,9 +1,10 @@
 import React from 'react';
+import styles from '../styles/amenities.css';
 
 const AmenityItem = ({ amen }) => {
   return(
-    <div>
-      <div>amenity emoji</div>
+    <div className={styles.item}>
+      {/* <div>amenity emoji</div> */}
       <div>{amen}</div>
     </div>
   );

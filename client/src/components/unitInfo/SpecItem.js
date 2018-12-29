@@ -11,7 +11,7 @@ const SpectItem = ({
   name,
 }) => {
   let icon = <div className="emoji host">superhost emoji img</div>
-  let host = <div className="superHost">{`${name} is a SuperHost`}</div>
+  let host = <div className="superHost">{`${name} is a Superhost`}</div>
   let hostDescription = <div>Superhosts are experienced, highly rated hosts who are committed to providing great stays for guests.</div>
   if (!superH) {
     host = null;

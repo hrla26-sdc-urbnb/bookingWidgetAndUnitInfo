@@ -15,6 +15,7 @@ import Total from './bookingWidget/calendar/Total';
 
 import stylesApp from './styles/app.css';
 import stylesDes from './styles/descriptions.css';
+import stylesAmen from './styles/amenities.css';
 
 
 class App extends React.Component {
@@ -201,14 +202,14 @@ class App extends React.Component {
               </div>
               <Descriptions unitData={this.state.unitData}/>
 
-              <div className="contact container">
+              <div className={stylesDes.contactHost}>
                 <a href="">Contact Host</a>
               </div>
 
             </div>
 
             <div className="amen container">
-              <div>Amenities</div>
+              <div className={stylesAmen.title}>Amenities</div>
               <div className="amenItems container">
                 <AmenitiesList unitData={this.state.unitData}/>
               </div>
