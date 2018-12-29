@@ -5,6 +5,7 @@ import ChildrenPlus from './ChildrenPlus';
 import ChildrenMinus from './ChildrenMinus';
 import InfantPlus from './InfantPlus';
 import InfantMinus from './InfantMinus';
+import styles from '../../styles/guests.css';
 
 const GuestMenu = ({
   handleClickPlusAdults,
@@ -23,28 +24,38 @@ const GuestMenu = ({
 }) => {
 
   return(
-    <div className="guests menu">
-      <div className="adults guests">
+    <div className={styles.menu}>
+      <div className={styles.guestSelect}>
         <div>Adults</div>
-        <AdultPlus plus={handleClickPlusAdults} going={adults} guests={guests} allowed={unitData.guestsAllowed}/>
-        <div>{adults}</div>
-        <AdultMinus minus={handleClickMinusAdults} going={adults}/>
+        <div className={styles.number}>
+          <AdultPlus plus={handleClickPlusAdults} going={adults} guests={guests} allowed={unitData.guestsAllowed}/>
+          <div>{adults}</div>
+          <AdultMinus minus={handleClickMinusAdults} going={adults}/>
+        </div>
       </div>
 
-      <div className="children guests">
-        <div>Children</div>
-        <div>Ages 2-12</div>
-        <ChildrenPlus plus={handleClickPlusChildren} going={children} guests={guests} allowed={unitData.guestsAllowed}/>
-        <div>{children}</div>
-        <ChildrenMinus minus={handleClickMinusChildren} going={children}/>
+      <div className={styles.guestSelect}>
+        <div>
+          Children
+          <div>Ages 2-12</div>
+        </div>
+        <div className={styles.number}>
+          <ChildrenPlus plus={handleClickPlusChildren} going={children} guests={guests} allowed={unitData.guestsAllowed}/>
+          <div>{children}</div>
+          <ChildrenMinus minus={handleClickMinusChildren} going={children}/>
+        </div>
       </div>
 
-      <div className="infants guests">
-        <div>Infants</div>
-        <div>Under 2</div>
-        <InfantPlus plus={handleClickPlusInfants} going={infants} allowed={infantMax}/>
-        <div>{infants}</div>
-        <InfantMinus minus={handleClickMinusInfants} going={infants}/>
+      <div className={styles.guestSelect}>
+        <div>
+          Infants
+          <div>Under 2</div>
+        </div>
+        <div className={styles.number}>
+          <InfantPlus plus={handleClickPlusInfants} going={infants} allowed={infantMax}/>
+          <div>{infants}</div>
+          <InfantMinus minus={handleClickMinusInfants} going={infants}/>
+        </div>
       </div>
 
       <div>

@@ -16,6 +16,7 @@ import Total from './bookingWidget/calendar/Total';
 import stylesApp from './styles/app.css';
 import stylesDes from './styles/descriptions.css';
 import stylesAmen from './styles/amenities.css';
+import stylesGuest from './styles/guests.css';
 
 
 class App extends React.Component {
@@ -203,7 +204,7 @@ class App extends React.Component {
               <Descriptions unitData={this.state.unitData}/>
 
               <div className={stylesDes.contactHost}>
-                <a href="">Contact Host</a>
+                <a href="">Contact host</a>
               </div>
 
             </div>
@@ -236,7 +237,7 @@ class App extends React.Component {
             </div>
 
             <div className="guests container">
-              <div>Guests</div>
+              <div className={stylesGuest.title}>Guests</div>
               <Guests unitData={this.state.unitData} addToPrice={this.addToPrice} removeFromPrice={this.removeFromPrice}/>
             </div>
 

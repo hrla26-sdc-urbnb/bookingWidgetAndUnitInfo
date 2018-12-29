@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from '../styles/dates.css';
 const dateFn = require('date-fns');
 
 class Dates extends React.Component {
@@ -38,29 +39,34 @@ class Dates extends React.Component {
   render() {
     return(
       <div>
-        <div className="checkIn">
-          <form action="">
-            <input 
-              onChange={this.handleCheckInText} 
-              onClick={this.handleClickCheckIn} type="text" 
-              placeholder="Check in"
-              value={this.props.checkInDate}
-            />
-          </form>
-        </div>
+        <div className={styles.title}>Dates</div>
+        <div className={styles.container}>
+          <div className="checkIn">
+            <form action="">
+              <input 
+                onChange={this.handleCheckInText} 
+                onClick={this.handleClickCheckIn} type="text" 
+                placeholder="Check in"
+                value={this.props.checkInDate}
+                className={styles.input}
+              />
+            </form>
+          </div>
 
-        <div className="arrow">--></div>
+          <div className={styles.arrow}>&rarr;</div>
 
-        <div className="checkOut">
-          <form action="">
-            <input
-              onChange={this.handleCheckOutText} 
-              onClick={this.handleClickCheckOut} 
-              type="text" 
-              placeholder="Check out"
-              value={this.props.checkOutDate}
-            />
-          </form>
+          <div className="checkOut">
+            <form action="">
+              <input
+                onChange={this.handleCheckOutText} 
+                onClick={this.handleClickCheckOut} 
+                type="text" 
+                placeholder="Check out"
+                value={this.props.checkOutDate}
+                className={styles.input}
+              />
+            </form>
+          </div>
         </div>
       </div>
     );

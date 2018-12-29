@@ -1,5 +1,6 @@
 import React from 'react';
 import GuestMenu from './GuestMenu';
+import styles from '../../styles/guests.css';
 
 class Guests extends React.Component {
   constructor(props) {
@@ -116,7 +117,13 @@ class Guests extends React.Component {
   }
 
   render() {
-    let select = <button onClick={this.toggleGuestMenu}>{`${this.state.guests} ${this.state.word}  ^`}</button>
+    let select = <button 
+      className={styles.select} 
+      onClick={this.toggleGuestMenu}>
+        <div>{`${this.state.guests} ${this.state.word}`}</div>
+        <div>&uarr;</div>
+    </button>
+
     let menu = <GuestMenu 
     handleClickPlusAdults={this.handleClickPlusAdults}
     handleClickMinusAdults={this.handleClickMinusAdults}
@@ -134,12 +141,19 @@ class Guests extends React.Component {
     />
     if (!this.state.isOpen) {
       menu = null;
-      select = <button onClick={this.toggleGuestMenu}>{`${this.state.guests} ${this.state.word}  V`}</button>
+      select = <button 
+        className={styles.select} 
+        onClick={this.toggleGuestMenu}>
+        <div>{`${this.state.guests} ${this.state.word}`}</div>
+        <div>&darr;</div>
+        </button>
     }
     return(
       <div>
-        {select}
-        {menu}
+        <div>
+          {select}
+        </div>
+          {menu}
         <div>{`${this.props.unitData.guestsAllowed} maximum. Infants don't count toward the number of guests`}</div>
       </div>
     );
