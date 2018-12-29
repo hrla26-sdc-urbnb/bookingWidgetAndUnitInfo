@@ -1,12 +1,12 @@
 const path = require('path');
 
 module.exports = {
-  entry: './client/src/index.js',
+  entry: './client/src/index.jsx',
   mode: 'development',
   module: {
     rules: [
       {
-        test: /\.m?js$/,
+        test: /.jsx?$/,
         exclude: /(node_modules|bower_components)/,
         use: {
           loader: 'babel-loader',

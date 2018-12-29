@@ -8,7 +8,7 @@ const PriceReviews = ({ unitData, price }) => {
   let stars = [];
   for (let i = 0; i < averageStarRating; i += 1) {
     // stars += '*';
-    stars.push(<Star />);
+    stars.push(<Star key={i}/>);
   }
   if (stars.length === 0) {
     num = null;

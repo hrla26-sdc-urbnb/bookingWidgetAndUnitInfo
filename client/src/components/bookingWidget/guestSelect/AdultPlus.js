@@ -1,9 +1,10 @@
 import React from 'react';
+import styles from '../../styles/guests.css';
 
 const AdultPlus = ({ going, allowed, guests, plus }) => {
   let works;
-  let press = <button onClick={() => { plus() }}>+</button>
-  let noPress = <div>+</div>
+  let press = <button className={styles.yesClick} onClick={() => { plus() }}>+</button>
+  let noPress = <div className={styles.noClick}>+</div>
   if (going < allowed && guests < allowed) {
     works = press;
   } else {

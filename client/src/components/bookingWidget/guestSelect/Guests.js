@@ -88,9 +88,13 @@ class Guests extends React.Component {
     this.setState((state) => {
       if (state.guests > 1 && state.infants === 0) {
         return { word: 'guests'};
-      } else if (state.guests > 1 && state.infants > 0) {
+      } else if (state.guests > 1 && state.infants > 1) {
         return { word: `guests, ${state.infants} infants` };
-      } else if (state.guests === 1 && state.infants > 0) {
+      } else if (state.guests > 1 && state.infants === 1) {
+        return { word: `guests, ${state.infants} infant` };
+      } else if (state.guests === 1 && state.infants === 1) {
+        return { word: `guest, ${state.infants} infant` };
+      } else if (state.guests === 1 && state.infants > 1) {
         return { word: `guest, ${state.infants} infants` };
       } else if (state.guests === 1 && state.infants === 0) {
         return { word: 'guest'};
@@ -154,7 +158,6 @@ class Guests extends React.Component {
           {select}
         </div>
           {menu}
-        <div>{`${this.props.unitData.guestsAllowed} maximum. Infants don't count toward the number of guests`}</div>
       </div>
     );
   }
