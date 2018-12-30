@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from '../styles/book.css';
 
 const BookingButton = ({ unitData, toggleCalendar }) => {
   const handleClick = (e) => {
@@ -8,14 +9,18 @@ const BookingButton = ({ unitData, toggleCalendar }) => {
   }
 
   let { isBooked } = unitData;
-  let button = <button onClick={handleClick}>Book</button>
+  let button = <button  className={styles.button} onClick={handleClick}>Book</button>
   if (isBooked) {
-    button = <button onClick={handleClick}>Request to Book</button>
+    button = <button className={styles.button} onClick={handleClick}>Request to Book</button>
   }
   return(
     <div>
-      <div>{button}</div>
-      <div>You won’t be charged yet</div>
+      <div className={styles.container}>
+        <div>{button}</div>
+      </div>
+      <div>
+        <div className={styles.text}>You won’t be charged yet</div>
+      </div>
     </div>
   );
 };

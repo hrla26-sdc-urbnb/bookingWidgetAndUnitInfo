@@ -1,6 +1,8 @@
 import React from 'react';
 import CalendarData from './CalendarData';
 import ClearDates from './ClearDates';
+import styles from '../../styles/calendar.css';
+
 const date = require('date-fns');
 const calMaker = require('./calendarMaker');
 
@@ -120,181 +122,186 @@ class Calendar extends React.Component {
       />;
     }
     return(
-      <div>
-        <div className="monthArrows container">
-          <button onClick={this.viewPreviousMonthsDates}>left arrow</button>
-          <div className="month name">{month} {year}</div>
+      <div className={styles.menu}>
+        <div className={styles.monthContainer}>
+          <button onClick={this.viewPreviousMonthsDates} className={styles.arrow}>&larr;</button>
+          <div className={styles.monthTitle}>{month} {year}</div>
 
-          <button onClick={this.viewNextMonthsDates}>right arrow</button>
+          <button onClick={this.viewNextMonthsDates} className={styles.arrow}>&rarr;</button>
         </div>
-        <table>
+        <table className={styles.table}>
           <tbody>
 
-          <tr>
-            <td>Su</td>
-            <td>Mo</td>
-            <td>Tu</td>
-            <td>We</td>
-            <td>Th</td>
-            <td>Fr</td>
-            <td>Sa</td>
+          <tr className={styles.weekdays}>
+            <td className={styles.dateFormat}>Su</td>
+            <td className={styles.dateFormat}>Mo</td>
+            <td className={styles.dateFormat}>Tu</td>
+            <td className={styles.dateFormat}>We</td>
+            <td className={styles.dateFormat}>Th</td>
+            <td className={styles.dateFormat}>Fr</td>
+            <td className={styles.dateFormat}>Sa</td>
           </tr>
 
-          <tr>
-            {this.state.calMatrix[0].map((date, index) => {
-              return (
-                <CalendarData 
-                  date={date} 
-                  key={index}
-                  thisDate={this.state.thisDate}
-                  thisMonth={this.state.thisMonth}
-                  thisYear={this.state.thisYear}
-                  displayMonth={this.state.displayMonth}
-                  displayYear={this.state.displayYear}
-                  availableFrom={this.props.unitData.dateAvailableFrom}
-                  availableTo={this.props.unitData.dateAvailableTo}
-                  monthMap={this.monthMap}
-                  checkInSelected={this.props.checkInSelected}
-                  checkOutSelected={this.props.checkOutSelected}
-                  updateCheckIn={this.props.updateCheckIn}
-                  updateCheckOut={this.props.updateCheckOut}
-                  toggleCheckIn={this.props.toggleCheckIn}
-                  toggleCheckOut={this.props.toggleCheckOut}
-                  checkInDate={this.props.checkInDate}
-                  checkOutDate={this.props.checkOutDate}
-                />);
-            })}
-          </tr>
+          <div className={styles.body}>
 
-          <tr>
-          {this.state.calMatrix[1].map((date, index) => {
-              return (
-                <CalendarData 
-                  date={date} 
-                  key={index}
-                  thisDate={this.state.thisDate}
-                  thisMonth={this.state.thisMonth}
-                  thisYear={this.state.thisYear}
-                  displayMonth={this.state.displayMonth}
-                  displayYear={this.state.displayYear}
-                  availableFrom={this.props.unitData.dateAvailableFrom}
-                  availableTo={this.props.unitData.dateAvailableTo}
-                  monthMap={this.monthMap}
-                  checkInSelected={this.props.checkInSelected}
-                  checkOutSelected={this.props.checkOutSelected}
-                  updateCheckIn={this.props.updateCheckIn}
-                  updateCheckOut={this.props.updateCheckOut}
-                  toggleCheckIn={this.props.toggleCheckIn}
-                  toggleCheckOut={this.props.toggleCheckOut}
-                  checkInDate={this.props.checkInDate}
-                  checkOutDate={this.props.checkOutDate}
-                />);
-            })}
-          </tr>
 
-          <tr>
-          {this.state.calMatrix[2].map((date, index) => {
-              return (
-                <CalendarData 
-                  date={date} 
-                  key={index}
-                  thisDate={this.state.thisDate}
-                  thisMonth={this.state.thisMonth}
-                  thisYear={this.state.thisYear}
-                  displayMonth={this.state.displayMonth}
-                  displayYear={this.state.displayYear}
-                  availableFrom={this.props.unitData.dateAvailableFrom}
-                  availableTo={this.props.unitData.dateAvailableTo}
-                  monthMap={this.monthMap}
-                  checkInSelected={this.props.checkInSelected}
-                  checkOutSelected={this.props.checkOutSelected}
-                  updateCheckIn={this.props.updateCheckIn}
-                  updateCheckOut={this.props.updateCheckOut}
-                  toggleCheckIn={this.props.toggleCheckIn}
-                  toggleCheckOut={this.props.toggleCheckOut}
-                  checkInDate={this.props.checkInDate}
-                  checkOutDate={this.props.checkOutDate}
-                />);
-            })}
-          </tr>
+            <tr className={styles.dates}>
+              {this.state.calMatrix[0].map((date, index) => {
+                return (
+                  <CalendarData 
+                    date={date} 
+                    key={index}
+                    thisDate={this.state.thisDate}
+                    thisMonth={this.state.thisMonth}
+                    thisYear={this.state.thisYear}
+                    displayMonth={this.state.displayMonth}
+                    displayYear={this.state.displayYear}
+                    availableFrom={this.props.unitData.dateAvailableFrom}
+                    availableTo={this.props.unitData.dateAvailableTo}
+                    monthMap={this.monthMap}
+                    checkInSelected={this.props.checkInSelected}
+                    checkOutSelected={this.props.checkOutSelected}
+                    updateCheckIn={this.props.updateCheckIn}
+                    updateCheckOut={this.props.updateCheckOut}
+                    toggleCheckIn={this.props.toggleCheckIn}
+                    toggleCheckOut={this.props.toggleCheckOut}
+                    checkInDate={this.props.checkInDate}
+                    checkOutDate={this.props.checkOutDate}
+                  />);
+              })}
+            </tr>
 
-          <tr>
-          {this.state.calMatrix[3].map((date, index) => {
-              return (
-                <CalendarData 
-                  date={date} 
-                  key={index}
-                  thisDate={this.state.thisDate}
-                  thisMonth={this.state.thisMonth}
-                  thisYear={this.state.thisYear}
-                  displayMonth={this.state.displayMonth}
-                  displayYear={this.state.displayYear}
-                  availableFrom={this.props.unitData.dateAvailableFrom}
-                  availableTo={this.props.unitData.dateAvailableTo}
-                  monthMap={this.monthMap}
-                  checkInSelected={this.props.checkInSelected}
-                  checkOutSelected={this.props.checkOutSelected}
-                  updateCheckIn={this.props.updateCheckIn}
-                  updateCheckOut={this.props.updateCheckOut}
-                  toggleCheckIn={this.props.toggleCheckIn}
-                  toggleCheckOut={this.props.toggleCheckOut}
-                  checkInDate={this.props.checkInDate}
-                  checkOutDate={this.props.checkOutDate}
-                />);
-            })}
-          </tr>
+            <tr className={styles.dates}>
+            {this.state.calMatrix[1].map((date, index) => {
+                return (
+                  <CalendarData 
+                    date={date} 
+                    key={index}
+                    thisDate={this.state.thisDate}
+                    thisMonth={this.state.thisMonth}
+                    thisYear={this.state.thisYear}
+                    displayMonth={this.state.displayMonth}
+                    displayYear={this.state.displayYear}
+                    availableFrom={this.props.unitData.dateAvailableFrom}
+                    availableTo={this.props.unitData.dateAvailableTo}
+                    monthMap={this.monthMap}
+                    checkInSelected={this.props.checkInSelected}
+                    checkOutSelected={this.props.checkOutSelected}
+                    updateCheckIn={this.props.updateCheckIn}
+                    updateCheckOut={this.props.updateCheckOut}
+                    toggleCheckIn={this.props.toggleCheckIn}
+                    toggleCheckOut={this.props.toggleCheckOut}
+                    checkInDate={this.props.checkInDate}
+                    checkOutDate={this.props.checkOutDate}
+                  />);
+              })}
+            </tr>
 
-          <tr>
-          {this.state.calMatrix[4].map((date, index) => {
-              return (
-                <CalendarData 
-                  date={date} 
-                  key={index}
-                  thisDate={this.state.thisDate}
-                  thisMonth={this.state.thisMonth}
-                  thisYear={this.state.thisYear}
-                  displayMonth={this.state.displayMonth}
-                  displayYear={this.state.displayYear}
-                  availableFrom={this.props.unitData.dateAvailableFrom}
-                  availableTo={this.props.unitData.dateAvailableTo}
-                  monthMap={this.monthMap}
-                  checkInSelected={this.props.checkInSelected}
-                  checkOutSelected={this.props.checkOutSelected}
-                  updateCheckIn={this.props.updateCheckIn}
-                  updateCheckOut={this.props.updateCheckOut}
-                  toggleCheckIn={this.props.toggleCheckIn}
-                  toggleCheckOut={this.props.toggleCheckOut}
-                  checkInDate={this.props.checkInDate}
-                  checkOutDate={this.props.checkOutDate}
-                />);
-            })}
-          </tr>
+            <tr className={styles.dates}>
+            {this.state.calMatrix[2].map((date, index) => {
+                return (
+                  <CalendarData 
+                    date={date} 
+                    key={index}
+                    thisDate={this.state.thisDate}
+                    thisMonth={this.state.thisMonth}
+                    thisYear={this.state.thisYear}
+                    displayMonth={this.state.displayMonth}
+                    displayYear={this.state.displayYear}
+                    availableFrom={this.props.unitData.dateAvailableFrom}
+                    availableTo={this.props.unitData.dateAvailableTo}
+                    monthMap={this.monthMap}
+                    checkInSelected={this.props.checkInSelected}
+                    checkOutSelected={this.props.checkOutSelected}
+                    updateCheckIn={this.props.updateCheckIn}
+                    updateCheckOut={this.props.updateCheckOut}
+                    toggleCheckIn={this.props.toggleCheckIn}
+                    toggleCheckOut={this.props.toggleCheckOut}
+                    checkInDate={this.props.checkInDate}
+                    checkOutDate={this.props.checkOutDate}
+                  />);
+              })}
+            </tr>
 
-          <tr>
-          {this.state.calMatrix[5].map((date, index) => {
-              return (
-                <CalendarData 
-                  date={date} 
-                  key={index}
-                  thisDate={this.state.thisDate}
-                  thisMonth={this.state.thisMonth}
-                  thisYear={this.state.thisYear}
-                  displayMonth={this.state.displayMonth}
-                  displayYear={this.state.displayYear}
-                  availableFrom={this.props.unitData.dateAvailableFrom}
-                  availableTo={this.props.unitData.dateAvailableTo}
-                  monthMap={this.monthMap}
-                  checkInSelected={this.props.checkInSelected}
-                  checkOutSelected={this.props.checkOutSelected}
-                  updateCheckIn={this.props.updateCheckIn}
-                  updateCheckOut={this.props.updateCheckOut}
-                  toggleCheckIn={this.props.toggleCheckIn}
-                  toggleCheckOut={this.props.toggleCheckOut}
-                  checkInDate={this.props.checkInDate}
-                  checkOutDate={this.props.checkOutDate}
-                />);
-            })}
-          </tr>
+            <tr className={styles.dates}>
+            {this.state.calMatrix[3].map((date, index) => {
+                return (
+                  <CalendarData 
+                    date={date} 
+                    key={index}
+                    thisDate={this.state.thisDate}
+                    thisMonth={this.state.thisMonth}
+                    thisYear={this.state.thisYear}
+                    displayMonth={this.state.displayMonth}
+                    displayYear={this.state.displayYear}
+                    availableFrom={this.props.unitData.dateAvailableFrom}
+                    availableTo={this.props.unitData.dateAvailableTo}
+                    monthMap={this.monthMap}
+                    checkInSelected={this.props.checkInSelected}
+                    checkOutSelected={this.props.checkOutSelected}
+                    updateCheckIn={this.props.updateCheckIn}
+                    updateCheckOut={this.props.updateCheckOut}
+                    toggleCheckIn={this.props.toggleCheckIn}
+                    toggleCheckOut={this.props.toggleCheckOut}
+                    checkInDate={this.props.checkInDate}
+                    checkOutDate={this.props.checkOutDate}
+                  />);
+              })}
+            </tr>
+
+            <tr className={styles.dates}>
+            {this.state.calMatrix[4].map((date, index) => {
+                return (
+                  <CalendarData 
+                    date={date} 
+                    key={index}
+                    thisDate={this.state.thisDate}
+                    thisMonth={this.state.thisMonth}
+                    thisYear={this.state.thisYear}
+                    displayMonth={this.state.displayMonth}
+                    displayYear={this.state.displayYear}
+                    availableFrom={this.props.unitData.dateAvailableFrom}
+                    availableTo={this.props.unitData.dateAvailableTo}
+                    monthMap={this.monthMap}
+                    checkInSelected={this.props.checkInSelected}
+                    checkOutSelected={this.props.checkOutSelected}
+                    updateCheckIn={this.props.updateCheckIn}
+                    updateCheckOut={this.props.updateCheckOut}
+                    toggleCheckIn={this.props.toggleCheckIn}
+                    toggleCheckOut={this.props.toggleCheckOut}
+                    checkInDate={this.props.checkInDate}
+                    checkOutDate={this.props.checkOutDate}
+                  />);
+              })}
+            </tr>
+
+            <tr className={styles.dates}>
+            {this.state.calMatrix[5].map((date, index) => {
+                return (
+                  <CalendarData 
+                    date={date} 
+                    key={index}
+                    thisDate={this.state.thisDate}
+                    thisMonth={this.state.thisMonth}
+                    thisYear={this.state.thisYear}
+                    displayMonth={this.state.displayMonth}
+                    displayYear={this.state.displayYear}
+                    availableFrom={this.props.unitData.dateAvailableFrom}
+                    availableTo={this.props.unitData.dateAvailableTo}
+                    monthMap={this.monthMap}
+                    checkInSelected={this.props.checkInSelected}
+                    checkOutSelected={this.props.checkOutSelected}
+                    updateCheckIn={this.props.updateCheckIn}
+                    updateCheckOut={this.props.updateCheckOut}
+                    toggleCheckIn={this.props.toggleCheckIn}
+                    toggleCheckOut={this.props.toggleCheckOut}
+                    checkInDate={this.props.checkInDate}
+                    checkOutDate={this.props.checkOutDate}
+                  />);
+              })}
+            </tr>
+
+          </div>
 
           </tbody>
         </table>

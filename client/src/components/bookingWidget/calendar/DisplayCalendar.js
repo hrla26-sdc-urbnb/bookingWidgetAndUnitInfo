@@ -1,5 +1,6 @@
 import React from 'react';
 import Calendar from './Calendar';
+import styles from '../../styles/calendar.css';
 
 const DisplayCalendar = ({ 
   isOpen, 

@@ -1,5 +1,6 @@
 const dateFn = require('date-fns');
 import React from 'react';
+import styles from '../../styles/calendar.css';
 
 const CalendarData = ({
   date,
@@ -26,12 +27,13 @@ const CalendarData = ({
   const withinSelection = dateFn.isWithinRange(new Date(`${month} ${date} ${displayYear}`), new Date(checkInDate), new Date(checkOutDate));
   const startIsEqual = dateFn.isEqual(new Date(`${month} ${date} ${displayYear}`), new Date(checkInDate));
   const stopIsEqual = dateFn.isEqual(new Date(`${month} ${date} ${displayYear}`), new Date(checkOutDate));
-  let crossed = '';
+  let format = styles.validDate;
   let today = '';
   let markX = '';
   let markY = '';
-
-  const handleClick = (e) => {
+  let hasDate = styles.dateCell;
+  
+  let handleClick = (e) => {
     if (checkInSelected) {
       updateCheckIn(`${displayMonth + 1}/${date}/${displayYear}`);
       toggleCheckOut();
@@ -42,16 +44,23 @@ const CalendarData = ({
     }
   };
 
+  if (!date) {
+    hasDate = styles.dateCellNull;
+  }
+
   if (date === thisDate && thisMonth === displayMonth && thisYear === displayYear) {
     today = 'today';
   }
   if (!inRange) {
-    crossed = 'crossed';
+    format = styles.dateCellCrossed;
+    handleClick = '';
   }
+
   if (!date) {
     date = '';
-    crossed = '';
+    format = '';
   }
+
 
   if (withinSelection) {
     markX = 'inSelectedRange';
@@ -60,9 +69,12 @@ const CalendarData = ({
     markY = 'endOfSelectedRange';
   }
 
+
   return(
-    <td className={`${today} ${crossed} ${markX} ${markY}`} onClick={handleClick}>
-      {date}
+    <td className={hasDate} onClick={handleClick}>
+      <div className={format}>
+          {date}
+      </div>
     </td>
   );
 };

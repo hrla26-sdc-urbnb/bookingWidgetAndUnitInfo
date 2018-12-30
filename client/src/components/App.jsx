@@ -17,6 +17,7 @@ import stylesApp from './styles/app.css';
 import stylesDes from './styles/descriptions.css';
 import stylesAmen from './styles/amenities.css';
 import stylesGuest from './styles/guests.css';
+import stylesCal from './styles/calendar.css';
 
 
 class App extends React.Component {
@@ -174,6 +175,7 @@ class App extends React.Component {
   }
 
 
+
   render() {
     let finalPrice = <Total 
       unitData={this.state.unitData} 
@@ -186,7 +188,7 @@ class App extends React.Component {
       finalPrice = null;
     }
     return (
-      <div className={stylesApp.modules}>
+      <div id="node" className={stylesApp.modules}>
           <div className={stylesApp.unitInfo}>
 
             <div className="ownerUnit container">
@@ -236,25 +238,7 @@ class App extends React.Component {
               />
             </div>
 
-            <div className="guests container">
-              <div className={stylesGuest.title}>Guests</div>
-              <Guests unitData={this.state.unitData} addToPrice={this.addToPrice} removeFromPrice={this.removeFromPrice}/>
-            </div>
-
-            <div className="total container">
-              {finalPrice}
-            </div>
-
-            <div className="bookingButton container">
-              <BookingButton unitData={this.state.unitData} toggleCalendar={this.toggleCalSelectOpen}/>
-            </div>
-
-            <div className="report container">
-              <div>report emoji</div>
-              <a href="" onClick={this.handleClick}>Report this listing</a>
-            </div>
-
-            <div className="calendar container">
+            <div className={stylesCal.container}>
               <DisplayCalendar
                 isOpen={this.state.calSelectOpen} 
                 unitData={this.state.unitData}
@@ -269,6 +253,24 @@ class App extends React.Component {
                 toggleValidRange={this.toggleValidRange}
               />
             </div>
+
+            <div className="guests container">
+              <div className={stylesGuest.heading}>Guests</div>
+              <Guests handleNodeClick={this.handleNodeClick} unitData={this.state.unitData} addToPrice={this.addToPrice} removeFromPrice={this.removeFromPrice}/>
+            </div>
+
+            <div className="total container">
+              {finalPrice}
+            </div>
+
+            <div className="bookingButton container">
+              <BookingButton unitData={this.state.unitData} toggleCalendar={this.toggleCalSelectOpen}/>
+            </div>
+
+            {/* <div className="report container">
+              <div>report emoji</div>
+              <a href="" onClick={this.handleClick}>Report this listing</a>
+            </div> */}
 
           </div>
       </div>
