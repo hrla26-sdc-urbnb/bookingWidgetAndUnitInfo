@@ -142,10 +142,8 @@ class Calendar extends React.Component {
             <td className={styles.dateFormat}>Sa</td>
           </tr>
 
-          <div className={styles.body}>
 
-
-            <tr className={styles.dates}>
+            <tr className={[styles.dates, styles.body].join(' ')}>
               {this.state.calMatrix[0].map((date, index) => {
                 return (
                   <CalendarData 
@@ -171,7 +169,7 @@ class Calendar extends React.Component {
               })}
             </tr>
 
-            <tr className={styles.dates}>
+            <tr className={[styles.dates, styles.body].join(' ')}>
             {this.state.calMatrix[1].map((date, index) => {
                 return (
                   <CalendarData 
@@ -197,7 +195,7 @@ class Calendar extends React.Component {
               })}
             </tr>
 
-            <tr className={styles.dates}>
+            <tr className={[styles.dates, styles.body].join(' ')}>
             {this.state.calMatrix[2].map((date, index) => {
                 return (
                   <CalendarData 
@@ -223,7 +221,7 @@ class Calendar extends React.Component {
               })}
             </tr>
 
-            <tr className={styles.dates}>
+            <tr className={[styles.dates, styles.body].join(' ')}>
             {this.state.calMatrix[3].map((date, index) => {
                 return (
                   <CalendarData 
@@ -249,7 +247,7 @@ class Calendar extends React.Component {
               })}
             </tr>
 
-            <tr className={styles.dates}>
+            <tr className={[styles.dates, styles.body].join(' ')}>
             {this.state.calMatrix[4].map((date, index) => {
                 return (
                   <CalendarData 
@@ -275,7 +273,7 @@ class Calendar extends React.Component {
               })}
             </tr>
 
-            <tr className={styles.dates}>
+            <tr className={[styles.dates, styles.body].join(' ')}>
             {this.state.calMatrix[5].map((date, index) => {
                 return (
                   <CalendarData 
@@ -300,8 +298,6 @@ class Calendar extends React.Component {
                   />);
               })}
             </tr>
-
-          </div>
 
           </tbody>
         </table>

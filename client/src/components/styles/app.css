@@ -24,10 +24,11 @@
 
 .bookingWidget {
   width: 300px;
+  height: 350px;
   min-height: 350px;
   min-width: 300px;
   max-width: 300px;
-  max-height: 350px;
+  max-height: 450px;
   display: flex;
   flex-direction: column;
   border: solid 1px lightgray;

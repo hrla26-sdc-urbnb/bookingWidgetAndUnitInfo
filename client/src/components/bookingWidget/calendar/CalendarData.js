@@ -49,11 +49,11 @@ const CalendarData = ({
   }
 
   if (date === thisDate && thisMonth === displayMonth && thisYear === displayYear) {
-    today = 'today';
+    today = styles.today;
   }
   if (!inRange) {
     format = styles.dateCellCrossed;
-    handleClick = '';
+    handleClick = () => {};
   }
 
   if (!date) {
@@ -63,16 +63,16 @@ const CalendarData = ({
 
 
   if (withinSelection) {
-    markX = 'inSelectedRange';
+    markX = styles.markX;
   }
   if (startIsEqual || stopIsEqual) {
-    markY = 'endOfSelectedRange';
+    markY = styles.markY;
   }
 
 
   return(
     <td className={hasDate} onClick={handleClick}>
-      <div className={format}>
+      <div className={[format, today, markX, markY].join(' ')}>
           {date}
       </div>
     </td>

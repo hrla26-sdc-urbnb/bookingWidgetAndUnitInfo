@@ -114,3 +114,23 @@
   height: 100%;
   width: 100%;
 }
+
+.validDate:hover {
+  background-color: lightgrey;
+}
+
+.markX {
+  background-color: #00e8c4;
+}
+
+.markY {
+  background-color: #00858c;
+}
+
+.markX:hover {
+  background-color: #00e8c5cc;
+}
+
+.markY:hover {
+  background-color: #00858cbe;
+}

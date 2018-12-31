@@ -24,6 +24,7 @@ class Guests extends React.Component {
     // this.addGuestsIncreasePrice = this.addGuestsIncreasePrice.bind(this);
     // this.removeGuestsDecreasePrice = this.removeGuestsDecreasePrice(this);
     this.toggleGuestMenu = this.toggleGuestMenu.bind(this);
+    this.handleOutsideClick = this.handleOutsideClick.bind(this);
   }
 
   handleClickPlusAdults() {
@@ -118,8 +119,18 @@ class Guests extends React.Component {
     this.setState((state) => {
       return { isOpen: !state.isOpen };
     });
+    document.addEventListener('click', this.handleOutsideClick, false);
   }
 
+  handleOutsideClick(e) {
+    if (this.node.contains(e.target)) {
+      return;
+    }
+    this.setState({
+      isOpen: false,
+    });
+    document.removeEventListener('click', this.handleOutsideClick, false);
+  }
 
   render() {
     let select = <button 
@@ -157,8 +168,10 @@ class Guests extends React.Component {
       <div>
         <div>
           {select}
-        </div>
+        </div >
+        <div ref={node => { this.node = node; }}>
           {menu}
+        </div>
       </div>
     );
   }

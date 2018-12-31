@@ -11,7 +11,7 @@ const BookingButton = ({ unitData, toggleCalendar }) => {
   let { isBooked } = unitData;
   let button = <button  className={styles.button} onClick={handleClick}>Book</button>
   if (isBooked) {
-    button = <button className={styles.button} onClick={handleClick}>Request to Book</button>
+    button = <button className={styles.button}>Request to Book</button>
   }
   return(
     <div>

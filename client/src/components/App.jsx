@@ -48,6 +48,7 @@ class App extends React.Component {
     this.toggleCheckOut = this.toggleCheckOut.bind(this);
     this.checkIfWithinRange = this.checkIfWithinRange.bind(this);
     this.toggleValidRange = this.toggleValidRange.bind(this);
+    this.handleOutsideClick = this.handleOutsideClick.bind(this);
   }
 
 
@@ -106,6 +107,17 @@ class App extends React.Component {
         calSelectOpen: true,
       };
     });
+    document.addEventListener('click', this.handleOutsideClick, false);
+  }
+
+  handleOutsideClick(e) {
+    if (this.node.contains(e.target)) {
+      return;
+    }
+    this.setState({
+      calSelectOpen: false,
+    });
+    document.removeEventListener('click', this.handleOutsideClick, false);
   }
 
   updateCheckIn(dateStr) {
@@ -175,7 +187,6 @@ class App extends React.Component {
   }
 
 
-
   render() {
     let finalPrice = <Total 
       unitData={this.state.unitData} 
@@ -188,7 +199,7 @@ class App extends React.Component {
       finalPrice = null;
     }
     return (
-      <div id="node" className={stylesApp.modules}>
+      <div className={stylesApp.modules}>
           <div className={stylesApp.unitInfo}>
 
             <div className="ownerUnit container">
@@ -238,7 +249,7 @@ class App extends React.Component {
               />
             </div>
 
-            <div className={stylesCal.container}>
+            <div ref={node => { this.node = node; }} className={stylesCal.container}>
               <DisplayCalendar
                 isOpen={this.state.calSelectOpen} 
                 unitData={this.state.unitData}
