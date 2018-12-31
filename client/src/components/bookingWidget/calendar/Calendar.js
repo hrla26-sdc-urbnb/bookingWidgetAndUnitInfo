@@ -302,9 +302,18 @@ class Calendar extends React.Component {
           </tbody>
         </table>
 
-        <div>Updated...</div>
-        {clear}
-        <div>Question Mark</div>
+        <div className={styles.footer}>
+          <div className={styles.footerUpdated}>Updated 3 days ago</div>
+
+          <div className={styles.clearContainer}>
+            <div>
+              {clear}
+            </div>
+            <div className={styles.question}>
+              ?
+            </div>
+          </div>
+        </div>
       </div>
     );
   }

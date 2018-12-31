@@ -2,6 +2,9 @@ import React from 'react';
 
 const Total = ({ numberOfDaysSelected, unitData, price }) => {
   const { cleaningFee, serviceFee } = unitData;
+  if (numberOfDaysSelected === 0) {
+    numberOfDaysSelected = 1;
+  }
   return(
     <div>
 

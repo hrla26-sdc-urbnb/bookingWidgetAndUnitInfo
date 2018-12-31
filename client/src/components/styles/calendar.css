@@ -134,3 +134,72 @@
 .markY:hover {
   background-color: #00858cbe;
 }
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.footerUpdated {
+  font-family: 'Raleway', sans-serif;
+  font-size: 12px;
+  font-weight: bold;
+  color: #383838;
+  padding: 3px;
+}
+
+.clearDates {
+  display: flex;
+  align-items: flex-end;
+  height: 60px;
+  width: 100px;
+}
+
+.clearDates a {
+  font-family: 'Raleway', sans-serif;
+  font-size: 16px;
+  color: #00858c;
+  font-weight: bold;
+}
+
+.clearDates a:link {
+  text-decoration: none;
+  color: #00858c;
+}
+
+.clearDates a:visited {
+  text-decoration: none;
+  color: #00858c;
+}
+
+.clearDates a:hover {
+  text-decoration: underline;
+  color: #00858c;
+}
+
+.clearContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+  height: 100px;
+  width: 100px;
+}
+
+.question {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  font-family: 'Raleway', sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+  color: white;
+  padding-right: 5px;
+  padding-bottom: 5px;
+  height: 30px;
+  width: 30px;
+  margin-bottom: -1px;
+  margin-right: -15px;
+  background: linear-gradient(-45deg, #00858c 0%, #00858c 50%, transparent 27%);
+  cursor: pointer;
+}
