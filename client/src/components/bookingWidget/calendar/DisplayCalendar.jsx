@@ -1,5 +1,5 @@
 import React from 'react';
-import Calendar from './Calendar';
+import Calendar from './Calendar.jsx';
 import styles from '../../styles/calendar.css';
 
 const DisplayCalendar = ({ 

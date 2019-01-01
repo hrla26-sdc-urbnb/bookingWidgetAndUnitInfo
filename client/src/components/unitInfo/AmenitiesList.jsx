@@ -1,5 +1,5 @@
 import React from 'react';
-import AmenityItem from './AmenityItem';
+import AmenityItem from './AmenityItem.jsx';
 import styles from '../styles/amenities.css';
 
 

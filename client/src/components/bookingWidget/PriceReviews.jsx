@@ -1,5 +1,5 @@
 import React from 'react';
-import Star from './Star';
+import Star from './Star.jsx';
 import styles from '../styles/priceReviews.css';
 
 const PriceReviews = ({ unitData, price }) => {

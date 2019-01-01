@@ -2,16 +2,16 @@ import React from 'react';
 import axios from 'axios';
 import dateFn from 'date-fns';
 
-import OwnerUnit from './unitInfo/OwnerUnit';
-import SpecList from './unitInfo/SpecList';
-import Descriptions from './unitInfo/Descriptions';
-import AmenitiesList from './unitInfo/AmenitiesList';
-import PriceReviews from './bookingWidget/PriceReviews';
-import Dates from './bookingWidget/Dates';
-import Guests from './bookingWidget/guestSelect/Guests';
-import BookingButton from './bookingWidget/BookingButton';
-import DisplayCalendar from './bookingWidget/calendar/DisplayCalendar';
-import Total from './bookingWidget/calendar/Total';
+import OwnerUnit from './unitInfo/OwnerUnit.jsx';
+import SpecList from './unitInfo/SpecList.jsx';
+import Descriptions from './unitInfo/Descriptions.jsx';
+import AmenitiesList from './unitInfo/AmenitiesList.jsx';
+import PriceReviews from './bookingWidget/PriceReviews.jsx';
+import Dates from './bookingWidget/Dates.jsx';
+import Guests from './bookingWidget/guestSelect/Guests.jsx';
+import BookingButton from './bookingWidget/BookingButton.jsx';
+import DisplayCalendar from './bookingWidget/calendar/DisplayCalendar.jsx';
+import Total from './bookingWidget/calendar/Total.jsx';
 
 import stylesApp from './styles/app.css';
 import stylesDes from './styles/descriptions.css';

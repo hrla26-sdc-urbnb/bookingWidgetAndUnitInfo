@@ -1,6 +1,6 @@
 import React from 'react';
 
-import SpecItem from './SpecItem';
+import SpecItem from './SpecItem.jsx';
 
 const SpecList = ({ unitData, ownerData }) => {
   let { isSuperHost, name } = ownerData;

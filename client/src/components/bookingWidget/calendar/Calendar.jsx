@@ -1,6 +1,6 @@
 import React from 'react';
-import CalendarData from './CalendarData';
-import ClearDates from './ClearDates';
+import CalendarData from './CalendarData.jsx';
+import ClearDates from './ClearDates.jsx';
 import styles from '../../styles/calendar.css';
 
 const date = require('date-fns');

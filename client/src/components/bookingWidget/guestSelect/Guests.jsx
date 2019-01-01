@@ -1,5 +1,5 @@
 import React from 'react';
-import GuestMenu from './GuestMenu';
+import GuestMenu from './GuestMenu.jsx';
 import styles from '../../styles/guests.css';
 
 class Guests extends React.Component {

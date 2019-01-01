@@ -1,10 +1,10 @@
 import React from 'react';
-import AdultPlus from './AdultPlus';
-import AdultMinus from './AdultMinus';
-import ChildrenPlus from './ChildrenPlus';
-import ChildrenMinus from './ChildrenMinus';
-import InfantPlus from './InfantPlus';
-import InfantMinus from './InfantMinus';
+import AdultPlus from './AdultPlus.jsx';
+import AdultMinus from './AdultMinus.jsx';
+import ChildrenPlus from './ChildrenPlus.jsx';
+import ChildrenMinus from './ChildrenMinus.jsx';
+import InfantPlus from './InfantPlus.jsx';
+import InfantMinus from './InfantMinus.jsx';
 import styles from '../../styles/guests.css';
 
 const GuestMenu = ({

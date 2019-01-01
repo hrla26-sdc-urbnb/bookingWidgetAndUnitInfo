@@ -1,9 +1,9 @@
 import React from 'react';
-import ReadMore from './ReadMore';
-import AboutUnit from './AboutUnit';
-import GuestAccess from './GuestAccess';
-import GuestInteraction from './GuestInteraction';
-import OtherNote from './OtherNotes';
+import ReadMore from './ReadMore.jsx';
+import AboutUnit from './AboutUnit.jsx';
+import GuestAccess from './GuestAccess.jsx';
+import GuestInteraction from './GuestInteraction.jsx';
+import OtherNote from './OtherNotes.jsx';
 
 
 class Descriptions extends React.Component{
