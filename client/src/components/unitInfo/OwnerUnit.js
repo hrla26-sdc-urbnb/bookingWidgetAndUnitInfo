@@ -12,8 +12,8 @@ const OwnerUnit = ({ unitData, ownerData }) => {
         <div className={styles.city}>{city}</div>
       </div>
 
-      <div className="owner container">
-        <div>
+      <div className={styles.ownerContainer}>
+        <div className={styles.picContainer}>
           <img className={styles.profilePic} src={photo} />
         </div>
           {/* <img src="s3://coffeegodddfec/superHostBadge.png"/> */}
