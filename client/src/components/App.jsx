@@ -63,19 +63,19 @@ class App extends React.Component {
 
   fetchUnit() {
     axios.get(`/api/units/${generateRandomNumberBetween(11111, 11210)}`)
-    .then(({ data }) => {
-      console.log('axios -->', data);
-      const { unitData, ownerData } = data;
-      this.setState({
-        unitData: unitData[0],
-        ownerData: ownerData[0],
-        price: unitData[0].pricePerNight,
-        original: unitData[0].pricePerNight,
+      .then(({ data }) => {
+        console.log('axios -->', data);
+        const { unitData, ownerData } = data;
+        this.setState({
+          unitData: unitData[0],
+          ownerData: ownerData[0],
+          price: unitData[0].pricePerNight,
+          original: unitData[0].pricePerNight,
+        });
+      })
+      .catch((err) => {
+        console.log('error fetching unit -->', err);
       });
-    })
-    .catch((err) => {
-      console.log('error fetching unit -->', err);
-    });
   }
 
   addToPrice(going) {
