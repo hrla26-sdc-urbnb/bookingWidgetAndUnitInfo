@@ -1,0 +1,59 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+  padding-top: 10px;
+}
+
+.subTotalContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid lightgrey;
+}
+
+.text {
+  display: flex;
+  flex-direction: row;
+  font-family: 'Raleway', sans-serif;
+  font-size: 15px;
+  color: #383838;
+  width: auto;
+}
+
+.totalContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.totalText {
+  font-family: 'Raleway', sans-serif;
+  font-size: 15px;
+  font-weight: bold;
+  color: #383838;
+}
+
+.question {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Raleway', sans-serif;
+  font-weight: bold;
+  font-size: 13px;
+  color: #383838;
+  margin-left: 5px;
+  height: 18px;
+  width: 18px;
+  border-radius: 50%;
+  border: 1px solid #383838;
+  outline: none;
+}
+
+.question:hover {
+  color: #00858c;
+  border-color: #00858c;
+}

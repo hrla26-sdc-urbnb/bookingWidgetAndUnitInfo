@@ -22,9 +22,14 @@
   padding: 10px;
 }
 
+.bookingContainer {
+  height: auto;
+  width: auto;
+}
+
 .bookingWidget {
   width: 300px;
-  height: 350px;
+  height: auto;
   min-width: 300px;
   max-width: 300px;
   display: flex;

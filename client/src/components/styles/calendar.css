@@ -1,6 +1,5 @@
 .container {
   display: flex;
-  z-index: 1;
 }
 
 .monthContainer {
@@ -42,6 +41,8 @@
   border: 1px solid lightgray;
   border-radius: 3px;
   padding: 15px;
+  z-index: 1;
+  position: absolute;
 }
 
 .weekdays {

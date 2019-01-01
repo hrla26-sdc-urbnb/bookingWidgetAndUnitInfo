@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from '../../styles/total.css';
 
 const Total = ({ numberOfDaysSelected, unitData, price }) => {
   const { cleaningFee, serviceFee } = unitData;
@@ -6,41 +7,41 @@ const Total = ({ numberOfDaysSelected, unitData, price }) => {
     numberOfDaysSelected = 1;
   }
   return(
-    <div>
+    <div className={styles.container}>
 
-      <div>
-        <div>
+      <div className={styles.subTotalContainer}>
+        <div className={styles.text}>
           {`$${price} x ${numberOfDaysSelected}`}
+          <button className={styles.question}>?</button>
         </div>
-        <button>Q</button>
-        <div>
+        <div className={styles.text}>
           {`$${price * numberOfDaysSelected}`}
         </div>
       </div>
 
-      <div>
-        <div>
+      <div className={styles.subTotalContainer}>
+        <div className={styles.text}>
           Cleaning fee
+          <button className={styles.question}>?</button>
         </div>
-        <button>Q</button>
-        <div>
+        <div className={styles.text}>
           {`$${cleaningFee}`}
         </div>
       </div>
 
-      <div>
-        <div>
+      <div className={styles.subTotalContainer}>
+        <div className={styles.text}>
           Service fee
+          <button className={styles.question}>?</button>
         </div>
-        <button>Q</button>
-        <div>
+        <div className={styles.text}>
           {`$${serviceFee}`}
         </div>
       </div>
 
-      <div>
-        <div>Total</div>
-        <div>{`$${(price * numberOfDaysSelected) + cleaningFee + serviceFee}`}</div>
+      <div className={styles.totalContainer}>
+        <div className={styles.totalText}>Total</div>
+        <div className={styles.totalText}>{`$${(price * numberOfDaysSelected) + cleaningFee + serviceFee}`}</div>
       </div>
 
     </div>
