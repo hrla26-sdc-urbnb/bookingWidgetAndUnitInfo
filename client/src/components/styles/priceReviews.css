@@ -1,0 +1,39 @@
+.container {
+  margin-bottom: 8px;
+}
+
+.price {
+  font-family: 'Raleway', sans-serif;
+  font-size: 28px;
+  color: #383838;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.perNight {
+  font-family: 'Raleway', sans-serif;
+  font-size: 12px;
+  color: #383838;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.stars {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 10px;
+}
+
+.star {
+  font-family: 'Raleway', sans-serif;
+  font-size: 10px;
+  color: #00858c;
+}
+
+.numReviews {
+  font-family: 'Raleway', sans-serif;
+  font-size: 12px;
+  color: #383838;
+  font-weight: bold;
+  margin-left: 5px;
+}

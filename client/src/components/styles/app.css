@@ -1,0 +1,41 @@
+.modules {
+  width: auto;
+  height: auto;
+  border-top: solid 1px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  padding-top: 30px;
+  padding-left: 90px;
+  padding-right: 90px;
+}
+
+.unitInfo {
+  width: 550px;
+  min-width: 550px;
+  max-width: 550px;
+  border-top: 2px;
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  margin-right: 50px;
+  padding: 10px;
+}
+
+.bookingContainer {
+  height: auto;
+  width: auto;
+}
+
+.bookingWidget {
+  width: 300px;
+  height: auto;
+  min-width: 300px;
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+  border: solid 1px lightgray;
+  margin: 10px;
+  padding: 30px;
+  position: fixed;
+}
