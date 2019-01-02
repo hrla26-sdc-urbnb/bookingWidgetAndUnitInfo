@@ -10,7 +10,7 @@ const SpectItem = ({
   superH,
   name,
 }) => {
-  let icon = <div className="emoji host">superhost emoji img</div>
+  let icon = <img className={styles.houseIcon} src="https://s3.amazonaws.com/coffeegodddfec1/Screen+Shot+2019-01-02+at+9.45.45+AM.png" alt="" />
   let host = <div className="superHost">{`${name} is a Superhost`}</div>
   let hostDescription = <div>Superhosts are experienced, highly rated hosts who are committed to providing great stays for guests.</div>
   if (!superH) {
@@ -20,8 +20,10 @@ const SpectItem = ({
   }
   return (
     <div className={styles.items}>
-      {/* <div className="emoji part">part emoji img</div> */}
-      <div className={styles.title}>{part}</div>
+      <div className={styles.partContainer}>
+        <img className={styles.houseIcon} src="https://s3.amazonaws.com/coffeegodddfec1/Screen+Shot+2019-01-02+at+8.28.31+AM.png" alt=""/>
+        <div className={styles.title}>{part}</div>
+      </div>
       <div className={styles.text}>
         <ul>
           <li>{guests + ' guests'}</li>
@@ -30,9 +32,11 @@ const SpectItem = ({
           <li>{baths + ' baths'}</li>
         </ul>
       </div>
-      <div className={styles.title}>
-      {/* {icon} */}
-      {host}
+      <div className={styles.partContainer}>
+        {icon}
+        <div className={styles.title}>
+        {host}
+        </div>
       </div>
       <div className={styles.description}>
       {hostDescription}

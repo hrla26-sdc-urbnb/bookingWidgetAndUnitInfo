@@ -22,7 +22,6 @@ test('GET to api/units/unitId repsonse should have 3 properties', (done) => {
   request(app).get('/api/units/11111').then((response) => {
     expect(JSON.parse(response.text).ownerData).toBeDefined();
     expect(JSON.parse(response.text).unitData).toBeDefined();
-    expect(JSON.parse(response.text).amenities).toBeDefined();
     done();
   });
 });

@@ -49,6 +49,7 @@ class App extends React.Component {
     this.checkIfWithinRange = this.checkIfWithinRange.bind(this);
     this.toggleValidRange = this.toggleValidRange.bind(this);
     this.handleOutsideClick = this.handleOutsideClick.bind(this);
+    this.handleContactHostClick = this.handleContactHostClick.bind(this);
   }
 
 
@@ -186,6 +187,10 @@ class App extends React.Component {
     });
   }
 
+  handleContactHostClick(e) {
+    e.preventDefault();
+  }
+
 
   render() {
     let finalPrice = <Total 
@@ -217,7 +222,7 @@ class App extends React.Component {
               <Descriptions unitData={this.state.unitData}/>
 
               <div className={stylesDes.contactHost}>
-                <a href="">Contact host</a>
+                <a href="" onClick={this.handleContactHostClick}>Contact host</a>
               </div>
 
             </div>

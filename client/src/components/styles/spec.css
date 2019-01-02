@@ -12,14 +12,15 @@
   font-size: 18px;
   color: #383838;
   font-weight: bold;
-  margin-bottom: 5px;
-  margin-top: 10px;
+  margin-bottom: 3px;
+  margin-top: 15px;
 }
 
 .text ul {
   list-style-type: none;
   display: inline;
   padding: 0;
+  margin-left: 25px;
 }
 
 .text li {
@@ -35,5 +36,20 @@
   font-size: 18px;
   color: #383838;
   margin-bottom: 5px;
-  margin-top: 10px;
+  margin-top: 5px;
+  margin-left: 25px;
+}
+
+.partContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-end;
+}
+
+.houseIcon {
+  height: 20px;
+  width: 20px;
+  margin-left: -5px;
+  margin-right: 10px;
 }
