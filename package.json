@@ -2,8 +2,7 @@
   "name": "bookingWidgetAndUnitInfo",
   "jest": {
     "testEnvironment": "node",
-    "collectCoverage": true,
-    "setupTestFrameworkScriptFile": "./node_modules/jest-enzyme/lib/index.js"
+    "collectCoverage": true
   },
   "version": "1.0.0",
   "description": "cloning AirBnB booking widget and unit description",
