@@ -2,7 +2,8 @@
   "name": "bookingWidgetAndUnitInfo",
   "jest": {
     "testEnvironment": "node",
-    "collectCoverage": true
+    "collectCoverage": true,
+    "setupTestFrameworkScriptFile": "./node_modules/jest-enzyme/lib/index.js"
   },
   "version": "1.0.0",
   "description": "cloning AirBnB booking widget and unit description",
@@ -26,6 +27,8 @@
   "homepage": "https://github.com/HouseTargaryan/bookingWidgetAndUnitInfo#readme",
   "devDependencies": {
     "css-loader": "^2.1.0",
+    "enzyme": "^3.8.0",
+    "enzyme-adapter-react-16": "^1.7.1",
     "eslint": "^5.10.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-import": "^2.14.0",
