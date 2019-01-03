@@ -4,7 +4,7 @@ import styles from '../../styles/guests.css';
 const InfantPlus = ({ going, allowed, plus }) => {
   let works;
   let press = <button className={styles.yesClick} onClick={() => { plus() }}>+</button>
-  let noPress = <div className={styles.noClick}>+</div>
+  let noPress = <button className={styles.noClick}>+</button>
   if (going < allowed) {
     works = press;
   } else {

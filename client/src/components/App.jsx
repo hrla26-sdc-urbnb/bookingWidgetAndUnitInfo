@@ -282,7 +282,7 @@ class App extends React.Component {
               </div>
 
               <div className="bookingButton container">
-                <BookingButton unitData={this.state.unitData} toggleCalendar={this.toggleCalSelectOpen}/>
+                <BookingButton unitData={this.state.unitData} toggleCalendar={this.toggleCalSelectOpen} toggleCheckIn={this.toggleCheckIn}/>
               </div>
 
               {/* <div className="report container">

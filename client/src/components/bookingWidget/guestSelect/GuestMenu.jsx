@@ -23,14 +23,14 @@ const GuestMenu = ({
   toggle,
 }) => {
 
-  return(
+  return (
     <div className={styles.menu}>
       <div className={styles.guestSelect}>
         <div className={styles.title}>Adults</div>
         <div className={styles.numberGroup}>
-          <AdultPlus plus={handleClickPlusAdults} going={adults} guests={guests} allowed={unitData.guestsAllowed}/>
+          <AdultMinus minus={handleClickMinusAdults} going={adults} />
           <div className={styles.number}>{adults}</div>
-          <AdultMinus minus={handleClickMinusAdults} going={adults}/>
+          <AdultPlus plus={handleClickPlusAdults} going={adults} guests={guests} allowed={unitData.guestsAllowed} />
         </div>
       </div>
 
@@ -40,9 +40,9 @@ const GuestMenu = ({
           <div className={styles.text}>Ages 2-12</div>
         </div>
         <div className={styles.numberGroup}>
-          <ChildrenPlus plus={handleClickPlusChildren} going={children} guests={guests} allowed={unitData.guestsAllowed}/>
+          <ChildrenMinus minus={handleClickMinusChildren} going={children} />
           <div className={styles.number}>{children}</div>
-          <ChildrenMinus minus={handleClickMinusChildren} going={children}/>
+          <ChildrenPlus plus={handleClickPlusChildren} going={children} guests={guests} allowed={unitData.guestsAllowed} />
         </div>
       </div>
 
@@ -52,9 +52,9 @@ const GuestMenu = ({
           <div className={styles.text}>Under 2</div>
         </div>
         <div className={styles.numberGroup}>
-          <InfantPlus plus={handleClickPlusInfants} going={infants} allowed={infantMax}/>
+          <InfantMinus minus={handleClickMinusInfants} going={infants} />
           <div className={styles.number}>{infants}</div>
-          <InfantMinus minus={handleClickMinusInfants} going={infants}/>
+          <InfantPlus plus={handleClickPlusInfants} going={infants} allowed={infantMax} />
         </div>
       </div>
 
@@ -63,7 +63,7 @@ const GuestMenu = ({
       </div>
 
       <div className={styles.closeContainer}>
-        <button className={styles.close} onClick={toggle}>Close</button>
+        <button type="button" className={styles.close} onClick={toggle}>Close</button>
       </div>
 
     </div>
