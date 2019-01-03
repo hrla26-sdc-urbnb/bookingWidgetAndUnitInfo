@@ -10,8 +10,8 @@ install:
   - npm install
 
 script: 
-  - npm run seed
+  - npm run seed &
   - sleep 10
   - npm start
-  - npm test
+  - npm test &
   - sleep 10 
