@@ -2,7 +2,9 @@ language: node_js
 
 node_js: 
   - 6.13.1
-before_install:
-  - npm run seed
+
 services:
   - mongodb
+
+install:
+  - npm run seed
