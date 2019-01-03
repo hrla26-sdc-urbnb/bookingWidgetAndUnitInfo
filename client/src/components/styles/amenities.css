@@ -19,6 +19,8 @@
 }
 
 .item {
+  display: flex;
+  flex-direction: row;
   width: 50%;
   margin-top: 10px;
   margin-bottom: 10px;
@@ -48,4 +50,10 @@
 .showAll a:visited {
   text-decoration: none;
   color: #00858c;
+}
+
+.amenIcon {
+  height: 20px;
+  width: 20px;
+  margin-right: 5px;
 }

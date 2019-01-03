@@ -168,7 +168,7 @@ class Guests extends React.Component {
       <div>
         <div>
           {select}
-        </div >
+        </div>
         <div ref={node => { this.node = node; }}>
           {menu}
         </div>

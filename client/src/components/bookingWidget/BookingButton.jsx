@@ -1,11 +1,12 @@
 import React from 'react';
 import styles from '../styles/book.css';
 
-const BookingButton = ({ unitData, toggleCalendar }) => {
+const BookingButton = ({ unitData, toggleCalendar, toggleCheckIn }) => {
   const handleClick = (e) => {
     e.preventDefault();
     console.log('click!');
     toggleCalendar();
+    toggleCheckIn();
   }
 
   let { isBooked } = unitData;
