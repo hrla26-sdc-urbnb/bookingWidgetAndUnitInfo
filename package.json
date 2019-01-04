@@ -8,7 +8,7 @@
   "description": "cloning AirBnB booking widget and unit description",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest --detectOpenHandles",
     "start": "nodemon ./server/index.js",
     "seed": "node ./db/seed/seedData.js",
     "build": "webpack --display-error-details --watch"
