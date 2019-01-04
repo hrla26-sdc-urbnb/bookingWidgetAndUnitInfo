@@ -63,7 +63,7 @@ class App extends React.Component {
   }
 
   fetchUnit() {
-    axios.get(`/api/units/${generateRandomNumberBetween(11111, 11210)}`)
+    axios.get(`http://localhost:2100/api/units/${generateRandomNumberBetween(11111, 11210)}`)
       .then(({ data }) => {
         console.log('axios -->', data);
         const { unitData, ownerData } = data;
@@ -204,95 +204,97 @@ class App extends React.Component {
       finalPrice = null;
     }
     return (
-      <div className={stylesApp.modules}>
-          <div className={stylesApp.unitInfo}>
+      <div>
+        <div className={stylesApp.modules}>
+            <div className={stylesApp.unitInfo}>
 
-            <div className="ownerUnit container">
-              <OwnerUnit unitData={this.state.unitData} ownerData={this.state.ownerData}/>
+              <div className="ownerUnit container">
+                <OwnerUnit unitData={this.state.unitData} ownerData={this.state.ownerData}/>
+              </div>
+
+              <div className="specs container">
+                <SpecList unitData={this.state.unitData} ownerData={this.state.ownerData}/>
+              </div>
+
+              <div className="descript container">
+                <div className={stylesDes.text}>
+                  <div>{this.state.unitData.summaryDescription}</div>
+                </div>
+                <Descriptions unitData={this.state.unitData}/>
+
+                <div className={stylesDes.contactHost}>
+                  <a href="" onClick={this.handleContactHostClick}>Contact host</a>
+                </div>
+
+              </div>
+
+              <div className="amen container">
+                <div className={stylesAmen.title}>Amenities</div>
+                <div className="amenItems container">
+                  <AmenitiesList unitData={this.state.unitData}/>
+                </div>
+              </div>
+
             </div>
 
-            <div className="specs container">
-              <SpecList unitData={this.state.unitData} ownerData={this.state.ownerData}/>
+            <div className={stylesApp.bookingContainer}>
+
+
+              <div className={stylesApp.bookingWidget}>
+                <div>
+                  <PriceReviews unitData={this.state.unitData} price={this.state.price}/>
+                </div>
+
+                <div className="dates container">
+                  <Dates 
+                    toggleCalendar={this.toggleCalSelectOpen}
+                    checkInDate={this.state.checkInDate}
+                    checkOutDate={this.state.checkOutDate}
+                    updateCheckIn={this.updateCheckIn}
+                    updateCheckOut={this.updateCheckOut}
+                    toggleCheckInSelected={this.toggleCheckIn}
+                    toggleCheckOutSelected={this.toggleCheckOut}
+                  />
+                </div>
+
+                <div ref={node => { this.node = node; }} className={stylesCal.container}>
+                  <DisplayCalendar
+                    isOpen={this.state.calSelectOpen} 
+                    unitData={this.state.unitData}
+                    updateCheckIn={this.updateCheckIn}
+                    updateCheckOut={this.updateCheckOut}
+                    checkInDate={this.state.checkInDate}
+                    checkOutDate={this.state.checkOutDate}
+                    checkInSelected={this.state.checkInSelected}
+                    checkOutSelected={this.state.checkOutSelected}
+                    toggleCheckIn={this.toggleCheckIn}
+                    toggleCheckOut={this.toggleCheckOut}
+                    toggleValidRange={this.toggleValidRange}
+                  />
+                </div>
+
+                <div className="guests container">
+                  <div className={stylesGuest.heading}>Guests</div>
+                  <Guests handleNodeClick={this.handleNodeClick} unitData={this.state.unitData} addToPrice={this.addToPrice} removeFromPrice={this.removeFromPrice}/>
+                </div>
+
+                <div>
+                  {finalPrice}
+                </div>
+
+                <div className="bookingButton container">
+                  <BookingButton unitData={this.state.unitData} toggleCalendar={this.toggleCalSelectOpen} toggleCheckIn={this.toggleCheckIn}/>
+                </div>
+
+                {/* <div className="report container">
+                  <div>report emoji</div>
+                  <a href="" onClick={this.handleClick}>Report this listing</a>
+                </div> */}
+
+              </div>
             </div>
 
-            <div className="descript container">
-              <div className={stylesDes.text}>
-                <div>{this.state.unitData.summaryDescription}</div>
-              </div>
-              <Descriptions unitData={this.state.unitData}/>
-
-              <div className={stylesDes.contactHost}>
-                <a href="" onClick={this.handleContactHostClick}>Contact host</a>
-              </div>
-
-            </div>
-
-            <div className="amen container">
-              <div className={stylesAmen.title}>Amenities</div>
-              <div className="amenItems container">
-                <AmenitiesList unitData={this.state.unitData}/>
-              </div>
-            </div>
-
-          </div>
-
-          <div className={stylesApp.bookingContainer}>
-
-
-            <div className={stylesApp.bookingWidget}>
-              <div>
-                <PriceReviews unitData={this.state.unitData} price={this.state.price}/>
-              </div>
-
-              <div className="dates container">
-                <Dates 
-                  toggleCalendar={this.toggleCalSelectOpen}
-                  checkInDate={this.state.checkInDate}
-                  checkOutDate={this.state.checkOutDate}
-                  updateCheckIn={this.updateCheckIn}
-                  updateCheckOut={this.updateCheckOut}
-                  toggleCheckInSelected={this.toggleCheckIn}
-                  toggleCheckOutSelected={this.toggleCheckOut}
-                />
-              </div>
-
-              <div ref={node => { this.node = node; }} className={stylesCal.container}>
-                <DisplayCalendar
-                  isOpen={this.state.calSelectOpen} 
-                  unitData={this.state.unitData}
-                  updateCheckIn={this.updateCheckIn}
-                  updateCheckOut={this.updateCheckOut}
-                  checkInDate={this.state.checkInDate}
-                  checkOutDate={this.state.checkOutDate}
-                  checkInSelected={this.state.checkInSelected}
-                  checkOutSelected={this.state.checkOutSelected}
-                  toggleCheckIn={this.toggleCheckIn}
-                  toggleCheckOut={this.toggleCheckOut}
-                  toggleValidRange={this.toggleValidRange}
-                />
-              </div>
-
-              <div className="guests container">
-                <div className={stylesGuest.heading}>Guests</div>
-                <Guests handleNodeClick={this.handleNodeClick} unitData={this.state.unitData} addToPrice={this.addToPrice} removeFromPrice={this.removeFromPrice}/>
-              </div>
-
-              <div>
-                {finalPrice}
-              </div>
-
-              <div className="bookingButton container">
-                <BookingButton unitData={this.state.unitData} toggleCalendar={this.toggleCalSelectOpen} toggleCheckIn={this.toggleCheckIn}/>
-              </div>
-
-              {/* <div className="report container">
-                <div>report emoji</div>
-                <a href="" onClick={this.handleClick}>Report this listing</a>
-              </div> */}
-
-            </div>
-          </div>
-
+        </div>
       </div>
     );
   }
