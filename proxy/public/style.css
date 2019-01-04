@@ -1,1 +1,10 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,600');
+#_container_ {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+}
+
+#review {
+  padding: 0px;
+  margin-left: -50px;
+}
