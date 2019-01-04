@@ -15,3 +15,7 @@ script:
   - npm start &
   - sleep 10 
   - npm test 
+
+after_success:
+  - exit
+  
