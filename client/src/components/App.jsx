@@ -63,7 +63,7 @@ class App extends React.Component {
   }
 
   fetchUnit() {
-    axios.get(`http://localhost:2100/api/units/${generateRandomNumberBetween(11111, 11210)}`)
+    axios.get(`/api/units/${generateRandomNumberBetween(11111, 11210)}`)
       .then(({ data }) => {
         console.log('axios -->', data);
         const { unitData, ownerData } = data;
