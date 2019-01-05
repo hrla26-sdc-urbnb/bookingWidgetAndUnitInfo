@@ -22,8 +22,8 @@ import BookingWidgetIso from './BookingWidgetIso.jsx';
 
 
 class App extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       unitData: [],
       ownerData: [],
@@ -66,7 +66,7 @@ class App extends React.Component {
   }
 
   fetchUnit() {
-    axios.get(`http://localhost:2100/api/units/${generateRandomNumberBetween(11111, 11210)}`)
+    axios.get(`http://localhost:2100/api/units/${this.props.id}`)
       .then(({ data }) => {
         console.log('axios -->', data);
         const { unitData, ownerData } = data;
@@ -221,7 +221,7 @@ class App extends React.Component {
 
     return (
       <div className={stylesApp.container}>
-        <div className={stylesBook.container}>
+        {/* <div className={stylesBook.container}>
           <BookingWidgetIso 
             unitData={this.state.unitData}
             price={this.state.price}
@@ -241,7 +241,7 @@ class App extends React.Component {
             removeFromPrice={this.removeFromPrice}
             finalPrice={finalPrice} 
           />
-        </div>
+        </div> */}
 
 
         <div>{showAll}</div>
