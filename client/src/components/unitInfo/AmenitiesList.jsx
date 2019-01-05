@@ -3,11 +3,12 @@ import AmenityItem from './AmenityItem.jsx';
 import styles from '../styles/amenities.css';
 
 
-const AmenitiesList = ({ unitData }) => {
-  
+const AmenitiesList = ({ unitData, toggleShowAllAmens }) => {
+
   const handleClick = (e) => {
     e.preventDefault();
     console.log('click!');
+    toggleShowAllAmens();
   };
 
   let amens = [];

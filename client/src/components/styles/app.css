@@ -1,4 +1,8 @@
-
+.container {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+}
 .modules {
   width: auto;
   height: auto;
@@ -23,7 +27,7 @@
 }
 
 .bookingContainer {
-  height: auto;
+  height: 100%;
   width: auto;
 }
 

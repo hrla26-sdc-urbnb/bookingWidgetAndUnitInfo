@@ -12,12 +12,13 @@ import Guests from './bookingWidget/guestSelect/Guests.jsx';
 import BookingButton from './bookingWidget/BookingButton.jsx';
 import DisplayCalendar from './bookingWidget/calendar/DisplayCalendar.jsx';
 import Total from './bookingWidget/calendar/Total.jsx';
+import ShowAmens from './unitInfo/ShowAmens.jsx';
 
 import stylesApp from './styles/app.css';
 import stylesDes from './styles/descriptions.css';
 import stylesAmen from './styles/amenities.css';
-import stylesGuest from './styles/guests.css';
-import stylesCal from './styles/calendar.css';
+import stylesBook from './styles/bookingWidget.css';
+import BookingWidgetIso from './BookingWidgetIso.jsx';
 
 
 class App extends React.Component {
@@ -35,6 +36,7 @@ class App extends React.Component {
       checkInSelected: false,
       checkOutSelected: false,
       numberOfDaysSelected: 0,
+      showAllAmens: false,
     };
     this.fetchUnit = this.fetchUnit.bind(this);
     this.handleClick = this.handleClick.bind(this);
@@ -50,6 +52,7 @@ class App extends React.Component {
     this.toggleValidRange = this.toggleValidRange.bind(this);
     this.handleOutsideClick = this.handleOutsideClick.bind(this);
     this.handleContactHostClick = this.handleContactHostClick.bind(this);
+    this.toggleShowAllAmens = this.toggleShowAllAmens.bind(this);
   }
 
 
@@ -63,7 +66,7 @@ class App extends React.Component {
   }
 
   fetchUnit() {
-    axios.get(`http://107.22.152.84:2100/api/units/${generateRandomNumberBetween(11111, 11210)}`)
+    axios.get(`http://localhost:2100/api/units/${generateRandomNumberBetween(11111, 11210)}`)
       .then(({ data }) => {
         console.log('axios -->', data);
         const { unitData, ownerData } = data;
@@ -105,10 +108,10 @@ class App extends React.Component {
   toggleCalSelectOpen() {
     this.setState((state) => {
       return {
-        calSelectOpen: true,
+        calSelectOpen: !state.calSelectOpen,
       };
     });
-    document.addEventListener('click', this.handleOutsideClick, false);
+    // document.addEventListener('click', this.handleOutsideClick, false);
   }
 
   handleOutsideClick(e) {
@@ -191,6 +194,12 @@ class App extends React.Component {
     e.preventDefault();
   }
 
+  toggleShowAllAmens() {
+    this.setState((state) => {
+      return { showAllAmens: !state.showAllAmens };
+    });
+  }
+
 
   render() {
     let finalPrice = <Total 
@@ -203,8 +212,41 @@ class App extends React.Component {
     if (!validRange) {
       finalPrice = null;
     }
+
+    let showAll = <ShowAmens unitData={this.state.unitData}/>
+
+    if (!this.state.showAllAmens) {
+      showAll = null;
+    }
+
     return (
-      <div>
+      <div className={stylesApp.container}>
+        <div className={stylesBook.container}>
+          <BookingWidgetIso 
+            unitData={this.state.unitData}
+            price={this.state.price}
+            toggleCalSelectOpen={this.toggleCalSelectOpen}
+            checkInDate={this.state.checkInDate}
+            checkOutDate={this.state.checkOutDate}
+            updateCheckIn={this.updateCheckIn}
+            updateCheckOut={this.updateCheckOut}
+            toggleCheckIn={this.toggleCheckIn}
+            toggleCheckOut={this.toggleCheckOut}
+            calSelectOpen={this.state.calSelectOpen}
+            checkInSelected={this.state.checkInSelected}
+            checkOutSelected={this.state.checkOutSelected}
+            toggleValidRange={this.toggleValidRange}
+            handleNodeClick={this.handleNodeClick}
+            addToPrice={this.addToPrice}
+            removeFromPrice={this.removeFromPrice}
+            finalPrice={finalPrice} 
+          />
+        </div>
+
+
+        <div>{showAll}</div>
+
+
         <div className={stylesApp.modules}>
             <div className={stylesApp.unitInfo}>
 
@@ -231,13 +273,13 @@ class App extends React.Component {
               <div className="amen container">
                 <div className={stylesAmen.title}>Amenities</div>
                 <div className="amenItems container">
-                  <AmenitiesList unitData={this.state.unitData}/>
+                  <AmenitiesList unitData={this.state.unitData} toggleShowAllAmens={this.toggleShowAllAmens}/>
                 </div>
               </div>
 
             </div>
 
-            <div className={stylesApp.bookingContainer}>
+            {/* <div className={stylesApp.bookingContainer}>
 
 
               <div className={stylesApp.bookingWidget}>
@@ -286,13 +328,8 @@ class App extends React.Component {
                   <BookingButton unitData={this.state.unitData} toggleCalendar={this.toggleCalSelectOpen} toggleCheckIn={this.toggleCheckIn}/>
                 </div>
 
-                {/* <div className="report container">
-                  <div>report emoji</div>
-                  <a href="" onClick={this.handleClick}>Report this listing</a>
-                </div> */}
-
               </div>
-            </div>
+            </div> */}
 
         </div>
       </div>
