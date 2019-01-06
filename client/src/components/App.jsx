@@ -67,7 +67,7 @@ class App extends React.Component {
   }
 
   fetchUnit() {
-    axios.get(`http://localhost:2100/api/units/${this.props.id}`)
+    axios.get(`http://107.22.152.84:2100/api/units/${this.props.id}`)
       .then(({ data }) => {
         console.log('axios -->', data);
         const { unitData, ownerData } = data;
