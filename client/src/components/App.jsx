@@ -12,17 +12,18 @@ import Guests from './bookingWidget/guestSelect/Guests.jsx';
 import BookingButton from './bookingWidget/BookingButton.jsx';
 import DisplayCalendar from './bookingWidget/calendar/DisplayCalendar.jsx';
 import Total from './bookingWidget/calendar/Total.jsx';
+import ShowAmens from './unitInfo/ShowAmens.jsx';
 
 import stylesApp from './styles/app.css';
 import stylesDes from './styles/descriptions.css';
 import stylesAmen from './styles/amenities.css';
-import stylesGuest from './styles/guests.css';
-import stylesCal from './styles/calendar.css';
+import stylesBook from './styles/bookingWidget.css';
+import BookingWidgetIso from './BookingWidgetIso.jsx';
 
 
 class App extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       unitData: [],
       ownerData: [],
@@ -35,6 +36,7 @@ class App extends React.Component {
       checkInSelected: false,
       checkOutSelected: false,
       numberOfDaysSelected: 0,
+      showAllAmens: false,
     };
     this.fetchUnit = this.fetchUnit.bind(this);
     this.handleClick = this.handleClick.bind(this);
@@ -50,6 +52,8 @@ class App extends React.Component {
     this.toggleValidRange = this.toggleValidRange.bind(this);
     this.handleOutsideClick = this.handleOutsideClick.bind(this);
     this.handleContactHostClick = this.handleContactHostClick.bind(this);
+    this.toggleShowAllAmens = this.toggleShowAllAmens.bind(this);
+    this.closeShowAll = this.closeShowAll.bind(this);
   }
 
 
@@ -63,7 +67,7 @@ class App extends React.Component {
   }
 
   fetchUnit() {
-    axios.get(`http://107.22.152.84:2100/api/units/${generateRandomNumberBetween(11111, 11210)}`)
+    axios.get(`http://localhost:2100/api/units/${this.props.id}`)
       .then(({ data }) => {
         console.log('axios -->', data);
         const { unitData, ownerData } = data;
@@ -105,10 +109,10 @@ class App extends React.Component {
   toggleCalSelectOpen() {
     this.setState((state) => {
       return {
-        calSelectOpen: true,
+        calSelectOpen: !state.calSelectOpen,
       };
     });
-    document.addEventListener('click', this.handleOutsideClick, false);
+    // document.addEventListener('click', this.handleOutsideClick, false);
   }
 
   handleOutsideClick(e) {
@@ -191,6 +195,18 @@ class App extends React.Component {
     e.preventDefault();
   }
 
+  toggleShowAllAmens() {
+    this.setState((state) => {
+      return { showAllAmens: !state.showAllAmens };
+    });
+  }
+
+  closeShowAll() {
+    this.setState({
+      showAllAmens: false,
+    });
+  }
+
 
   render() {
     let finalPrice = <Total 
@@ -203,97 +219,124 @@ class App extends React.Component {
     if (!validRange) {
       finalPrice = null;
     }
+
+    let showAll = <ShowAmens close={this.closeShowAll} unitData={this.state.unitData}/>
+
+    if (!this.state.showAllAmens) {
+      showAll = null;
+    }
+
     return (
       <div>
-        <div className={stylesApp.modules}>
-            <div className={stylesApp.unitInfo}>
+        <div>{showAll}</div>
+        <div className={stylesApp.container}>
+          {/* <div className={stylesBook.container}>
+            <BookingWidgetIso 
+              unitData={this.state.unitData}
+              price={this.state.price}
+              toggleCalSelectOpen={this.toggleCalSelectOpen}
+              checkInDate={this.state.checkInDate}
+              checkOutDate={this.state.checkOutDate}
+              updateCheckIn={this.updateCheckIn}
+              updateCheckOut={this.updateCheckOut}
+              toggleCheckIn={this.toggleCheckIn}
+              toggleCheckOut={this.toggleCheckOut}
+              calSelectOpen={this.state.calSelectOpen}
+              checkInSelected={this.state.checkInSelected}
+              checkOutSelected={this.state.checkOutSelected}
+              toggleValidRange={this.toggleValidRange}
+              handleNodeClick={this.handleNodeClick}
+              addToPrice={this.addToPrice}
+              removeFromPrice={this.removeFromPrice}
+              finalPrice={finalPrice} 
+            />
+          </div> */}
 
-              <div className="ownerUnit container">
-                <OwnerUnit unitData={this.state.unitData} ownerData={this.state.ownerData}/>
+          <div className={stylesApp.modules}>
+              <div className={stylesApp.unitInfo}>
+
+                <div className="ownerUnit container">
+                  <OwnerUnit unitData={this.state.unitData} ownerData={this.state.ownerData}/>
+                </div>
+
+                <div className="specs container">
+                  <SpecList unitData={this.state.unitData} ownerData={this.state.ownerData}/>
+                </div>
+
+                <div className="descript container">
+                  <div className={stylesDes.text}>
+                    <div>{this.state.unitData.summaryDescription}</div>
+                  </div>
+                  <Descriptions unitData={this.state.unitData}/>
+
+                  <div className={stylesDes.contactHost}>
+                    <a href="" onClick={this.handleContactHostClick}>Contact host</a>
+                  </div>
+
+                </div>
+
+                <div className="amen container">
+                  <div className={stylesAmen.title}>Amenities</div>
+                  <div className="amenItems container">
+                    <AmenitiesList unitData={this.state.unitData} toggleShowAllAmens={this.toggleShowAllAmens}/>
+                  </div>
+                </div>
+
               </div>
 
-              <div className="specs container">
-                <SpecList unitData={this.state.unitData} ownerData={this.state.ownerData}/>
-              </div>
+              {/* <div className={stylesApp.bookingContainer}>
 
-              <div className="descript container">
-                <div className={stylesDes.text}>
-                  <div>{this.state.unitData.summaryDescription}</div>
+
+                <div className={stylesApp.bookingWidget}>
+                  <div>
+                    <PriceReviews unitData={this.state.unitData} price={this.state.price}/>
+                  </div>
+
+                  <div className="dates container">
+                    <Dates 
+                      toggleCalendar={this.toggleCalSelectOpen}
+                      checkInDate={this.state.checkInDate}
+                      checkOutDate={this.state.checkOutDate}
+                      updateCheckIn={this.updateCheckIn}
+                      updateCheckOut={this.updateCheckOut}
+                      toggleCheckInSelected={this.toggleCheckIn}
+                      toggleCheckOutSelected={this.toggleCheckOut}
+                    />
+                  </div>
+
+                  <div ref={node => { this.node = node; }} className={stylesCal.container}>
+                    <DisplayCalendar
+                      isOpen={this.state.calSelectOpen} 
+                      unitData={this.state.unitData}
+                      updateCheckIn={this.updateCheckIn}
+                      updateCheckOut={this.updateCheckOut}
+                      checkInDate={this.state.checkInDate}
+                      checkOutDate={this.state.checkOutDate}
+                      checkInSelected={this.state.checkInSelected}
+                      checkOutSelected={this.state.checkOutSelected}
+                      toggleCheckIn={this.toggleCheckIn}
+                      toggleCheckOut={this.toggleCheckOut}
+                      toggleValidRange={this.toggleValidRange}
+                    />
+                  </div>
+
+                  <div className="guests container">
+                    <div className={stylesGuest.heading}>Guests</div>
+                    <Guests handleNodeClick={this.handleNodeClick} unitData={this.state.unitData} addToPrice={this.addToPrice} removeFromPrice={this.removeFromPrice}/>
+                  </div>
+
+                  <div>
+                    {finalPrice}
+                  </div>
+
+                  <div className="bookingButton container">
+                    <BookingButton unitData={this.state.unitData} toggleCalendar={this.toggleCalSelectOpen} toggleCheckIn={this.toggleCheckIn}/>
+                  </div>
+
                 </div>
-                <Descriptions unitData={this.state.unitData}/>
+              </div> */}
 
-                <div className={stylesDes.contactHost}>
-                  <a href="" onClick={this.handleContactHostClick}>Contact host</a>
-                </div>
-
-              </div>
-
-              <div className="amen container">
-                <div className={stylesAmen.title}>Amenities</div>
-                <div className="amenItems container">
-                  <AmenitiesList unitData={this.state.unitData}/>
-                </div>
-              </div>
-
-            </div>
-
-            <div className={stylesApp.bookingContainer}>
-
-
-              <div className={stylesApp.bookingWidget}>
-                <div>
-                  <PriceReviews unitData={this.state.unitData} price={this.state.price}/>
-                </div>
-
-                <div className="dates container">
-                  <Dates 
-                    toggleCalendar={this.toggleCalSelectOpen}
-                    checkInDate={this.state.checkInDate}
-                    checkOutDate={this.state.checkOutDate}
-                    updateCheckIn={this.updateCheckIn}
-                    updateCheckOut={this.updateCheckOut}
-                    toggleCheckInSelected={this.toggleCheckIn}
-                    toggleCheckOutSelected={this.toggleCheckOut}
-                  />
-                </div>
-
-                <div ref={node => { this.node = node; }} className={stylesCal.container}>
-                  <DisplayCalendar
-                    isOpen={this.state.calSelectOpen} 
-                    unitData={this.state.unitData}
-                    updateCheckIn={this.updateCheckIn}
-                    updateCheckOut={this.updateCheckOut}
-                    checkInDate={this.state.checkInDate}
-                    checkOutDate={this.state.checkOutDate}
-                    checkInSelected={this.state.checkInSelected}
-                    checkOutSelected={this.state.checkOutSelected}
-                    toggleCheckIn={this.toggleCheckIn}
-                    toggleCheckOut={this.toggleCheckOut}
-                    toggleValidRange={this.toggleValidRange}
-                  />
-                </div>
-
-                <div className="guests container">
-                  <div className={stylesGuest.heading}>Guests</div>
-                  <Guests handleNodeClick={this.handleNodeClick} unitData={this.state.unitData} addToPrice={this.addToPrice} removeFromPrice={this.removeFromPrice}/>
-                </div>
-
-                <div>
-                  {finalPrice}
-                </div>
-
-                <div className="bookingButton container">
-                  <BookingButton unitData={this.state.unitData} toggleCalendar={this.toggleCalSelectOpen} toggleCheckIn={this.toggleCheckIn}/>
-                </div>
-
-                {/* <div className="report container">
-                  <div>report emoji</div>
-                  <a href="" onClick={this.handleClick}>Report this listing</a>
-                </div> */}
-
-              </div>
-            </div>
-
+          </div>
         </div>
       </div>
     );

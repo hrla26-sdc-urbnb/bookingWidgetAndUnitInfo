@@ -1,4 +1,8 @@
-
+.container {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+}
 .modules {
   width: auto;
   height: auto;
@@ -7,24 +11,24 @@
   justify-content: flex-start;
   padding-top: 30px;
   padding-left: 70px;
-  padding-right: 70px;
+  padding-right: 40px;
 }
 
 .unitInfo {
   width: 550px;
-  min-width: 550px;
+  min-width: 350px;
   max-width: 550px;
   border-top: 2px;
   display: flex;
   flex-direction: column;
-  margin: 10px;
+  /* margin: 10px;
   margin-right: 50px;
-  padding: 10px;
+  padding: 10px; */
 }
 
 .bookingContainer {
-  height: auto;
-  width: auto;
+  /* position: -webkit-sticky;
+  position: sticky; */
 }
 
 .bookingWidget {
@@ -35,8 +39,14 @@
   display: flex;
   flex-direction: column;
   border: solid 1px lightgray;
-  margin: 10px;
+  margin-top: 30px;
   padding: 30px;
+  /* position: -webkit-sticky;
+  position: sticky;
+  top: 100px; */
+}
+
+.stickThis {
   position: -webkit-sticky;
   position: sticky;
   top: 100px;

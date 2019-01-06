@@ -46,6 +46,7 @@ const CalendarData = ({
 
   if (!date) {
     hasDate = styles.dateCellNull;
+    handleClick = () => {};
   }
 
   if (date === thisDate && thisMonth === displayMonth && thisYear === displayYear) {
