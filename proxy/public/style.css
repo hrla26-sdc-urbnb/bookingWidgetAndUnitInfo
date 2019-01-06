@@ -4,6 +4,7 @@
   justify-content: space-around;
   width: auto;
   height: auto;
+  margin-right: 100px;
 }
 
  #_container_ {
@@ -17,7 +18,7 @@
   justify-content: flex-start;
   /* margin: 90px !important; */
   width: auto !important;
-  padding: 0px !important;
+  padding-left: 70px !important;
 }
 
 #reviews {
@@ -27,5 +28,6 @@
 #similar_listings {
   margin-left: 90px !important; 
 }
+
 
 
