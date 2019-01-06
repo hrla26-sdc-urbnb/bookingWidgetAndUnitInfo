@@ -1,4 +1,6 @@
 import React from 'react';
+import ShowAmensList from './ShowAmensList.jsx';
+import styles from '../styles/showAllAmens.css';
 
 class ShowAmens extends React.Component {
   constructor(props) {
@@ -45,6 +47,7 @@ class ShowAmens extends React.Component {
     this.updateBedAndBath = this.updateBedAndBath.bind(this);
     this.updateSafetyFeatures = this.updateSafetyFeatures.bind(this);
     this.updateNotIncluded = this.updateNotIncluded.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   componentDidMount() {
@@ -195,11 +198,26 @@ class ShowAmens extends React.Component {
     });
   }
 
+  handleClick(e) {
+    const { close } = this.props;
+    console.log(e.target.id);
+    if (e.target.id === '_modalParent') {
+      close();
+    }
+  }
+
   render() {
-    console.log(this.state);
     return (
-      <div>
-        this is the amens all...
+      <div id="_modalParent" onClick={this.handleClick} className={styles.parentContainer}>
+        <ShowAmensList
+          basic={this.state.basic}
+          facilities={this.state.facilities}
+          dining={this.state.dining}
+          bedAndBath={this.state.bedAndBath}
+          safetyFeatures={this.state.safetyFeatures}
+          notIncluded={this.state.notIncluded}
+          close={this.props.close}
+        />
       </div>
     );
   }
