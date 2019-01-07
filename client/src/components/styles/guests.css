@@ -19,6 +19,7 @@
   padding-right: 10px;
   background-color: transparent;
   height: 40px;
+  border: 1px solid lightgray;
 }
 
 .menu {
