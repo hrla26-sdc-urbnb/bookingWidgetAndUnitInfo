@@ -15,7 +15,7 @@ const BookingButton = ({ unitData, toggleCalendar, toggleCheckIn, finalPrice }) 
   };
 
   const handleRequested = (e) => {
-    alert('You just requested to booked my bro!');
+    alert('You just requested to book my bro!');
     toggleCalendar();
   };
 
