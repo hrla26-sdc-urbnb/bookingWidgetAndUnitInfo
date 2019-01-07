@@ -134,7 +134,7 @@ class Guests extends React.Component {
 
   render() {
     let select = <button 
-      className={styles.select} 
+      className={styles.selectDropDown} 
       onClick={this.toggleGuestMenu}>
         <div>{`${this.state.guests} ${this.state.word}`}</div>
         <div>&uarr;</div>
@@ -158,7 +158,7 @@ class Guests extends React.Component {
     if (!this.state.isOpen) {
       menu = null;
       select = <button 
-        className={styles.select} 
+        className={styles.selectDropDown} 
         onClick={this.toggleGuestMenu}>
         <div>{`${this.state.guests} ${this.state.word}`}</div>
         <div>&darr;</div>
