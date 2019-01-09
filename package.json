@@ -12,6 +12,7 @@
     "start": "nodemon ./server/index.js",
     "build-csv": "node ./db/seed/seedData.js",
     "seed-units": "mongoimport --db airBnb --collection units --file db/seed/seedUnits.csv --type csv --headerline",
+    "seed-unitsx10": "seed-units && seed-units && seed-units && seed-units && seed-units && seed-units && seed-units && seed-units && seed-units && seed-units && ",
     "seed-owners": "mongoimport --db airBnb --collection owners --file db/seed/seedOwners.csv --type csv --headerline",
     "build": "webpack --display-error-details --watch"
   },
