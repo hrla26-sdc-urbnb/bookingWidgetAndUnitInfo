@@ -1,8 +1,6 @@
 const faker = require('faker');
 
-
 // helpers for specific fake data generation
-
 function randomBooleanValue(num) {
   return num % 2 === 0;
 }
@@ -17,17 +15,13 @@ function partForRent() {
   return parts[index];
 }
 
-// creates sample owners data...
-
 function generateOwnersData() {
   const sampleOwners = [];
 
-  // we want 100 unique owners..
-  for (let i = 0; i < 100; i += 1) {
+  for (let i = 0; i < 1000000; i += 1) {
     const owner = {};
     const randomBool = randomBooleanValue(i);
 
-    //  give our owners the appropriate properties...
     owner.name = faker.name.findName();
     owner.id = i;
     owner.photo = faker.image.imageUrl();
@@ -38,13 +32,10 @@ function generateOwnersData() {
 }
 
 // creates sample units data...
-
-function generateUnitsData() { 
+function generateUnitsData() {
   const sampleUnits = [];
 
-  // we need 100 units...
-
-  for (let i = 11111; i < 11211; i += 1) {
+  for (let i = 0; i < 22440; i += 1) {
     const unit = {
       id: i,
       owner_id: generateRandomNumberBetween(0, 99),
