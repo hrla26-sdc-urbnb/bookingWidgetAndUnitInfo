@@ -1,7 +1,6 @@
 const db = require('../db/dbHelpers');
 
 module.exports = {
-
   getUnitInfo: (req, res) => {
     const { unitId } = req.params;
     db.readUnit(unitId, (unitData) => {

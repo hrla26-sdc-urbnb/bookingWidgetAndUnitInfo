@@ -1,9 +1,7 @@
 const request = require('supertest');
 const app = require('./app');
 
-
 // lets test our unitInfo route...
-
 test('GET to api/units/unitId should send a response', (done) => {
   request(app).get('/api/units/11111').then((response) => {
     expect(response.statusCode).toBe(200);
@@ -25,4 +23,3 @@ test('GET to api/units/unitId repsonse should have 3 properties', (done) => {
     done();
   });
 });
-

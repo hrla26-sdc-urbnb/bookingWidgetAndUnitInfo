@@ -1,9 +1,8 @@
 const http = require('http');
 const app = require('./app');
-// const port = process.env.SRV_PORT;
 const dbConnection = require('../db/index');
 
-
+// const port = process.env.SRV_PORT;
 const port = 2100;
 const server = http.createServer(app);
 
