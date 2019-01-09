@@ -18,4 +18,15 @@ const { Owner, Unit } = require('../index');
 const ownersFile = fs.createWriteStream('./db/seed/seedOwners.csv');
 const sampleOwners = generateOwnersData();
 
-ownersFile.write()
+ownersFile.write('id, name, photo, isSuperHost\n');
+
+for (let n = 0; n < 10; n += 1) {
+  for (let i = 0; i < sampleOwners.length; i += 1) {
+    let row = `${sampleOwners[i].id.toString().replace(',','')}, `;
+    row += `"${sampleOwners[i].name.toString().replace(',','')}", `;
+    row += `"${sampleOwners[i].photo.toString().replace(',','')}", `;
+    row += `${sampleOwners[i].isSuperHost.toString().replace(',','')}\n`;
+    ownersFile.write(row);
+    // ownersFile.write(`${sampleOwners[i].id.toString().replace(',', '')}, ${sampleOwners[i].name.toString().replace(',', '')}`);
+  }
+}

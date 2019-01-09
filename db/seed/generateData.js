@@ -18,14 +18,15 @@ function partForRent() {
 function generateOwnersData() {
   const sampleOwners = [];
 
-  for (let i = 0; i < 1000000; i += 1) {
+  for (let i = 0; i < 100000; i += 1) {
     const owner = {};
     const randomBool = randomBooleanValue(i);
 
-    owner.name = faker.name.findName();
     owner.id = i;
+    owner.name = faker.name.findName();
     owner.photo = faker.image.imageUrl();
     owner.isSuperHost = randomBool;
+
     sampleOwners.push(owner);
   }
   return sampleOwners;
@@ -35,7 +36,7 @@ function generateOwnersData() {
 function generateUnitsData() {
   const sampleUnits = [];
 
-  for (let i = 0; i < 22440; i += 1) {
+  for (let i = 0; i < 100000; i += 1) {
     const unit = {
       id: i,
       owner_id: generateRandomNumberBetween(0, 99),

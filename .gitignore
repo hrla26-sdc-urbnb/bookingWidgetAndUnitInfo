@@ -6,3 +6,5 @@ node_modules
 ./db/seed/generateData.test.js
 ./webpack.config.js
 npm-debug.log
+seedOwners.csv
+seedUnits.csv

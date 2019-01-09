@@ -10,7 +10,9 @@
   "scripts": {
     "test": "jest",
     "start": "nodemon ./server/index.js",
-    "seed": "node ./db/seed/seedData.js",
+    "build-csv": "node ./db/seed/seedData.js",
+    "seed-units": "mongoimport --db airBnb --collection units --file db/seed/seedUnits.csv --type csv --headerline",
+    "seed-owners": "mongoimport --db airBnb --collection owners --file db/seed/seedOwners.csv --type csv --headerline",
     "build": "webpack --display-error-details --watch"
   },
   "repository": {
