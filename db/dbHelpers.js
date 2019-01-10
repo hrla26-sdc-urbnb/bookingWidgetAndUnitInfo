@@ -4,9 +4,7 @@ const {
 } = require('../db/index');
 
 module.exports = {
-  // this supplies data for the owner of the unit
-
-  readOwner: (id, callback) => {
+  readOwner: (id, callback) => { // this supplies data for the owner of the unit
     Owner.find({ id }, (err, results) => {
       if (err) {
         console.log('error reading owner from db -->', err);
@@ -15,10 +13,7 @@ module.exports = {
       }
     });
   },
-
-  // this supplies data for the unit itself
-
-  readUnit: (id, callback) => {
+  readUnit: (id, callback) => { // this supplies data for the unit itself
     Unit.find({ id }, (err, results) => {
       if (err) {
         console.log('error reading unit from db -->', err);

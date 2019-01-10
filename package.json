@@ -11,9 +11,9 @@
     "test": "jest",
     "start": "nodemon ./server/index.js",
     "build-csv": "node ./db/seed/seedData.js",
-    "seed-units": "mongoimport --db airBnb --collection units --file db/seed/seedUnits.csv --type csv --headerline",
-    "seed-unitsx10": "seed-units && seed-units && seed-units && seed-units && seed-units && seed-units && seed-units && seed-units && seed-units && seed-units && ",
-    "seed-owners": "mongoimport --db airBnb --collection owners --file db/seed/seedOwners.csv --type csv --headerline",
+    "seed-units-mongo": "mongoimport --db airBnb --collection units --file db/seed/seedUnits.csv --type csv --headerline",
+    "seed-owners-mongo": "mongoimport --db airBnb --collection owners --file db/seed/seedOwners.csv --type csv --headerline",
+    "create-psql-tables": "psql -U martinhan -d urbnb -f db/seed/schema.sql",
     "build": "webpack --display-error-details --watch"
   },
   "repository": {
