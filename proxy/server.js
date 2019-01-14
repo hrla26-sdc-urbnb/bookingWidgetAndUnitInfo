@@ -18,4 +18,3 @@ app.listen(port, (err) => {
     console.log('successfully listening on port ', port);
   }
 });
-

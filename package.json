@@ -10,10 +10,13 @@
   "scripts": {
     "test": "jest",
     "start": "nodemon ./server/index.js",
-    "build-csv": "node ./db/seed/seedData.js",
-    "seed-units-mongo": "mongoimport --db airBnb --collection units --file db/seed/seedUnits.csv --type csv --headerline",
-    "seed-owners-mongo": "mongoimport --db airBnb --collection owners --file db/seed/seedOwners.csv --type csv --headerline",
-    "create-psql-tables": "psql -U martinhan -d urbnb -f db/seed/schema.sql",
+    "build-csv-owners": "node ./db/seed/seedOwners.js",
+    "build-csv-units": "node ./db/seed/seedUnits.js",
+    "seed-mongo-units": "mongoimport --db airBnb --collection units --file db/seed/seedUnits.csv --type csv --headerline",
+    "seed-mongo-owners": "mongoimport --db airBnb --collection owners --file db/seed/seedOwners.csv --type csv --headerline",
+    "seed-postgres-units": "psql -U martinhan -d urbnb -f db/seed/seedUnits.sql",
+    "seed-postgres-owners": "psql -U martinhan -d urbnb -f db/seed/seedOwners.sql",
+    "build-psql-tables": "psql -U martinhan -d urbnb -f db/seed/schema.sql",
     "build": "webpack --display-error-details --watch"
   },
   "repository": {
