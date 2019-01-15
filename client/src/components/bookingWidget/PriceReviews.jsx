@@ -3,10 +3,10 @@ import Star from './Star.jsx';
 import styles from '../styles/priceReviews.css';
 
 const PriceReviews = ({ unitData, price }) => {
-  let { averageStarRating, numberOfReviews } = unitData;
-  let num = <span className={styles.numReviews}>{numberOfReviews}</span>
+  let { averagestarrating, numberofreviews } = unitData;
+  let num = <span className={styles.numReviews}>{numberofreviews}</span>
   let stars = [];
-  for (let i = 0; i < averageStarRating; i += 1) {
+  for (let i = 0; i < averagestarrating; i += 1) {
     // stars += '*';
     stars.push(<Star key={i}/>);
   }

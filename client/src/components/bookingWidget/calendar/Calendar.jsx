@@ -154,8 +154,8 @@ class Calendar extends React.Component {
                     thisYear={this.state.thisYear}
                     displayMonth={this.state.displayMonth}
                     displayYear={this.state.displayYear}
-                    availableFrom={this.props.unitData.dateAvailableFrom}
-                    availableTo={this.props.unitData.dateAvailableTo}
+                    availableFrom={this.props.unitData.dateavailablefrom}
+                    availableTo={this.props.unitData.dateavailableto}
                     monthMap={this.monthMap}
                     checkInSelected={this.props.checkInSelected}
                     checkOutSelected={this.props.checkOutSelected}
@@ -180,8 +180,8 @@ class Calendar extends React.Component {
                     thisYear={this.state.thisYear}
                     displayMonth={this.state.displayMonth}
                     displayYear={this.state.displayYear}
-                    availableFrom={this.props.unitData.dateAvailableFrom}
-                    availableTo={this.props.unitData.dateAvailableTo}
+                    availableFrom={this.props.unitData.dateavailablefrom}
+                    availableTo={this.props.unitData.dateavailableto}
                     monthMap={this.monthMap}
                     checkInSelected={this.props.checkInSelected}
                     checkOutSelected={this.props.checkOutSelected}
@@ -206,8 +206,8 @@ class Calendar extends React.Component {
                     thisYear={this.state.thisYear}
                     displayMonth={this.state.displayMonth}
                     displayYear={this.state.displayYear}
-                    availableFrom={this.props.unitData.dateAvailableFrom}
-                    availableTo={this.props.unitData.dateAvailableTo}
+                    availableFrom={this.props.unitData.dateavailablefrom}
+                    availableTo={this.props.unitData.dateavailableto}
                     monthMap={this.monthMap}
                     checkInSelected={this.props.checkInSelected}
                     checkOutSelected={this.props.checkOutSelected}
@@ -232,8 +232,8 @@ class Calendar extends React.Component {
                     thisYear={this.state.thisYear}
                     displayMonth={this.state.displayMonth}
                     displayYear={this.state.displayYear}
-                    availableFrom={this.props.unitData.dateAvailableFrom}
-                    availableTo={this.props.unitData.dateAvailableTo}
+                    availableFrom={this.props.unitData.dateavailablefrom}
+                    availableTo={this.props.unitData.dateavailableto}
                     monthMap={this.monthMap}
                     checkInSelected={this.props.checkInSelected}
                     checkOutSelected={this.props.checkOutSelected}
@@ -258,8 +258,8 @@ class Calendar extends React.Component {
                     thisYear={this.state.thisYear}
                     displayMonth={this.state.displayMonth}
                     displayYear={this.state.displayYear}
-                    availableFrom={this.props.unitData.dateAvailableFrom}
-                    availableTo={this.props.unitData.dateAvailableTo}
+                    availableFrom={this.props.unitData.dateavailablefrom}
+                    availableTo={this.props.unitData.dateavailableto}
                     monthMap={this.monthMap}
                     checkInSelected={this.props.checkInSelected}
                     checkOutSelected={this.props.checkOutSelected}
@@ -284,8 +284,8 @@ class Calendar extends React.Component {
                     thisYear={this.state.thisYear}
                     displayMonth={this.state.displayMonth}
                     displayYear={this.state.displayYear}
-                    availableFrom={this.props.unitData.dateAvailableFrom}
-                    availableTo={this.props.unitData.dateAvailableTo}
+                    availableFrom={this.props.unitData.dateavailablefrom}
+                    availableTo={this.props.unitData.dateavailableto}
                     monthMap={this.monthMap}
                     checkInSelected={this.props.checkInSelected}
                     checkOutSelected={this.props.checkOutSelected}

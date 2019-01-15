@@ -19,18 +19,18 @@ const BookingButton = ({ unitData, toggleCalendar, toggleCheckIn, finalPrice }) 
     toggleCalendar();
   };
 
-  let { isBooked } = unitData;
+  let { isbooked } = unitData;
 
-  if (finalPrice && !isBooked) {
+  if (finalPrice && !isbooked) {
     handleClick = handleBook;
   }
 
-  if (finalPrice && isBooked) {
+  if (finalPrice && isbooked) {
     handleClick = handleRequested;
   }
 
   let button = <button  className={styles.button} onClick={handleClick}>Book</button>
-  if (isBooked) {
+  if (isbooked) {
     button = <button className={styles.button} onClick={handleClick}>Request to Book</button>
   }
   return(

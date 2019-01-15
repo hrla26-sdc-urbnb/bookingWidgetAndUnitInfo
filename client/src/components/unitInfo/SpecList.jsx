@@ -3,25 +3,25 @@ import React from 'react';
 import SpecItem from './SpecItem.jsx';
 
 const SpecList = ({ unitData, ownerData }) => {
-  let { isSuperHost, name } = ownerData;
+  let { issuperhost, name } = ownerData;
   let {
-    partOfUnitFromRent,
-    guestsAllowed,
-    numberOfRoomsGuestsMayUse,
-    numberOfBedsGuestsMayUse,
-    numberOfBathroomsGuestsMayUse,
+    partofunitfromrent,
+    guestsallowed,
+    numberofroomsguestsmayuse,
+    numberofbedsguestsmayuse,
+    numberofbathroomsguestsmayuse,
   } = unitData;
 
   return(
     <div>
       <SpecItem
         name={name} 
-        part={partOfUnitFromRent}
-        guests={guestsAllowed}
-        rooms={numberOfRoomsGuestsMayUse}
-        beds={numberOfBedsGuestsMayUse} 
-        baths={numberOfBathroomsGuestsMayUse}
-        superH={isSuperHost}
+        part={partofunitfromrent}
+        guests={guestsallowed}
+        rooms={numberofroomsguestsmayuse}
+        beds={numberofbedsguestsmayuse} 
+        baths={numberofbathroomsguestsmayuse}
+        superH={issuperhost}
       />
     </div>
   );

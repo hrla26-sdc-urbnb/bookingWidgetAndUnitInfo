@@ -1,7 +1,4 @@
-const { 
-  generateOwnersData,
-  generateUnitsData,
-} = require('./generateData');
+const { generateOwnersData, generateUnitsData } = require('./generateData');
 
 test('creates an array of owners', () => {
   expect(generateOwnersData().length).toBe(100);

@@ -26,16 +26,16 @@ class Descriptions extends React.Component{
 
   render() {
     let {
-      aboutYourUnit,
-      whatGuestsCanAccess,
-      yourInteractionWithGuests,
-      otherThingsToNote,
+      aboutyourunit,
+      whatguestscanaccess,
+      yourinteractionwithguests,
+      otherthingstonote,
     } = this.props.unitData;
 
-    let about = <AboutUnit about={aboutYourUnit}/>
-    let access = <GuestAccess access={whatGuestsCanAccess}/>
-    let interaction = <GuestInteraction interaction={yourInteractionWithGuests}/>
-    let other = <OtherNote notes={otherThingsToNote}/>
+    let about = <AboutUnit about={aboutyourunit}/>
+    let access = <GuestAccess access={whatguestscanaccess}/>
+    let interaction = <GuestInteraction interaction={yourinteractionwithguests}/>
+    let other = <OtherNote notes={otherthingstonote}/>
     let descript = <div>{about}{access}{interaction}{other}</div>
     
     if (!this.state.readMore) {

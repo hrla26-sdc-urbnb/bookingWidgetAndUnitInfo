@@ -30,7 +30,7 @@ const GuestMenu = ({
         <div className={styles.numberGroup}>
           <AdultMinus minus={handleClickMinusAdults} going={adults} />
           <div className={styles.number}>{adults}</div>
-          <AdultPlus plus={handleClickPlusAdults} going={adults} guests={guests} allowed={unitData.guestsAllowed} />
+          <AdultPlus plus={handleClickPlusAdults} going={adults} guests={guests} allowed={unitData.guestsallowed} />
         </div>
       </div>
 
@@ -42,7 +42,7 @@ const GuestMenu = ({
         <div className={styles.numberGroup}>
           <ChildrenMinus minus={handleClickMinusChildren} going={children} />
           <div className={styles.number}>{children}</div>
-          <ChildrenPlus plus={handleClickPlusChildren} going={children} guests={guests} allowed={unitData.guestsAllowed} />
+          <ChildrenPlus plus={handleClickPlusChildren} going={children} guests={guests} allowed={unitData.guestsallowed} />
         </div>
       </div>
 
@@ -59,7 +59,7 @@ const GuestMenu = ({
       </div>
 
       <div className={styles.bottomText}>
-        {`${unitData.guestsAllowed} maximum. Infants don't count toward the number of guests.`}
+        {`${unitData.guestsallowed} maximum. Infants don't count toward the number of guests.`}
       </div>
 
       <div className={styles.closeContainer}>
