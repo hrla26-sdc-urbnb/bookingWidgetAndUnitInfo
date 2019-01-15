@@ -64,34 +64,34 @@ class ShowAmens extends React.Component {
     const dataKeys = Object.keys(data);
     const basic = [];
     for (let i = 0; i < dataKeys.length; i += 1) {
-      if (data[dataKeys[i]] && dataKeys[i] === 'hasWifi') {
+      if (data[dataKeys[i]] && dataKeys[i] === 'haswifi') {
         basic.push(this.mapAmenSentences[dataKeys[i]]);
       }
-      if (data[dataKeys[i]] && dataKeys[i] === 'hasEssentials') {
+      if (data[dataKeys[i]] && dataKeys[i] === 'hasessentials') {
         basic.push(this.mapAmenSentences[dataKeys[i]]);
       }
-      if (data[dataKeys[i]] && dataKeys[i] === 'hasTv') {
+      if (data[dataKeys[i]] && dataKeys[i] === 'hastv') {
         basic.push(this.mapAmenSentences[dataKeys[i]]);
       }
-      if (data[dataKeys[i]] && dataKeys[i] === 'hasDeskWorkSpace') {
+      if (data[dataKeys[i]] && dataKeys[i] === 'hasdeskworkspace') {
         basic.push(this.mapAmenSentences[dataKeys[i]]);
       }
-      if (data[dataKeys[i]] && dataKeys[i] === 'hasIron') {
+      if (data[dataKeys[i]] && dataKeys[i] === 'hasiron') {
         basic.push(this.mapAmenSentences[dataKeys[i]]);
       }
-      if (data[dataKeys[i]] && dataKeys[i] === 'hasLaundryWasher') {
+      if (data[dataKeys[i]] && dataKeys[i] === 'haslaundrywasher') {
         basic.push(this.mapAmenSentences[dataKeys[i]]);
       }
-      if (data[dataKeys[i]] && dataKeys[i] === 'hasLaundryDryer') {
+      if (data[dataKeys[i]] && dataKeys[i] === 'haslaundrydryer') {
         basic.push(this.mapAmenSentences[dataKeys[i]]);
       }
-      if (data[dataKeys[i]] && dataKeys[i] === 'hasAirConditioning') {
+      if (data[dataKeys[i]] && dataKeys[i] === 'hasairconditioning') {
         basic.push(this.mapAmenSentences[dataKeys[i]]);
       }
-      if (data[dataKeys[i]] && dataKeys[i] === 'hasHeat') {
+      if (data[dataKeys[i]] && dataKeys[i] === 'hasheat') {
         basic.push(this.mapAmenSentences[dataKeys[i]]);
       }
-      if (data[dataKeys[i]] && dataKeys[i] === 'hasClosetDrawers') {
+      if (data[dataKeys[i]] && dataKeys[i] === 'hasclosetdrawers') {
         basic.push(this.mapAmenSentences[dataKeys[i]]);
       }
     }
@@ -104,22 +104,22 @@ class ShowAmens extends React.Component {
     const dataKeys = Object.keys(data);
     const facilities = [];
     for (let i = 0; i < dataKeys.length; i += 1) {
-      if (data[dataKeys[i]] && dataKeys[i] === 'hasParking') {
+      if (data[dataKeys[i]] && dataKeys[i] === 'hasparking') {
         facilities.push(this.mapAmenSentences[dataKeys[i]]);
       }
-      if (data[dataKeys[i]] && dataKeys[i] === 'hasPool') {
+      if (data[dataKeys[i]] && dataKeys[i] === 'haspool') {
         facilities.push(this.mapAmenSentences[dataKeys[i]]);
       }
-      if (data[dataKeys[i]] && dataKeys[i] === 'hasHotTub') {
+      if (data[dataKeys[i]] && dataKeys[i] === 'hashottub') {
         facilities.push(this.mapAmenSentences[dataKeys[i]]);
       }
-      if (data[dataKeys[i]] && dataKeys[i] === 'hasElevator') {
+      if (data[dataKeys[i]] && dataKeys[i] === 'haselevator') {
         facilities.push(this.mapAmenSentences[dataKeys[i]]);
       }
-      if (data[dataKeys[i]] && dataKeys[i] === 'hasPrivateEntrance') {
+      if (data[dataKeys[i]] && dataKeys[i] === 'hasprivateentrance') {
         facilities.push(this.mapAmenSentences[dataKeys[i]]);
       }
-      if (data[dataKeys[i]] && dataKeys[i] === 'hasFirePlace') {
+      if (data[dataKeys[i]] && dataKeys[i] === 'hasfireplace') {
         facilities.push(this.mapAmenSentences[dataKeys[i]]);
       }
     }
@@ -132,10 +132,10 @@ class ShowAmens extends React.Component {
     const dataKeys = Object.keys(data);
     const dining = [];
     for (let i = 0; i < dataKeys.length; i += 1) {
-      if (data[dataKeys[i]] && dataKeys[i] === 'hasParking') {
+      if (data[dataKeys[i]] && dataKeys[i] === 'hasparking') {
         dining.push(this.mapAmenSentences[dataKeys[i]]);
       }
-      if (data[dataKeys[i]] && dataKeys[i] === 'hasBreakfastCoffeeTea') {
+      if (data[dataKeys[i]] && dataKeys[i] === 'hasbreakfastcoffeetea') {
         dining.push(this.mapAmenSentences[dataKeys[i]]);
       }
     }
@@ -148,10 +148,10 @@ class ShowAmens extends React.Component {
     const dataKeys = Object.keys(data);
     const bedAndBath = [];
     for (let i = 0; i < dataKeys.length; i += 1) {
-      if (data[dataKeys[i]] && dataKeys[i] === 'hasHairDryer') {
+      if (data[dataKeys[i]] && dataKeys[i] === 'hashairdryer') {
         bedAndBath.push(this.mapAmenSentences[dataKeys[i]]);
       }
-      if (data[dataKeys[i]] && dataKeys[i] === 'hasShampoo') {
+      if (data[dataKeys[i]] && dataKeys[i] === 'hasshampoo') {
         bedAndBath.push(this.mapAmenSentences[dataKeys[i]]);
       }
     }
@@ -164,19 +164,19 @@ class ShowAmens extends React.Component {
     const dataKeys = Object.keys(data);
     const safetyFeatures = [];
     for (let i = 0; i < dataKeys.length; i += 1) {
-      if (data[dataKeys[i]] && dataKeys[i] === 'hasCarbonMonoxideDetector') {
+      if (data[dataKeys[i]] && dataKeys[i] === 'hascarbonmonoxidedetector') {
         safetyFeatures.push(this.mapAmenSentences[dataKeys[i]]);
       }
-      if (data[dataKeys[i]] && dataKeys[i] === 'hasFireExtinguisher') {
+      if (data[dataKeys[i]] && dataKeys[i] === 'hasfireextinguisher') {
         safetyFeatures.push(this.mapAmenSentences[dataKeys[i]]);
       }
-      if (data[dataKeys[i]] && dataKeys[i] === 'hasSmokeDetector') {
+      if (data[dataKeys[i]] && dataKeys[i] === 'hassmokedetector') {
         safetyFeatures.push(this.mapAmenSentences[dataKeys[i]]);
       }
-      if (data[dataKeys[i]] && dataKeys[i] === 'hasFirstAidKit') {
+      if (data[dataKeys[i]] && dataKeys[i] === 'hasfirstaidkit') {
         safetyFeatures.push(this.mapAmenSentences[dataKeys[i]]);
       }
-      if (data[dataKeys[i]] && dataKeys[i] === 'hasLockOnBedroomDoor') {
+      if (data[dataKeys[i]] && dataKeys[i] === 'haslockonbedroomdoor') {
         safetyFeatures.push(this.mapAmenSentences[dataKeys[i]]);
       }
     }
@@ -189,7 +189,7 @@ class ShowAmens extends React.Component {
     const dataKeys = Object.keys(data);
     const notIncluded = [];
     for (let i = 0; i < dataKeys.length; i += 1) {
-      if (!data[dataKeys[i]] && dataKeys[i] !== 'isBooked') {
+      if (!data[dataKeys[i]] && dataKeys[i] !== 'isbooked') {
         notIncluded.push(this.mapAmenSentences[dataKeys[i]]);
       }
     }

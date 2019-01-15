@@ -51,15 +51,15 @@ class BookingWidgetIso extends React.Component {
   }
 
   fetchUnit() {
-    axios.get(`http://107.22.152.84:2100/api/units/${this.props.id}`)
+    axios.get(`http://localhost:2100/api/units/${this.props.id}`)
       .then(({ data }) => {
         console.log('axios -->', data);
         const { unitData, ownerData } = data;
         this.setState({
           unitData: unitData[0],
           ownerData: ownerData[0],
-          price: unitData[0].pricePerNight,
-          original: unitData[0].pricePerNight,
+          price: unitData[0].pricepernight,
+          original: unitData[0].pricepernight,
         });
       })
       .catch((err) => {
@@ -107,9 +107,9 @@ class BookingWidgetIso extends React.Component {
 
   checkIfWithinRange() {
     this.setState((state) => {
-      const { dateAvailableFrom, dateAvailableTo } = state.unitData;
-      const validStart = dateFn.isWithinRange(new Date(state.checkInDate), new Date(dateAvailableFrom), new Date(dateAvailableTo));
-      const validStop = dateFn.isWithinRange(new Date(state.checkOutDate), new Date(dateAvailableFrom), new Date(dateAvailableTo));
+      const { dateavailablefrom, dateavailableto } = state.unitData;
+      const validStart = dateFn.isWithinRange(new Date(state.checkInDate), new Date(dateavailablefrom), new Date(dateavailableto));
+      const validStop = dateFn.isWithinRange(new Date(state.checkOutDate), new Date(dateavailablefrom), new Date(dateavailableto));
       if (validStart && validStop) {
         const numberOfDaysSelected = Math.abs(dateFn.differenceInCalendarDays(new Date(state.checkInDate), new Date(state.checkOutDate)));
         return {

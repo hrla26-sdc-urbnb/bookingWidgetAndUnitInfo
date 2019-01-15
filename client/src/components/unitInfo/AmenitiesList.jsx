@@ -14,28 +14,30 @@ const AmenitiesList = ({ unitData, toggleShowAllAmens }) => {
   let amens = [];
   let all = [];
   for (let key in unitData) {
-    if (typeof unitData[key] === 'boolean' && key != 'isBooked') {
-     if (unitData[key]) {
-      all.push(key);
-     }
+    if (typeof unitData[key] === 'boolean' && key != 'isbooked') {
+      if (unitData[key]) {
+        all.push(key);
+      }
     }
   }
   let show = <a href="" onClick={handleClick}>{`Show all ${all.length} amenities`}</a>
   if (all.length === 0) {
     show = null;
   }
-  if (unitData.hasParking) {
+  if (unitData.hasparking) {
     amens.push('Free parking on premises');
   }
-  if (unitData.hasHotTub) {
+  if (unitData.hashottub) {
     amens.push('Hot tub');
   }
-  if (unitData.hasWifi) {
+  if (unitData.haswifi) {
     amens.push('Wifi');
   }
-  if (unitData.hasKitchen) {
+  if (unitData.haskitchen) {
     amens.push('Kitchen');
   }
+
+  console.log('amens: ', amens);
   return (
     <div className={styles.amenContainer}>
       <div className={styles.itemContainer}>

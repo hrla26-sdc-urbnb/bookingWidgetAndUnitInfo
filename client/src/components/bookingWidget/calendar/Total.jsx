@@ -2,7 +2,7 @@ import React from 'react';
 import styles from '../../styles/total.css';
 
 const Total = ({ numberOfDaysSelected, unitData, price }) => {
-  const { cleaningFee, serviceFee } = unitData;
+  const { cleaningfee, servicefee } = unitData;
   if (numberOfDaysSelected === 0) {
     numberOfDaysSelected = 1;
   }
@@ -25,7 +25,7 @@ const Total = ({ numberOfDaysSelected, unitData, price }) => {
           <button className={styles.question}>?</button>
         </div>
         <div className={styles.text}>
-          {`$${cleaningFee}`}
+          {`$${cleaningfee}`}
         </div>
       </div>
 
@@ -35,13 +35,13 @@ const Total = ({ numberOfDaysSelected, unitData, price }) => {
           <button className={styles.question}>?</button>
         </div>
         <div className={styles.text}>
-          {`$${serviceFee}`}
+          {`$${servicefee}`}
         </div>
       </div>
 
       <div className={styles.totalContainer}>
         <div className={styles.totalText}>Total</div>
-        <div className={styles.totalText}>{`$${(price * numberOfDaysSelected) + cleaningFee + serviceFee}`}</div>
+        <div className={styles.totalText}>{`$${(price * numberOfDaysSelected) + cleaningfee + servicefee}`}</div>
       </div>
 
     </div>
