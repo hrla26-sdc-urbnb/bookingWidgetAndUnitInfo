@@ -17,6 +17,30 @@ module.exports = {
       }
     });
   },
+  addUnit: (req, res) => {
+    const { newUnit } = req.body;
+    db.insertUnit(newUnit, (err) => {
+      if (err) { console.error(err); } else {
+        res.send('Unit successfully added');
+      }
+    });
+  },
+  updateUnit: (req, res) => {
+    const { updatedUnit } = req.body;
+    db.updateUnit(updatedUnit, (err) => {
+      if (err) { console.error(err); } else {
+        res.send('Unit successfully updated');
+      }
+    });
+  },
+  deleteUnit: (req, res) => {
+    const { unitId } = req.params;
+    db.deleteUnit(unitId, (err) => {
+      if (err) { console.error(err); } else {
+        res.send('unit deleted');
+      }
+    });
+  },
 };
 
 // module.exports = {
