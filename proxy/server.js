@@ -1,20 +1,18 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 const path = require('path');
-const parser = require('body-parser');
+const router = require('./router.js');
 
-const port = 3400;
-const app = express();
+const PORT = 3400;
+const proxy = express();
 
-app.use(parser.json());
-app.use(parser.urlencoded({
-  extended: true,
-}));
-app.use(express.static(path.join(__dirname, './public/')));
+proxy.use(bodyParser.json());
+proxy.use(bodyParser.urlencoded({ extended: true }));
+proxy.use(express.static(path.join(__dirname, './public/')));
+proxy.use('/api', router);
 
-app.listen(port, (err) => {
-  if (err) {
-    console.log('error listening on port ', port);
-  } else {
-    console.log('successfully listening on port ', port);
+proxy.listen(PORT, (err) => {
+  if (err) { console.error(err); } else {
+    console.log('Listening on port ', PORT);
   }
 });
