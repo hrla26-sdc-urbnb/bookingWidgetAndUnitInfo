@@ -6,9 +6,9 @@ const {
   deleteUnit,
 } = require('./controller');
 
-router.get('/:unitId/', getUnitInfo);
-router.post('/', addUnit);
-router.put('/', updateUnit);
-router.delete('/:unitId/', deleteUnit); // works
+router.get('/units/:unitId/', getUnitInfo);
+router.post('/units/', addUnit);
+router.put('/units/', updateUnit);
+router.delete('/units/:unitId/', deleteUnit);
 
 module.exports = router;
