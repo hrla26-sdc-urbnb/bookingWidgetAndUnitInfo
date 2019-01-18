@@ -1,0 +1,14 @@
+config:
+  target: 'http://127.0.0.1:2100'
+  phases:
+    - duration: 30
+      arrivalRate: 500
+  processor: "./artillery.js"
+  defaults:
+    headers:
+      x-my-service-auth: '987401838271002188298567'
+scenarios:
+  - flow:
+    - get:
+        url: "/api/units"
+        beforeRequest: "attachRandomUnitId"

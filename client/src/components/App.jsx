@@ -69,7 +69,7 @@ class App extends React.Component {
   fetchUnit() {
     axios.get(`http://localhost:3400/api/units/${this.props.id}`)
       .then(({ data }) => {
-        console.log('axios -->', data);
+        // console.log('axios -->', data);
         const { unitData, ownerData } = data;
         this.setState({
           unitData: unitData[0],

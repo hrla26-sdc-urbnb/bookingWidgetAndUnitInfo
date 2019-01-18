@@ -3,9 +3,15 @@ const db = require('./index.js');
 module.exports = {
   readUnit: (unitId, callback) => {
     db.query(`
-      SELECT *
-      FROM units
-      WHERE id = ${unitId};
+      SELECT
+        u.*,
+        o.name,
+        o.photo,
+        o.issuperhost
+      FROM units u
+      JOIN owners o
+        on u.owner_id = o.id
+      WHERE u.id = ${unitId};
     `, callback);
   },
   insertUnit: (newUnit, callback) => {
