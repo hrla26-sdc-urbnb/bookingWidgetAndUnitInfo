@@ -6,14 +6,17 @@ module.exports = {
 
     db.readUnit(unitId, (err, unitData) => {
       if (err) { console.error(err); } else {
-        db.readOwner(unitData.rows[0].owner_id, (err, ownerData) => {
-          if (err) { console.error(err); } else {
-            res.status(200).send({
-              ownerData: ownerData.rows,
-              unitData: unitData.rows,
-            });
-          }
-        });
+        res.status(200).send({ unitData: unitData.rows });
+
+        // db.readOwner(unitData.rows[0].owner_id, (err, ownerData) => {
+        //   if (err) { console.error(err); } else {
+        //     res.status(200).send({
+        //       ownerData: ownerData.rows,
+        //       unitData: unitData.rows,
+        //     });
+        //   }
+        // });
+
       }
     });
   },
