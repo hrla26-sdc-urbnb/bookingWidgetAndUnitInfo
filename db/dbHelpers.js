@@ -1,5 +1,5 @@
-// const client = require('./index.js');
-const pool = require('./index.js');
+const client = require('./index.js');
+// const pool = require('./index.js');
 
 module.exports = {
   readUnit: (unitId) => {
@@ -15,7 +15,8 @@ module.exports = {
       WHERE u.id = ${unitId};
     `;
 
-    return pool.then(client => client.query(query));
+    return client.query(query);
+    // return pool.then(client => client.query(query));
   },
   insertUnit: (newUnit) => {
     const {
@@ -77,20 +78,12 @@ module.exports = {
       VALUES (${owner_id}, '${title}', '${streetaddress}', '${aptorsuite}', '${country}', '${city}', '${state}', '${zipcode}', '${partofunitfromrent}', ${guestsallowed}, ${numberofroomsguestsmayuse}, ${numberofbedsguestsmayuse}, ${numberofbathroomsguestsmayuse}, ${numberofreviews}, ${averagestarrating}, '${summarydescription}', '${aboutyourunit}', '${whatguestscanaccess}', '${yourinteractionwithguests}', '${otherthingstonote}', '${dateavailablefrom}', '${dateavailableto}', ${pricepernight}, ${cleaningfee}, ${servicefee}, ${isbooked}, ${hasessentials}, ${haswifi}, ${hasshampoo}, ${hasclosetdrawers}, ${hastv}, ${hasheat}, ${hasairconditioning}, ${hasbreakfastcoffeetea}, ${hasdeskworkspace}, ${hasfireplace}, ${hasiron}, ${hashairdryer}, ${hasprivateentrance}, ${hassmokedetector}, ${hascarbonmonoxidedetector}, ${hasfirstaidkit}, ${hasfireextinguisher}, ${haslockonbedroomdoor}, ${haspool}, ${haskitchen}, ${haslaundrywasher}, ${haslaundrydryer}, ${hasparking}, ${haselevator}, ${hashottub}, to_tsvector('${city}'));
     `;
 
-    return poolConnection
-      .then(client => (
-        client.query(query)
-          .then(() => {
-            return 'Unit successfully added'; 
-          })
-          .catch((err) => {
-            console.error(err); 
-          })
-      ));
+    return client.query(query);
+    // return pool.then(client => client.query(query));
   },
   updateUnit: (updatedUnit, callback) => {
     const {
-      id, 
+      id,
       owner_id,
       title,
       streetaddress,

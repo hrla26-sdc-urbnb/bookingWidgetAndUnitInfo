@@ -2,68 +2,68 @@ config:
   target: 'http://127.0.0.1:2100'
   phases:
     - duration: 30
-      arrivalRate: 750
+      arrivalRate: 100
   processor: "./artillery.js"
   defaults:
     headers:
       x-my-service-auth: '987401838271002188298567'
 scenarios:
   - flow:
-    - get:
-        url: "/api/units/{{ id }}"
-        beforeRequest: "attachRandomUnitId"
-    # - post:
-    #     url: "/api/units"
-    #     json:
-    #       newUnit:
-    #         owner_id: 0
-    #         title: ''
-    #         streetaddress: ''
-    #         aptorsuite: ''
-    #         country: ''
-    #         city: ''
-    #         state: ''
-    #         zipcode: ''
-    #         partofunitfromrent: ''
-    #         guestsallowed: 3
-    #         numberofroomsguestsmayuse: 3
-    #         numberofbedsguestsmayuse: 3
-    #         numberofbathroomsguestsmayuse: 3
-    #         numberofreviews: 3
-    #         averagestarrating: 3
-    #         summarydescription: ''
-    #         aboutyourunit: ''
-    #         whatguestscanaccess: ''
-    #         yourinteractionwithguests: ''
-    #         otherthingstonote: ''
-    #         dateavailablefrom: ''
-    #         dateavailableto: ''
-    #         pricepernight: 100
-    #         cleaningfee: 100
-    #         servicefee: 100
-    #         isbooked: true
-    #         hasessentials: true
-    #         haswifi: true
-    #         hasshampoo: true
-    #         hasclosetdrawers: true
-    #         hastv: true
-    #         hasheat: true
-    #         hasairconditioning: true
-    #         hasbreakfastcoffeetea: true
-    #         hasdeskworkspace: true
-    #         hasfireplace: true
-    #         hasiron: true
-    #         hashairdryer: true
-    #         hasprivateentrance: true
-    #         hassmokedetector: true
-    #         hascarbonmonoxidedetector: true
-    #         hasfirstaidkit: true
-    #         hasfireextinguisher: true
-    #         haslockonbedroomdoor: true
-    #         haspool: true
-    #         haskitchen: true
-    #         haslaundrywasher: true
-    #         haslaundrydryer: true
-    #         hasparking: true
-    #         haselevator: true
-    #         hashottub: true
+    # - get:
+    #     url: "/api/units/{{ id }}"
+    #     beforeRequest: "attachRandomUnitId"
+    - post:
+        url: "/api/units"
+        json:
+          newUnit:
+            owner_id: 0
+            title: ''
+            streetaddress: ''
+            aptorsuite: ''
+            country: ''
+            city: ''
+            state: ''
+            zipcode: ''
+            partofunitfromrent: ''
+            guestsallowed: 3
+            numberofroomsguestsmayuse: 3
+            numberofbedsguestsmayuse: 3
+            numberofbathroomsguestsmayuse: 3
+            numberofreviews: 3
+            averagestarrating: 3
+            summarydescription: ''
+            aboutyourunit: ''
+            whatguestscanaccess: ''
+            yourinteractionwithguests: ''
+            otherthingstonote: ''
+            dateavailablefrom: ''
+            dateavailableto: ''
+            pricepernight: 100
+            cleaningfee: 100
+            servicefee: 100
+            isbooked: true
+            hasessentials: true
+            haswifi: true
+            hasshampoo: true
+            hasclosetdrawers: true
+            hastv: true
+            hasheat: true
+            hasairconditioning: true
+            hasbreakfastcoffeetea: true
+            hasdeskworkspace: true
+            hasfireplace: true
+            hasiron: true
+            hashairdryer: true
+            hasprivateentrance: true
+            hassmokedetector: true
+            hascarbonmonoxidedetector: true
+            hasfirstaidkit: true
+            hasfireextinguisher: true
+            haslockonbedroomdoor: true
+            haspool: true
+            haskitchen: true
+            haslaundrywasher: true
+            haslaundrydryer: true
+            hasparking: true
+            haselevator: true
+            hashottub: true

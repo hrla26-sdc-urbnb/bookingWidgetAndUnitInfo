@@ -5,20 +5,14 @@ module.exports = {
     const { unitId } = req.params;
 
     db.readUnit(unitId)
-      .then((unitData) => {
-        res.status(200).send({ unitData: unitData.rows });
-      })
+      .then((unitData) => { res.status(200).send({ unitData: unitData.rows }); })
       .catch((err) => { console.error(err); });
   },
   addUnit: (req, res) => {
     const { newUnit } = req.body;
     db.insertUnit(newUnit)
-      .then((response) => {
-        res.status(201).send(response);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+      .then((response) => { res.status(201).send(response); })
+      .catch((err) => { console.error(err); });
   },
   updateUnit: (req, res) => {
     const { updatedUnit } = req.body;
