@@ -197,10 +197,12 @@ module.exports = {
     `, callback);
   },
   readOwner: (ownerId) => {
-    return client.query(`
+    const query = `
       SELECT *
       FROM owners
       WHERE id = ${ownerId}
-    `);
+    `;
+
+    return client.query(query);
   },
 };

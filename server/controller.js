@@ -4,7 +4,7 @@ module.exports = {
   getUnitInfo: (req, res) => {
     const { unitId } = req.params;
 
-    return db.readUnit(unitId)
+    db.readUnit(unitId)
       .then((unitData) => {
         db.readOwner(unitData.rows[0].owner_id)
           .then((ownerData) => {
