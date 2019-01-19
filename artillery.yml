@@ -2,7 +2,7 @@ config:
   target: 'http://127.0.0.1:2100'
   phases:
     - duration: 30
-      arrivalRate: 300
+      arrivalRate: 750
   processor: "./artillery.js"
   defaults:
     headers:

@@ -1,18 +1,53 @@
-const db = require('./index.js');
+const pool = require('./index.js');
+// const client = require('./index.js');
+
+const poolConnection = pool.connect();
 
 module.exports = {
-  readUnit: (unitId, callback) => {
-    db.query(`
-      SELECT
-        u.*,
-        o.name,
-        o.photo,
-        o.issuperhost
-      FROM units u
-      JOIN owners o
-        on u.owner_id = o.id
-      WHERE u.id = ${unitId};
-    `, callback);
+  readUnit: (unitId) => {
+    //// OPTIMIZED W POOL
+    return poolConnection
+      .then((client) => {
+        return client.query(`
+          SELECT
+            u.*,
+            o.name,
+            o.photo,
+            o.issuperhost
+          FROM units u
+          JOIN owners o
+            on u.owner_id = o.id
+          WHERE u.id = ${unitId};
+        `)
+        .then(unitData => {
+          // client.release();
+          return unitData;
+        } )
+        .catch((err) => {
+          // client.release();
+          console.error(err);
+        });
+      });
+
+    ///// OPTIMIZED CONSOLIDATED QUERY
+    // return client.query(`
+    //   SELECT
+    //     u.*,
+    //     o.name,
+    //     o.photo,
+    //     o.issuperhost
+    //   FROM units u
+    //   JOIN owners o
+    //     on u.owner_id = o.id
+    //   WHERE u.id = ${unitId};
+    // `);
+
+    ///// BASELINE
+    // return client.query(`
+    //   SELECT *
+    //   FROM units u
+    //   WHERE u.id = ${unitId};
+    // `);
   },
   insertUnit: (newUnit, callback) => {
     const {
@@ -74,7 +109,7 @@ module.exports = {
       VALUES (${owner_id}, '${title}', '${streetaddress}', '${aptorsuite}', '${country}', '${city}', '${state}', '${zipcode}', '${partofunitfromrent}', ${guestsallowed}, ${numberofroomsguestsmayuse}, ${numberofbedsguestsmayuse}, ${numberofbathroomsguestsmayuse}, ${numberofreviews}, ${averagestarrating}, '${summarydescription}', '${aboutyourunit}', '${whatguestscanaccess}', '${yourinteractionwithguests}', '${otherthingstonote}', '${dateavailablefrom}', '${dateavailableto}', ${pricepernight}, ${cleaningfee}, ${servicefee}, ${isbooked}, ${hasessentials}, ${haswifi}, ${hasshampoo}, ${hasclosetdrawers}, ${hastv}, ${hasheat}, ${hasairconditioning}, ${hasbreakfastcoffeetea}, ${hasdeskworkspace}, ${hasfireplace}, ${hasiron}, ${hashairdryer}, ${hasprivateentrance}, ${hassmokedetector}, ${hascarbonmonoxidedetector}, ${hasfirstaidkit}, ${hasfireextinguisher}, ${haslockonbedroomdoor}, ${haspool}, ${haskitchen}, ${haslaundrywasher}, ${haslaundrydryer}, ${hasparking}, ${haselevator}, ${hashottub}, to_tsvector('${city}'));
     `;
 
-    db.query(query, callback);
+    pool.query(query, callback);
   },
   updateUnit: (updatedUnit, callback) => {
     const {
@@ -190,45 +225,19 @@ module.exports = {
     WHERE id = ${id};
     `;
 
-    db.query(query, callback);
+    pool.query(query, callback);
   },
   deleteUnit: (unitId, callback) => {
-    db.query(`
+    pool.query(`
       DELETE FROM units
       WHERE id = ${unitId};
     `, callback);
   },
-  readOwner: (ownerId, callback) => {
-    db.query(`
+  readOwner: (ownerId) => {
+    return client.query(`
       SELECT *
       FROM owners
       WHERE id = ${ownerId}
-    `, callback);
+    `);
   },
 };
-
-// const {
-//   Owner,
-//   Unit,
-// } = require('../db/index');
-
-// module.exports = {
-//   readOwner: (id, callback) => { // this supplies data for the owner of the unit
-//     Owner.find({ id }, (err, results) => {
-//       if (err) {
-//         console.log('error reading owner from db -->', err);
-//       } else {
-//         callback(results);
-//       }
-//     });
-//   },
-//   readUnit: (id, callback) => { // this supplies data for the unit itself
-//     Unit.find({ id }, (err, results) => {
-//       if (err) {
-//         console.log('error reading unit from db -->', err);
-//       } else {
-//         callback(results);
-//       }
-//     });
-//   },
-// };

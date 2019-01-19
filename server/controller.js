@@ -4,21 +4,26 @@ module.exports = {
   getUnitInfo: (req, res) => {
     const { unitId } = req.params;
 
-    db.readUnit(unitId, (err, unitData) => {
-      if (err) { console.error(err); } else {
+    ///// OPTIMIZED
+    db.readUnit(unitId)
+      .then(unitData => {
         res.status(200).send({ unitData: unitData.rows });
+      })
+      .catch(err => { console.error(err); });
 
-        // db.readOwner(unitData.rows[0].owner_id, (err, ownerData) => {
-        //   if (err) { console.error(err); } else {
-        //     res.status(200).send({
-        //       ownerData: ownerData.rows,
-        //       unitData: unitData.rows,
-        //     });
-        //   }
-        // });
-
-      }
-    });
+    ///// BASELINE (multiple query calls with .then())
+    // db.readUnit(unitId)
+    //   .then(unitData => {
+    //     db.readOwner(unitData.rows[0].owner_id)
+    //       .then(ownerData => {
+    //         res.status(200).send({
+    //           ownerData: ownerData.rows,
+    //           unitData: unitData.rows,
+    //         });
+    //       })
+    //       .catch(err => { console.error(err); });
+    //   })
+    //   .catch(err => { console.error(err); });
   },
   addUnit: (req, res) => {
     const { newUnit } = req.body;
@@ -40,7 +45,7 @@ module.exports = {
     const { unitId } = req.params;
     db.deleteUnit(unitId, (err) => {
       if (err) { console.error(err); } else {
-        res.send('unit deleted');
+        res.send('Unit successfully deleted');
       }
     });
   },
