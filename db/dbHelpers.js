@@ -1,55 +1,16 @@
-const pool = require('./index.js');
-// const client = require('./index.js');
-
-const poolConnection = pool.connect();
+const client = require('./index.js');
 
 module.exports = {
   readUnit: (unitId) => {
-    // /// OPTIMIZED W POOL
-    return poolConnection
-      .then((client) => {
-        return client.query(`
-          SELECT
-            u.*,
-            o.name,
-            o.photo,
-            o.issuperhost
-          FROM units u
-          JOIN owners o
-            on u.owner_id = o.id
-          WHERE u.id = ${unitId};
-        `)
-          .then((unitData) => {
-            // client.release();
-            return unitData;
-          })
-          .catch((err) => {
-            // client.release();
-            console.error(err);
-          });
-      });
+    const query = `
+      SELECT *
+      FROM units u
+      WHERE u.id = ${unitId};
+    `;
 
-    // /// OPTIMIZED CONSOLIDATED QUERY
-    // return client.query(`
-    //   SELECT
-    //     u.*,
-    //     o.name,
-    //     o.photo,
-    //     o.issuperhost
-    //   FROM units u
-    //   JOIN owners o
-    //     on u.owner_id = o.id
-    //   WHERE u.id = ${unitId};
-    // `);
-
-    // /// BASELINE
-    // return client.query(`
-    //   SELECT *
-    //   FROM units u
-    //   WHERE u.id = ${unitId};
-    // `);
+    return client.query(query);
   },
-  insertUnit: (newUnit, callback) => {
+  insertUnit: (newUnit) => {
     const {
       owner_id,
       title,
@@ -109,18 +70,9 @@ module.exports = {
       VALUES (${owner_id}, '${title}', '${streetaddress}', '${aptorsuite}', '${country}', '${city}', '${state}', '${zipcode}', '${partofunitfromrent}', ${guestsallowed}, ${numberofroomsguestsmayuse}, ${numberofbedsguestsmayuse}, ${numberofbathroomsguestsmayuse}, ${numberofreviews}, ${averagestarrating}, '${summarydescription}', '${aboutyourunit}', '${whatguestscanaccess}', '${yourinteractionwithguests}', '${otherthingstonote}', '${dateavailablefrom}', '${dateavailableto}', ${pricepernight}, ${cleaningfee}, ${servicefee}, ${isbooked}, ${hasessentials}, ${haswifi}, ${hasshampoo}, ${hasclosetdrawers}, ${hastv}, ${hasheat}, ${hasairconditioning}, ${hasbreakfastcoffeetea}, ${hasdeskworkspace}, ${hasfireplace}, ${hasiron}, ${hashairdryer}, ${hasprivateentrance}, ${hassmokedetector}, ${hascarbonmonoxidedetector}, ${hasfirstaidkit}, ${hasfireextinguisher}, ${haslockonbedroomdoor}, ${haspool}, ${haskitchen}, ${haslaundrywasher}, ${haslaundrydryer}, ${hasparking}, ${haselevator}, ${hashottub}, to_tsvector('${city}'));
     `;
 
-    // pool.query(query, callback);
-
-    return poolConnection
-      .then(client => (
-        client.query(query)
-          .then(() => {
-            return 'Unit successfully added'; 
-          })
-          .catch((err) => {
-            console.error(err); 
-          })
-      ));
+    return client.query(query)
+      .then(() => ('Unit successfully added'))
+      .catch((err) => { console.error(err); });
   },
   updateUnit: (updatedUnit, callback) => {
     const {
