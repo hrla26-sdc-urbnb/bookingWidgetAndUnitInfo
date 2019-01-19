@@ -5,7 +5,7 @@ const poolConnection = pool.connect();
 
 module.exports = {
   readUnit: (unitId) => {
-    //// OPTIMIZED W POOL
+    // /// OPTIMIZED W POOL
     return poolConnection
       .then((client) => {
         return client.query(`
@@ -19,17 +19,17 @@ module.exports = {
             on u.owner_id = o.id
           WHERE u.id = ${unitId};
         `)
-        .then(unitData => {
-          // client.release();
-          return unitData;
-        } )
-        .catch((err) => {
-          // client.release();
-          console.error(err);
-        });
+          .then((unitData) => {
+            // client.release();
+            return unitData;
+          })
+          .catch((err) => {
+            // client.release();
+            console.error(err);
+          });
       });
 
-    ///// OPTIMIZED CONSOLIDATED QUERY
+    // /// OPTIMIZED CONSOLIDATED QUERY
     // return client.query(`
     //   SELECT
     //     u.*,
@@ -42,7 +42,7 @@ module.exports = {
     //   WHERE u.id = ${unitId};
     // `);
 
-    ///// BASELINE
+    // /// BASELINE
     // return client.query(`
     //   SELECT *
     //   FROM units u
@@ -109,7 +109,18 @@ module.exports = {
       VALUES (${owner_id}, '${title}', '${streetaddress}', '${aptorsuite}', '${country}', '${city}', '${state}', '${zipcode}', '${partofunitfromrent}', ${guestsallowed}, ${numberofroomsguestsmayuse}, ${numberofbedsguestsmayuse}, ${numberofbathroomsguestsmayuse}, ${numberofreviews}, ${averagestarrating}, '${summarydescription}', '${aboutyourunit}', '${whatguestscanaccess}', '${yourinteractionwithguests}', '${otherthingstonote}', '${dateavailablefrom}', '${dateavailableto}', ${pricepernight}, ${cleaningfee}, ${servicefee}, ${isbooked}, ${hasessentials}, ${haswifi}, ${hasshampoo}, ${hasclosetdrawers}, ${hastv}, ${hasheat}, ${hasairconditioning}, ${hasbreakfastcoffeetea}, ${hasdeskworkspace}, ${hasfireplace}, ${hasiron}, ${hashairdryer}, ${hasprivateentrance}, ${hassmokedetector}, ${hascarbonmonoxidedetector}, ${hasfirstaidkit}, ${hasfireextinguisher}, ${haslockonbedroomdoor}, ${haspool}, ${haskitchen}, ${haslaundrywasher}, ${haslaundrydryer}, ${hasparking}, ${haselevator}, ${hashottub}, to_tsvector('${city}'));
     `;
 
-    pool.query(query, callback);
+    // pool.query(query, callback);
+
+    return poolConnection
+      .then(client => (
+        client.query(query)
+          .then(() => {
+            return 'Unit successfully added'; 
+          })
+          .catch((err) => {
+            console.error(err); 
+          })
+      ));
   },
   updateUnit: (updatedUnit, callback) => {
     const {
