@@ -1,7 +1,7 @@
 module.exports = {
-  user: 'martinhan',
-  host: 'localhost', // change to db EC2 instance IP
+  user: 'postgres',
+  host: '3.83.39.194', // DB EC2 instance IP
   database: 'urbnb',
-  password: '',
+  password: 'password',
   port: 5432,
 };
