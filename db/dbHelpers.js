@@ -14,7 +14,9 @@ module.exports = {
       WHERE u.id = ${unitId};
     `;
 
-    return pool.then(client => client.query(query));
+    return pool
+      .then(client => client.query(query))
+      .catch((err) => { console.error(err); });
   },
   insertUnit: (newUnit) => {
     const {
@@ -76,7 +78,9 @@ module.exports = {
       VALUES (${owner_id}, '${title}', '${streetaddress}', '${aptorsuite}', '${country}', '${city}', '${state}', '${zipcode}', '${partofunitfromrent}', ${guestsallowed}, ${numberofroomsguestsmayuse}, ${numberofbedsguestsmayuse}, ${numberofbathroomsguestsmayuse}, ${numberofreviews}, ${averagestarrating}, '${summarydescription}', '${aboutyourunit}', '${whatguestscanaccess}', '${yourinteractionwithguests}', '${otherthingstonote}', '${dateavailablefrom}', '${dateavailableto}', ${pricepernight}, ${cleaningfee}, ${servicefee}, ${isbooked}, ${hasessentials}, ${haswifi}, ${hasshampoo}, ${hasclosetdrawers}, ${hastv}, ${hasheat}, ${hasairconditioning}, ${hasbreakfastcoffeetea}, ${hasdeskworkspace}, ${hasfireplace}, ${hasiron}, ${hashairdryer}, ${hasprivateentrance}, ${hassmokedetector}, ${hascarbonmonoxidedetector}, ${hasfirstaidkit}, ${hasfireextinguisher}, ${haslockonbedroomdoor}, ${haspool}, ${haskitchen}, ${haslaundrywasher}, ${haslaundrydryer}, ${hasparking}, ${haselevator}, ${hashottub}, to_tsvector('${city}'));
     `;
 
-    return pool.then(client => client.query(query));
+    return pool
+      .then(client => client.query(query))
+      .catch((err) => { console.error(err); });
   },
   updateUnit: (updatedUnit, callback) => {
     const {
