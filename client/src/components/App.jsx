@@ -67,7 +67,7 @@ class App extends React.Component {
   }
 
   fetchUnit() {
-    axios.get(`http://localhost:3400/api/units/${this.props.id}`)
+    axios.get(`http://localhost:3400/api/units/${this.props.id}`) // Proxy server EC2 IP address
       .then(({ data }) => {
         const { unitData, ownerData } = data;
         this.setState({
