@@ -51,9 +51,8 @@ class BookingWidgetIso extends React.Component {
   }
 
   fetchUnit() {
-    axios.get(`http://localhost:3400/api/units/${this.props.id}`) // Proxy server EC2 IP address
+    axios.get(`http://54.89.237.32:3400/api/units/${this.props.id}`) // Proxy server EC2 instance
       .then(({ data }) => {
-        // console.log('axios -->', data);
         const { unitData, ownerData } = data;
         this.setState({
           unitData: unitData[0],
@@ -67,9 +66,7 @@ class BookingWidgetIso extends React.Component {
           original: unitData[0].pricepernight,
         });
       })
-      .catch((err) => {
-        console.log('error fetching unit -->', err);
-      });
+      .catch((err) => { console.error('error fetching unit -->', err); });
   }
 
   handleOutsideClick(e) {

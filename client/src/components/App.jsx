@@ -20,7 +20,6 @@ import stylesAmen from './styles/amenities.css';
 import stylesBook from './styles/bookingWidget.css';
 import BookingWidgetIso from './BookingWidgetIso.jsx';
 
-
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -63,11 +62,10 @@ class App extends React.Component {
 
   handleClick(e) {
     e.preventDefault();
-    console.log('click!');
   }
 
   fetchUnit() {
-    axios.get(`http://localhost:3400/api/units/${this.props.id}`) // Proxy server EC2 IP address
+    axios.get(`http://54.89.237.32:3400/api/units/${this.props.id}`) // Proxy server EC2 instance
       .then(({ data }) => {
         const { unitData, ownerData } = data;
         this.setState({
@@ -82,9 +80,7 @@ class App extends React.Component {
           original: unitData[0].pricepernight,
         });
       })
-      .catch((err) => {
-        console.log('error fetching unit -->', err);
-      });
+      .catch((err) => { console.log('error fetching unit -->', err); });
   }
 
   addToPrice(going) {
