@@ -8,6 +8,3 @@ const id = generateRandomNumberBetween(4569598, 14569595); // min and max ids in
 
 ReactDOM.render(<App id={id} />, document.getElementById('descript'));
 ReactDOM.render(<BookingWidgetIso id={id} />, document.getElementById('_bookingWidget'));
-
-// ReactDOM.hydrate(<App id={id} />, document.getElementById('descript'));
-// ReactDOM.hydrate(<BookingWidgetIso id={id} />, document.getElementById('_bookingWidget'));
