@@ -17,7 +17,9 @@
     "seed-postgres-units": "psql -U martinhan -d urbnb -f db/seed/seedUnits.sql",
     "seed-postgres-owners": "psql -U martinhan -d urbnb -f db/seed/seedOwners.sql",
     "build-psql-tables": "psql -U martinhan -d urbnb -f db/seed/schema.sql",
-    "build": "webpack --display-error-details --watch",
+    "build": "webpack --env.platform=web --display-error-details --watch",
+    "build-server": "webpack --env.platform=server --watch",
+    "start-server": "nodemon ./server/bundle.js",
     "artillery": "artillery run artillery.yml"
   },
   "repository": {
@@ -40,6 +42,7 @@
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsx-a11y": "^6.1.2",
     "eslint-plugin-react": "^7.11.1",
+    "isomorphic-style-loader": "^4.0.0",
     "jest": "^23.6.0",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
