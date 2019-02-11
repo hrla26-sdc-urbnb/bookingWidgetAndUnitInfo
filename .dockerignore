@@ -1,0 +1,3 @@
+node_modules
+db/seed/seedOwners.csv
+db/seed/seedUnits.csv

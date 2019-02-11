@@ -17,7 +17,8 @@
     "seed-postgres-units": "psql -U martinhan -d urbnb -f db/seed/seedUnits.sql",
     "seed-postgres-owners": "psql -U martinhan -d urbnb -f db/seed/seedOwners.sql",
     "build-psql-tables": "psql -U martinhan -d urbnb -f db/seed/schema.sql",
-    "build": "webpack --display-error-details --watch"
+    "build": "webpack --display-error-details --watch",
+    "artillery": "artillery run artillery.yml"
   },
   "repository": {
     "type": "git",
@@ -49,6 +50,7 @@
     "@babel/core": "^7.2.2",
     "@babel/preset-env": "^7.2.3",
     "@babel/preset-react": "^7.0.0",
+    "@babel/register": "^7.0.0",
     "axios": "^0.18.0",
     "babel-loader": "^8.0.4",
     "babel-plugin-react-css-modules": "^5.0.0",
@@ -58,7 +60,9 @@
     "dotenv": "^6.2.0",
     "express": "^4.16.4",
     "faker": "^4.1.0",
+    "ignore-styles": "^5.0.1",
     "mongoose": "^5.4.0",
+    "newrelic": "^5.1.0",
     "nodemon": "^1.18.9",
     "pg": "^7.7.1",
     "react": "^16.7.0",
