@@ -2,5 +2,7 @@ const { Pool } = require('pg');
 const config = require('./config.js');
 
 const pool = new Pool(config);
-module.exports = pool.connect()
-  .catch((err) => { console.error(err); });
+
+pool.on('error', (err) => { console.error(err); });
+
+module.exports = pool;
