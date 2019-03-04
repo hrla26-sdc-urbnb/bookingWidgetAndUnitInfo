@@ -8,4 +8,4 @@ node_modules
 npm-debug.log
 db/seed/seedOwners.csv
 db/seed/seedUnits.csv
-./db/config.js
+db/config.js
