@@ -11,8 +11,8 @@ As a lot of the stress testing/load balancing work was done outside of this repo
 Project Overview:
 ![Overview](https://s3-us-west-1.amazonaws.com/gitbuckets/hrla26-sdc-urbnb/urBnb+SDC+Overview.png)
 
-Screenshot:
-![Screenshot](https://s3-us-west-1.amazonaws.com/gitbuckets/hrla26-sdc-urbnb/urBnb.png)
-
 Deployment Architecture:
 ![Architecture](https://s3-us-west-1.amazonaws.com/gitbuckets/hrla26-sdc-urbnb/urBnb+Deployment+Architecture.png)
+
+Screenshot:
+![Screenshot](https://s3-us-west-1.amazonaws.com/gitbuckets/hrla26-sdc-urbnb/urBnb.png)
